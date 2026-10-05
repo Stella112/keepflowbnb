@@ -18,3 +18,19 @@ ATTEMPTS: Official HTML reference, Markdown reference, llms-full.txt and direct 
 SAFEST FALLBACK: Leave integrations disabled and show unavailable data.
 DECISION NEEDED: Maris supplies accessible official reference content and configures developer credentials locally. Signing remains unimplemented until verified.
 
+
+## 2026-10-05 — Authentication reference and live probe
+
+Official authentication reference is now readable: https://web3.binance.com/en/dev-docs/authentication
+Signing uses a UTF-8 HMAC-SHA256 digest encoded as Base64. Input concatenates timestamp, uppercase method, encoded request path including /build, and exact body. Query serialization must match the request bytes. Source last-modified date: 2026-10-01.
+
+Harmless request: GET /build/api/v1/dex/balance/supported/chain?binanceChainId=56.
+Timestamp: 2026-10-05T12:42:51.737Z. HTTP status: 200. Latency: 1948 ms. Retries: 0.
+Observed response: code 40304, success false, message Service not available due to compliance restriction. No data property is present. Captured fixture: fixtures/api/wallet-supported-chains.json. It is an error fixture, not proof that signing was accepted.
+
+EXPECTED: Successful supported-chain response proving authenticated access.
+OBSERVED: Explicit compliance restriction.
+EVIDENCE: Sanitized real fixture and ignored logs/dx.jsonl.
+ATTEMPTS: One documented, signed harmless request. No geographic bypass, proxy change or repeat request.
+SAFEST FALLBACK: Keep live integrations unavailable and writes disabled.
+DECISION NEEDED: Maris contacts Binance developer/hackathon support to clarify whether the account and connection are eligible and how to resolve code 40304 legitimately. No further live probes until resolved.

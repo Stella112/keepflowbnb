@@ -22,3 +22,7 @@ flowchart LR
 Bells will store tickers and basis-point weights; forks will be independent definitions with parent provenance. Autopilot will enforce deterministic contribution-first rules. These features are not implemented yet. BNB Chain is the mandated mainnet execution target; no token contracts are hard-coded.
 
 See `CLAUDE.md` for scope, `docs/STATUS.md` for gates, `docs/API_VERIFICATION.md` for endpoint evidence, and `docs/DEVEX_RAW.md` for factual observations. Agentic Wallet, Agent Studio and B402 remain stretch items. Deployment, persistence, wallet connection, receipts, QR, live discovery, quotes, simulation and E2E testing remain incomplete.
+
+## Read-only authentication verification
+
+Use Node.js 22.18+ for the native TypeScript verification tools. `npm run test:auth` checks encoded signing paths and host restrictions locally. `npm run verify:api` sends only supported-chain and RWA discovery reads and stops on the first failure, with no retries. Run only after the compliance blocker is legitimately resolved. Credentials are loaded from ignored `.env.local`; no headers or secrets are logged. The current captured response is a compliance error, not successful authentication proof.
