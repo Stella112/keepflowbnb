@@ -1,0 +1,9 @@
+"use client";
+import {useState} from 'react';
+import Link from 'next/link';
+import type {BellReviewReport} from '../../lib/agents/review-report';
+import {proposalFromReview} from '../../lib/agents/proposal';
+export function ReviewProposal({report}:{report:BellReviewReport}){
+ const [prompt,setPrompt]=useState(''),[error,setError]=useState(''),[result,setResult]=useState<ReturnType<typeof proposalFromReview>>();
+ return <section className="purchase-panel"><h3>Draft from these captured facts.</h3><p>Specify a percentage for each reviewed ticker and your cash reserve. This parser follows your instructions; it does not recommend stocks.</p><label htmlFor="review-proposal">Your allocation instructions</label><textarea id="review-proposal" maxLength={1000} value={prompt} onChange={event=>{setPrompt(event.target.value);setResult(undefined);setError('');}}/><button className="button secondary" onClick={()=>{setResult(undefined);setError('');try{setResult(proposalFromReview(report,prompt));}catch(problem){setError(problem instanceof Error?problem.message:'Draft unavailable.');}}}>Prepare unsaved proposal</button>{error&&<p className="error" role="alert">{error}</p>}{result&&<div><h4>Review your proposal</h4>{result.importDraft.draft.definition.assets.map(asset=><p key={asset.ticker}>{asset.ticker}: {asset.weightBps/100}%</p>)}<p>Cash: {result.importDraft.draft.definition.reserveBps/100}%</p><p className="fine-print">Based on Flow version {result.provenance.bell.version} and captured policy version {result.provenance.policyVersion}. Current versions may differ.</p>{result.limitations.map(value=><p className="fine-print" key={value}>{value}</p>)}<label htmlFor="proposal-json">Copy this draft into the editor’s assistant import</label><textarea id="proposal-json" readOnly rows={7} value={JSON.stringify(result.importDraft,null,2)}/><Link href="/create" className="button secondary">Open editor to review and import ↗</Link></div>}</section>;
+}

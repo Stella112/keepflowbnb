@@ -1,0 +1,8 @@
+{
+  "name": "firstbell-isolated-agent-tools",
+  "private": true,
+  "description": "Pinned operator tools; installation grants no wallet or execution permission.",
+  "dependencies": {
+    "@binance/agentic-wallet": "1.10.0"
+  }
+}

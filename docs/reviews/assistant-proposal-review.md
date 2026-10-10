@@ -1,0 +1,7 @@
+# Assistant draft grants and import bridge — 2026-10-09
+
+Builder: primary engineer (grant scopes) and delegated policy_review (strict import bridge). Independent reviewer auth_review accepted three explicit draft-only grant scopes, existing fresh parent-session/revocation boundaries and exclusion of publication/policy-save/preparation/financial operations. Initial12 targeted tests and final4 import tests independently passed. Final parser strictly accepts only bare unsaved tool result or actual MCP {result,executionAvailable:false}; authority claims/invalid weights/permission flags reject. Import requires explicit review before populating unsaved editor, preserves owner edit version and fork provenance, labels pasted sources unverified, and makes no requests or automatic save.
+
+# Captured factual proposal bridge
+
+Builder integration_audit implemented user-directed proposals from completed factual reports. Independent policy_review found implicit cash default; root repaired it and added a permissive-exposure regression so rejection cannot be explained by exposure limits. Reviewer accepted final fix and independently ran4proposal tests. Bridge checks source URL/name/timestamp/BSCcontracts and captured exposure/reserve rules, rejects unspecified cash, carries captured Bell version/hash and policy version for display, and returns unsaved parser output only. job.id key resets UI on report replacement. No Studio/analyst/autonomous selection, server mutations, provider calls, payments or wallet operations are established by this code.

@@ -1,0 +1,39 @@
+# Configuration shape inspected in official @bnbagent/studio-cli 0.0.14
+# renderAgentStudioToml. This is a preparation scaffold, not a deployed agent.
+[project]
+name = "firstbell-review-agent"
+
+[stack]
+runtime = "agentcore"
+protocols = ["MCP"]
+
+[network]
+default = "bsc-mainnet"
+
+[wallet]
+kind = "evm-local"
+signer = "local"
+keystore_dir = "../../.studio/wallets"
+# No wallet, address, password or signing key has been provisioned.
+
+[llm]
+provider = "none"
+model = ""
+
+[payments]
+allowed_payment_tokens = []
+
+[payments.seller]
+price_usd = "0"
+assets = []
+
+[payments.erc8183]
+enabled = false
+auto_settle = false
+
+[storage]
+kind = "local"
+
+[budget]
+enabled = false
+# No top-up acknowledgement or authority has been supplied.

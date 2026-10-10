@@ -1,0 +1,23 @@
+"use client";
+import {useState,useEffect,useCallback,useRef} from "react";
+import Link from "next/link";
+import {signInWithWallet} from "../wallet-sign-in";
+import {WalletConnect,type Provider} from "../wallet-connect";
+import {QrLogin} from "./qr-login";
+import {SessionSecurity} from "./session-security";
+import {AssistantAccess} from './assistant-access';
+export function AccountView(){
+ const generation=useRef(0),operationLock=useRef(false);
+ const acquireOperation=useCallback(()=>{if(operationLock.current)return false;operationLock.current=true;return true;},[]),releaseOperation=useCallback(()=>{operationLock.current=false;},[]);
+ const [wallet,setWallet]=useState<string|null>(null),[busy,setBusy]=useState(false),[error,setError]=useState(""),[message,setMessage]=useState("");
+ useEffect(()=>{const active=++generation.current,abort=new AbortController();fetch("/api/account",{cache:"no-store",signal:abort.signal}).then(async response=>{if(!response.ok)throw new Error();return response.json();}).then(data=>{if(data.wallet!==null&&(typeof data.wallet!=="string"||!/^0x[0-9a-fA-F]{40}$/.test(data.wallet)))throw new Error();if(generation.current===active&&!abort.signal.aborted)setWallet(data.wallet);}).catch(()=>{if(generation.current===active&&!abort.signal.aborted)setError("Account is unavailable. Refresh to try again.");});return()=>{generation.current++;abort.abort();};},[]);
+ const signIn=useCallback(async(address:string,provider?:Provider)=>{
+  if(!address||!provider)return;if(!acquireOperation()){setError("Finish the current sign-in operation before starting another.");return;}const active=++generation.current;setBusy(true);setError("");setMessage("");
+  try{
+   const result=await signInWithWallet(address,provider);
+   if(generation.current!==active)return;setWallet(result.wallet);setMessage(result.restored?"Your saved paper account has been restored. This browser's guest account stays separate.":"Your paper account is linked. Sign in with this wallet to restore it on another device.");
+  }catch(error){if(generation.current===active)setError(error instanceof Error?error.message:"Wallet sign-in was declined.");}finally{releaseOperation();if(generation.current===active)setBusy(false);}
+ },[]);
+ async function signOut(){if(!acquireOperation())return;const active=++generation.current;setBusy(true);try{const result=await fetch("/api/account",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({action:"LOGOUT"})});if(!result.ok)throw new Error("Could not sign out.");if(generation.current!==active)return;setWallet(null);setMessage("Signed out. Your saved wallet-linked account is preserved.");}catch(error){if(generation.current===active)setError(error instanceof Error?error.message:"Could not sign out.");}finally{releaseOperation();if(generation.current===active)setBusy(false);}}
+ return <div className="stock-layout"><section className="purchase-panel"><h2>{wallet?"Signed in.":"Scan to sign in."}</h2>{wallet?<><p className="address">{wallet}</p><p>Your virtual holdings, Flows, rules and agent plan are saved together.</p><Link className="button" href="/portfolio">Open portfolio ↗</Link><button className="quiet" disabled={busy} onClick={signOut}>Sign out</button></>:<><QrLogin acquireOperation={acquireOperation} releaseOperation={releaseOperation} onSignedIn={address=>{generation.current++;setBusy(false);setWallet(address);setMessage("Signed in from your phone. Your saved paper account is restored.");}}/><details><summary>Or connect a wallet on this computer</summary><p className="notice">Paper trading works as a guest. Optional wallet sign-in asks for a message signature, with no gas or spending permission. EOA wallets are supported.</p><WalletConnect onAddress={signIn}/>{busy&&<p role="status">Verify the KeepFlow sign-in message in your wallet…</p>}</details></>}{error&&<p role="alert" className="error">{error}</p>}{message&&<p role="status" className="notice">{message}</p>}</section><section>{wallet&&<><SessionSecurity/><AssistantAccess/></>}<h2>Your workspace.</h2><p><Link href="/assistant">Connect an assistant to KeepFlow ↗</Link></p><div className="workspace-links"><Link href="/my-bells">My Flows and published versions ↗</Link><Link href="/autopilot">Contribution plan and agent decisions ↗</Link><Link href="/portfolio?mode=paper">Holdings, virtual cash and trading rules ↗</Link></div><p className="fine-print">If you continue as a guest, keep this browser's cookies to retain access. Signing into an existing wallet account restores that account; guest balances are not combined. Sign-in never reveals your private key.</p></section></div>;
+}

@@ -1,0 +1,573 @@
+
+> first-bell@0.1.0 test
+> node --test tests/*.test.ts
+
+(node:24484) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/bnbstocks/tests/agent-proposal.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to \\?\C:\bnbstocks\package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ missing cash instruction never silently adds parser default reserve even when exposure permits it (36.6573ms)
+✔ explicit reviewed allocation preserves evidence and imports only an unsaved definition (7.1318ms)
+✔ unreviewed assets, themes, implicit reserve and captured rule violations fail closed (26.4142ms)
+✔ stale, future, foreign and duplicated evidence cannot support a proposal (14.2022ms)
+(node:13664) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/bnbstocks/tests/agent-review.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to \\?\C:\bnbstocks\package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ history remains owner-private, bounded and excludes report and session material (146.0698ms)
+✔ source-grounded review preserves captured rules and rejects invalid, stale, duplicated sources (23.8189ms)
+✔ private immutable admission replay and per-owner bounded queue (9.3539ms)
+✔ reopened worker recovers expired lease and old claim cannot finish or overwrite cancellation (5.2672ms)
+✔ session revocation cancels active work and fences publication (5.418ms)
+✔ expired jobs from other owners are swept before global admission (99.1117ms)
+✔ completed captured report is durable and mismatched output never commits (17.2655ms)
+✔ file-backed restart reclaims abandoned work and preserves final report after another reopen (74.1339ms)
+(node:27024) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/bnbstocks/tests/agentic-execute.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to \\?\C:\bnbstocks\package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ disabled by default and malformed command IDs never invoke provider (41.0412ms)
+✔ trusted bound approval and durable start precede exactly one synthetic command (24.063ms)
+✔ wrong owner, wallet, intent, fingerprint, expiry and session fail before durable submission (7.6489ms)
+✔ timeout, malformed result and persistence failure preserve ambiguity with no retry (5.6107ms)
+✔ pending App confirmation is persisted but never confirmed, expiry after lock prevents command (16.1071ms)
+(node:9268) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/bnbstocks/tests/agentic-preview.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to \\?\C:\bnbstocks\package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ official preview arguments are fixed BSC/valuezero and never include execution or gas option (53.2048ms)
+✔ disabled, crossoperator, unmatched validation and routes do not call provider (7.9598ms)
+✔ synthetic provider fixture proves devmode gate, exact preview binding and no signature return (22.2371ms)
+✔ disabled developer mode, expired and failed simulation cannot produce preview (3.1037ms)
+(node:32756) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/bnbstocks/tests/agents.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to \\?\C:\bnbstocks\package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ agents disabled by default and cannot share an operator session (13.624ms)
+✔ unconnected auth stops immediately and wrong wallet does not disclose settings (10.4001ms)
+✔ operator status strips credential fields and retains only verified readonly metadata (33.6727ms)
+✔ malformed output fails closed and Studio version is not deployed-agent proof (1.9587ms)
+✔ inactive deadline is independent from session expiry and malformed deadlines fail closed (24.3471ms)
+✔ real subprocess runner uses contained test fixture, fixed args and no inherited secrets (731.2239ms)
+(node:19376) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/bnbstocks/tests/approval.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to \\?\C:\bnbstocks\package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ preparation requires exact pinned approval and fresh verified simulation (18.4599ms)
+✔ approval handoff is claimed once before caller receives exact calldata (13.0354ms)
+✔ durable journal prevents new hash, global hash reuse and foreign-owner access (20.8413ms)
+✔ canonical matching approval requires exact allowance then fresh swap preparation (20.0474ms)
+✔ wrong transaction, allowance, chain and reorg never establish approval (5.7568ms)
+✔ cancelled basket blocks both standalone approval admission and delayed handoff claim (10.8693ms)
+(node:31816) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/bnbstocks/tests/assistant-import.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to \\?\C:\bnbstocks\package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ validated unsaved import preserves definition and leaves suggestions outside it (39.4876ms)
+✔ actual MCP text wrapper accepts only explicit non-execution result (16.6145ms)
+✔ modification drafts are bound to matching editor and cannot override provenance (15.4129ms)
+✔ strict bounded import rejects authority claims, invalid weights and financial permissions (8.7376ms)
+(node:22196) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/bnbstocks/tests/assistant-policy-import.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to \\?\C:\bnbstocks\package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ actual MCP rule draft replays explicit instructions while preserving unspecified current caps (60.8105ms)
+✔ stale version and tampered values or clauses cannot be imported (28.2702ms)
+✔ bounded strict rule imports reject saved authority and unsupported financial clauses (31.6031ms)
+(node:22408) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/bnbstocks/tests/auth.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to \\?\C:\bnbstocks\package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ signs the exact encoded path, method and raw body (10.125ms)
+✔ rejects credentials being sent to another host and missing signed prefix (1.7712ms)
+(node:10092) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/bnbstocks/tests/automation-authority.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to \\?\C:\bnbstocks\package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ server-validated read-only scope is durable paused and idempotent without client financial booleans (56.7876ms)
+✔ revoked session, expired authority and stale pinned rules cannot create or reactivate (2.9178ms)
+✔ explicit enable and concurrent due claims produce one read-only record; pause blocks future checks (12.6886ms)
+(node:17228) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/bnbstocks/tests/automation-readonly-plan.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to \\?\C:\bnbstocks\package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ read-only plans allocate existing cash without fictional contribution and preserve required reserve (30.3376ms)
+✔ Bell intersection and zero aggregate caps block actual-cash proposals without selling or cap bypass (27.9063ms)
+✔ stale future and inconsistent actual wallet totals never become spendable zero/funding (6.7843ms)
+(node:18832) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/bnbstocks/tests/automation.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to \\?\C:\bnbstocks\package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ disabled runner never claims; concurrent scheduler ticks submit once and skip missed periods (49.6414ms)
+✔ expired authority, exceeded run cap and pause during preparation never submit (14.0088ms)
+✔ unknown submission stops remaining legs, cannot overwrite terminal run or retry (9.1646ms)
+(node:12840) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/bnbstocks/tests/basket-session.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to \\?\C:\bnbstocks\package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ durable owner/policy/Bell/amount pins idempotency and sequential mutation are enforced (55.2453ms)
+✔ default disabled cannot hand off funds and next leg waits twelve verified confirmations (22.033ms)
+✔ approval finality requires fresh intent and cannot silently submit stale preapproval quote (41.0528ms)
+✔ ambiguous handoff persists partial stop and can reconcile without repeating action (29.0153ms)
+✔ failed later leg preserves completed receipt evidence and stops partial basket without selling (10.0128ms)
+✔ safe cancellation preserves receipts, fences owner/revision and permits a replacement basket (17.4933ms)
+✔ cancellation rejects pending or ambiguous actions and preserves the creation lock (23.3249ms)
+✔ blocked plan cancellation is safe only when the trusted financial journal guard permits it (5.4607ms)
+✔ preparation request is durably pinned before provider and fences an orphan intent after failure/cancel (13.7485ms)
+(node:32168) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/bnbstocks/tests/bell-follows.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to \\?\C:\bnbstocks\package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ following is durable and idempotent without silently adopting creator updates (62.3216ms)
+✔ owner isolation and stale acknowledgement never alter snapshot (9.0848ms)
+✔ follow pins displayed version and bounded informational rows only (38.1216ms)
+(node:22880) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/bnbstocks/tests/bell-policy.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to \\?\C:\bnbstocks\package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ legacy policy remains unchanged while explicit creator caps intersect with stricter personal rules (2.0481ms)
+✔ actual policy is portable and changes canonical manifest integrity (24.1168ms)
+✔ policy schema rejects unsupported sells, fractional basis points, zero caps and unbounded freshness (8.4939ms)
+✔ route slippage and selected local freshness limits fail closed at precise boundaries (9.2245ms)
+(node:29280) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/bnbstocks/tests/bell-preparation.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to \\?\C:\bnbstocks\package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ trusted context is checked against actual session and wallet; tool arguments grant no authority (54.4106ms)
+✔ preparation pins version and policy, derives wallet and replays without another provider call (37.6806ms)
+✔ quote-only mode remains quoted and cannot claim simulation or a trade (8.4547ms)
+✔ active per-account check blocks a second request and rate limits new work (5.3894ms)
+✔ actual sequential helper accepts quote-only legs and preserves first-failure partial status (2.1875ms)
+(node:22752) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/bnbstocks/tests/bell-request-body.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to \\?\C:\bnbstocks\package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ Bell body rejects oversized streams by bytes and cancels before reading the remainder (165.9369ms)
+✔ Bell body decodes split UTF-8 exactly and rejects malformed UTF-8 (15.46ms)
+✔ Bell body accepts the exact byte boundary and rejects missing or invalid JSON (9.5177ms)
+(node:7016) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/bnbstocks/tests/client.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to \\?\C:\bnbstocks\package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ simulation POST signs exact JSON body, cannot broadcast, and never retries (222.9008ms)
+✔ signs exact wire bytes and does not follow redirects (28.1714ms)
+✔ invalid host and path cannot send credentials (5.4371ms)
+✔ real compliance fixture fails closed even with HTTP 200; no retry (11.0748ms)
+✔ false success, nonnumeric codes, malformed data, HTML and redirects all fail closed (24.949ms)
+✔ documented rate limit respects Retry-After, refreshes nonce, and retries once (5.1968ms)
+✔ long Retry-After and authentication errors never retry (2.1429ms)
+✔ repeated service failure stops after two calls (1.321ms)
+✔ network failures and logs do not expose credentials or upstream messages (0.8746ms)
+✔ logging failure cannot turn a valid read into a retry (19.5089ms)
+✔ oversized declared body is cancelled before reading and never retried (5.6058ms)
+✔ stream overflow counts bytes, cancels immediately despite misleading length, and never retries (27.1204ms)
+✔ bounded stream decoding handles split UTF-8 and malformed JSON without retry (13.8442ms)
+✔ stream failure remains a sanitized network error without retry (13.8458ms)
+(node:23608) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/bnbstocks/tests/dry-store.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to \\?\C:\bnbstocks\package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ transactional admission enforces owner scope, request replay and terminal fencing (19.6381ms)
+✔ admission expires old workers and prevents a late result from resurrecting them (4.6967ms)
+(node:20912) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/bnbstocks/tests/execution.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to \\?\C:\bnbstocks\package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ Bell and personal reserve intersect without weakening either (4.5793ms)
+✔ dry run conserves all budget units including cash and rounding (3.7378ms)
+✔ real spending checks fail closed with stable reason codes (0.5361ms)
+✔ a failed second simulation preserves the first and never starts the third (0.7805ms)
+✔ a blocked first leg and thrown verification error stop the basket (0.5463ms)
+(node:20800) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/bnbstocks/tests/identity-sessions.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to \\?\C:\bnbstocks\package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ opaque sessions cannot be forged from legacy account IDs and expire at exact boundary (15.8096ms)
+✔ revocation prevents captured-cookie replay while replacement preserves account ownership (3.1642ms)
+(node:27076) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/bnbstocks/tests/identity.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to \\?\C:\bnbstocks\package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ wallet sign-in binds the exact domain, nonce, address and five-minute expiry (143.6671ms)
+(node:27312) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/bnbstocks/tests/intents.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to \\?\C:\bnbstocks\package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ intent admission is durable, owner scoped, idempotent and payload-conflict detectable (10.6782ms)
+✔ reconciliation binds a matching hash to exactly one intent and fences terminal results (12.877ms)
+✔ synthetic confirmed receipt requires exact debit, minimum receive and actual block balance (56.6662ms)
+✔ unrelated hash sender, target, calldata, value and old block cannot reconcile (6.6434ms)
+✔ RPC absence, wrong chain, reorg and errors remain unknown; pending is never failure (36.1356ms)
+✔ API inputs reject client wallet/authority and public views omit executable calldata (20.0298ms)
+✔ interrupted preparation expires without resurrection or rewriting its immutable journal (4.0515ms)
+✔ observed hash remains bound through unknown RPC outcomes and store reopening (5.9433ms)
+✔ an initial unknown unseen hash does not bind the intent (9.0926ms)
+✔ reorganization during balance verification does not produce a confirmed claim (12.2755ms)
+(node:24436) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/bnbstocks/tests/live-budget.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to \\?\C:\bnbstocks\package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ wallet scoped holds are exact and immutable across accounts and request retries (25.668ms)
+✔ submission ambiguity is durable before hash and unknown holds never expire (11.9905ms)
+✔ global hash and intent bindings survive cancellation and terminal states (13.2862ms)
+✔ settlement uses verified confirmation window and never double counts actual spend (16.5843ms)
+✔ unverified mismatched reorg future and overrun evidence preserves hold and immutable actual debit (11.0595ms)
+✔ verified revert releases holds only once and cannot reuse old request identity (8.572ms)
+(node:24436) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/bnbstocks/lib/execution/budget-store.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to \\?\C:\bnbstocks\package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:24436) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/bnbstocks/lib/execution/budget-store.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to \\?\C:\bnbstocks\package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ simultaneous independent SQLite writers serialize caps and survive reopen (818.3106ms)
+✔ unresolved holds survive Monday rollover and settled prior-day spend counts in same week (5.9675ms)
+✔ transition journal preserves immutable revisioned snapshots and terminal retries append nothing (2.9711ms)
+✔ verified debit above reservation policy maximum is retained and quarantines wallet (9.6205ms)
+(node:22508) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/bnbstocks/tests/live-receipt.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to \\?\C:\bnbstocks\package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ verified receipt persistence is immutable, owner isolated and hash unique (32.3855ms)
+✔ unfinalized or missing effect evidence cannot enter receipt store (6.3618ms)
+✔ hash uniqueness is case insensitive and recovery binds original canonical settlement (2.6454ms)
+✔ receipt repair rejects changed outcome, block, time or original spend (12.8774ms)
+(node:8760) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/bnbstocks/tests/manifest.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to \\?\C:\bnbstocks\package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ canonical Bell export is deterministic and preserves unknown provenance honestly (14.0516ms)
+✔ exports reject corrupted published allocations and never silently repair them (3.2032ms)
+(node:25496) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/bnbstocks/tests/mcp-delegation-transport.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to \\?\C:\bnbstocks\package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ scoped SDK draft tools remain unsaved and cannot escalate into publication (251.2177ms)
+✔ manual bearer client discovers only granted reads; scopes never admit preparation or cookie fallback (49.5339ms)
+✔ invalid bearer cannot use wallet cookies and foreign-origin bearer requests are rejected (4.2467ms)
+(node:18060) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/bnbstocks/tests/mcp-delegation.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to \\?\C:\bnbstocks\package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ explicit unsaved draft permissions are grantable without publication or policy mutation authority (38.3684ms)
+✔ active grant remains visible and revocable after many later revoked grants (154.2256ms)
+✔ one-time explicit approval hashes credential and limits exact read tools and audience (6.8901ms)
+✔ owner/session isolation, revocation and expiry cannot be bypassed by replay (8.4608ms)
+✔ approving identity is freshly checked on every resolution and revoked sessions cannot approve (5.1842ms)
+✔ pending and active grants are bounded, durable and no OAuth capability is implied (22.838ms)
+(node:31200) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/bnbstocks/tests/mcp-transport.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to \\?\C:\bnbstocks\package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ official MCP SDK client connects, discovers strict read-only tools and calls actual shared Bell service (277.7764ms)
+✔ fresh per-call identity rejects revoked sessions and client context injection (64.179ms)
+✔ MCP boundary enforces origin, secure transport, body limits, rate limiting and error sanitization (17.6954ms)
+✔ batched tool calls consume individual operation slots before provider dispatch (6.5154ms)
+(node:18968) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/bnbstocks/tests/onboarding.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to \\?\C:\bnbstocks\package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ default gate and strict single operator setup approval deny CLI calls (26.1874ms)
+✔ safe QR setup strips credentials, preserves exact URL/code and requires explicit human confirmation (21.2584ms)
+✔ unsafe URLs, expired QR, mismatch and false CLI success never authenticate (15.7464ms)
+✔ actual official app Binance uni-qr response preserves the verbatim URL with a narrow host/path boundary (16.4946ms)
+✔ official alphanumeric pairing code is displayed verbatim and rejects extras (11.6344ms)
+(node:27908) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/bnbstocks/tests/origin.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to \\?\C:\bnbstocks\package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ same origin survives nginx HTTPS termination and rejects cross-site requests (85.7277ms)
+✔ identity requires HTTPS outside exact loopback hosts and cookies follow verified transport (4.4048ms)
+✔ direct public requests cannot assert forwarded HTTPS and spoof the identity boundary (1.0573ms)
+(node:21260) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/bnbstocks/tests/paid-transport.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to \\?\C:\bnbstocks\package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ missing reviewed provider/signer fails closed and BSC USDT is not assumed EIP3009 compatible (23.0504ms)
+✔ exact cryptographically signed proof stays private and fixed-origin retry produces independently verified settlement (288.981ms)
+✔ oversized response, unapproved source and provider settlement assertion never become verified research (85.4477ms)
+✔ wrong domain, mutated amount, chain and canonical reorg reject settlement without resending (138.6395ms)
+(node:23048) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/bnbstocks/tests/paid-workflow.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to \\?\C:\bnbstocks\package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ unconfigured workflow never pays; explicit exact authority and owner isolation required (31.6183ms)
+✔ claim precedes payment; concurrent replay never pays twice and verified result binds exact offer (9.733ms)
+✔ unknown payment survives store reopening and keeps wallet-wide budget reserved across owners (7.3521ms)
+✔ invalid settlement or report never fabricates completion or releases payment claim (8.9096ms)
+✔ timeout freezes unknown before late payment result and never retries or repays (47.4213ms)
+(node:892) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/bnbstocks/tests/paper.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to \\?\C:\bnbstocks\package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ manual exits reject stale, invalid and future price timestamps without changing cash or holdings (12.8505ms)
+✔ contribution allocation preserves an explicitly stricter Bell reserve with unchanged personal state (1.8672ms)
+✔ selected Bell spend and price-freshness caps block paper fills without mutating holdings (0.4275ms)
+✔ scheduled paper periods run at 09:00 WAT and never backfill or repeat a completed period (0.5531ms)
+✔ creator proposals cannot override follower exposure and reserve rules (1.126ms)
+✔ unexpected failure on a later leg preserves the fill and records remaining legs as not started (3.3734ms)
+✔ paper buy and sell conserve virtual money and preserve exact token units (0.8162ms)
+✔ closed markets, inadequate cash and missing prices do not mutate a paper account (0.7888ms)
+✔ policy checks exact trade, reserve and concentration boundaries (1.2002ms)
+✔ invalid Bell totals and duplicate tickers are rejected; parent is provenance only (7.8686ms)
+✔ sequential paper basket preserves a filled leg and stops after failure on leg two (1.7383ms)
+✔ contribution plan targets underweights, respects reserve and never proposes selling (1.7843ms)
+✔ missing or zero prices leave holdings intact and never fabricate a portfolio value (3.4994ms)
+✔ price precision beyond 18 decimals is preserved without rejecting or rounding a fill upward (0.6456ms)
+(node:31036) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/bnbstocks/tests/paymaster-workflow.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to \\?\C:\bnbstocks\package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ read-only preparation stays disabled and separates normal build gas estimate from eligibility (17.9619ms)
+✔ failed policies/simulation, stale quotes, mutated candidate and unconfigured operator routes make no RPC (10.6742ms)
+✔ eligible fixture uses documented readonly method and preserves candidate instead of fabricating zero-gas signing (67.5405ms)
+✔ different official response variant and provider failure remain unverified without fallback (14.9499ms)
+(node:18852) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/bnbstocks/tests/paymaster.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to \\?\C:\bnbstocks\package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ paymaster is disabled by default and blocked policies never reach RPC (15.3884ms)
+✔ provider method, pinned URL and response ID are enforced; eligibility is not execution (137.8803ms)
+✔ calldata mutation, positive value, oversized response and provider error fail closed (5.978ms)
+(node:17776) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/bnbstocks/tests/policy-draft.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to \\?\C:\bnbstocks\package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ period budget drafts preserve exact units and allow an explicit purchase pause (41.2689ms)
+✔ explicit clauses merge deterministically without changing the supplied policy or granting authority (3.1907ms)
+✔ unknown, ambiguous, automatic selling and money movement clauses fail closed (2.912ms)
+✔ bounds reject zero, excessive money, fractional percentages and unsupported freshness (6.2052ms)
+(node:16716) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/bnbstocks/tests/policy-mutations.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to \\?\C:\bnbstocks\package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ policy replay returns its original version without overwriting newer rules (6.1521ms)
+✔ legacy account permits omitted version only for first update and request IDs span action types (0.9337ms)
+✔ SQLite reopen preserves policy ledger and transactional conflict leaves the stored rules intact (64.0091ms)
+(node:23584) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/bnbstocks/tests/qr-login.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to \\?\C:\bnbstocks\package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ QR approval requires matching code and active request; an approved phone cannot be replaced (6.9734ms)
+✔ QR redemption requires the originating desktop, explicit phone approval and single-use active status (1.488ms)
+(node:26696) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/bnbstocks/tests/receipt-evidence.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to \\?\C:\bnbstocks\package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ event evidence preserves historical version/rules/cash after later changes (5.8188ms)
+✔ exports omit internal replay fields and never invent legacy evidence (1.2332ms)
+✔ scheduled cap is recorded as effective without rewriting personal rules (1.0631ms)
+✔ receipt retrieval rejects other/missing owners without creating accounts (7.2767ms)
+(node:28360) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/bnbstocks/tests/request-body.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to \\?\C:\bnbstocks\package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ all route byte ceilings reject oversized UTF-8 and accept exact boundaries regardless of Content-Length (110.8779ms)
+✔ malformed stream is cancelled before later chunks are retained and lock is released (8.1343ms)
+(node:6624) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/bnbstocks/tests/research-brief.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to \\?\C:\bnbstocks\package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ factual brief preserves provider contracts, ratios and closed status without analyst inventions (16.8195ms)
+✔ invalid source data, unsupported assets, absent representations and future times fail closed (16.3921ms)
+✔ service invokes public factual source callback without fabricating research (6.3915ms)
+(node:25356) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/bnbstocks/tests/research-jobs.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to \\?\C:\bnbstocks\package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ saved brief lookup isolates owners and tickers and returns the newest completion (19.2749ms)
+✔ research job admission is owner scoped and does not duplicate retries (9.1009ms)
+✔ interrupted job expiry prevents a late worker resurrecting a result (2.3332ms)
+✔ terminal failures cannot be overwritten and arbitrary owners cannot finish (0.9728ms)
+✔ sourced results bind to the requested ticker and persist without late overwrite (1.8351ms)
+✔ expiry returns persisted completion when its conditional write loses (3.1099ms)
+✔ bounded admission preserves retries and releases expired jobs across owners (87.9926ms)
+✔ history and serialized report limits cannot be bypassed by terminal jobs (365.9237ms)
+(node:1816) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/bnbstocks/tests/research-offer-client.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to \\?\C:\bnbstocks\package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ configured read-only provider offer uses exact resource and never sends payment or credentials (112.7689ms)
+✔ disabled, origin mismatch, private hosts and credential query fail before network (1.5501ms)
+✔ wrong merchant, budget, response and failure never retry or claim a report (11.0149ms)
+(node:28612) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/bnbstocks/tests/research-payment.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to \\?\C:\bnbstocks\package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ research offer exposes actual atomic price without granting payment authority (27.8043ms)
+✔ research offer binds exact service, network, token, merchant and separate budget (9.0053ms)
+✔ malformed or oversized payment headers fail before a payment can be attempted (1.5847ms)
+✔ atomic research amounts obey ERC20 uint256 boundaries (1.4966ms)
+(node:20832) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/bnbstocks/tests/research.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to \\?\C:\bnbstocks\package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ all percentage tokens reject excess precision instead of accepting trailing substrings (33.7426ms)
+✔ multiple caps never select the first rule and silently discard the second (4.2137ms)
+✔ explicit company weights produce a validated draft and no authority (3.7945ms)
+✔ equal split uses integer basis points and disclosed reserve (2.7827ms)
+✔ unsupported, ambiguous, conflicting, bad totals and cap violations reject (5.6298ms)
+✔ signed weights and unfamiliar allocated assets are not silently discarded (1.7791ms)
+✔ no-selling instruction cannot exempt transfer, short or other selling clauses (1.5805ms)
+(node:20460) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/bnbstocks/tests/review-export.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to \\?\C:\bnbstocks\package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ export preserves captured evidence and excludes injected private worker/session fields (7.6872ms)
+✔ incomplete or inconsistent evidence cannot become a completed export (1.4626ms)
+(node:1368) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/bnbstocks/tests/rwa.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to \\?\C:\bnbstocks\package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ live search and token fixtures validate; NVIDIA has two BSC providers (15.3528ms)
+✔ unknown providers, other chains, pre-IPO and duplicate assets are excluded (0.9485ms)
+✔ malformed decimals, address and ratio fail closed; unknown market status is unavailable (4.4852ms)
+(node:14348) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/bnbstocks/tests/session-management.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to \\?\C:\bnbstocks\package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ session count contains only active owner sessions and never leaks credentials (15.4041ms)
+✔ revoking others preserves current session and other owners, and is idempotent (3.4979ms)
+✔ revoked or expired current credential cannot revoke a different active session (6.3897ms)
+✔ mutation revalidates current identity after an earlier successful read (4.0382ms)
+(node:29352) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/bnbstocks/tests/share-url.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to \\?\C:\bnbstocks\package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ share links use only configured public HTTPS origin and public routing (9.6362ms)
+(node:20364) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/bnbstocks/tests/spend-budget.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to \\?\C:\bnbstocks\package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ WAT day and Monday week boundaries preserve exact period spend (29.0009ms)
+✔ migration counts only successful purchase legs and read usage never mutates (1.2839ms)
+✔ successful in-flight basket legs consume budget immediately, sell does not restore it (6.9525ms)
+✔ optional caps preserve legacy buys, validate precision and intersect Bell limits (32.6298ms)
+✔ malformed or backwards budget history fails closed (1.878ms)
+✔ weekly cap persists across days and exact one micro over budget is blocked (1.2452ms)
+✔ ledger and receipt leg charge actual rounded purchase cost rather than requested budget (0.8482ms)
+(node:25500) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/bnbstocks/tests/sponsored-execution.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to \\?\C:\bnbstocks\package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ default-disabled gate never signs or sends (16.3866ms)
+✔ exact zero-gas raw signature submits once; canonical effects establish original fee zero, not sponsor payment (230.3114ms)
+✔ mutated raw signing response freezes without broadcast or retry (25.3772ms)
+✔ timeout retains locally derived hash and reconciles without re-submission (42.9784ms)
+✔ paid fee, reorg and wrong effects fail independent verification (117.823ms)
+✔ candidate altered from owned immutable build is rejected before reservation or signing (3.2252ms)
+✔ receipt or transaction identity mismatch cannot confirm identical calldata (161.3238ms)
+(node:30808) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/bnbstocks/tests/stockanalyst-job.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to \\?\C:\bnbstocks\package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ jobToken is encrypted at rest and owner-bound, never public (47.1067ms)
+✔ poll and report keep private URL and token server-side and never send token to S3 (148.5448ms)
+✔ resume requires current failed retryable state and never payment headers (8.0823ms)
+✔ report refuses malicious download origins and expired owner receipts (8.8554ms)
+(node:2464) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/bnbstocks/tests/stockanalyst.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to \\?\C:\bnbstocks\package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ provider challenge is exact POST request without private portfolio or payment (205.8926ms)
+✔ challenge rejects divergent body, changed merchant, duplicate assets and private fields (15.4077ms)
+✔ public price preserves only live accepted capability intersection (21.6126ms)
+✔ markdown adapter does not invent citations or verified facts (7.9993ms)
+(node:2720) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/bnbstocks/tests/strategy-adoption.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to \\?\C:\bnbstocks\package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ adoption fences old pinned versions, creator races and different strategies before any mutation (6.961ms)
+✔ guest creator can link a verified wallet on the same trusted Bell without altering plan settings (28.6117ms)
+✔ selected version is checked under stricter Bell/personal rules without changing policy or schedule (1.0092ms)
+✔ diff includes removed companies, reserve movement and policy removal (4.6486ms)
+(node:26692) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/bnbstocks/tests/studio-project.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to \\?\C:\bnbstocks\package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ disabled, foreign operator and missing contained runner never invoke CLI (15.1911ms)
+✔ fixed source-backed scan contract strips paths and metadata and never claims runtime proof (73.9984ms)
+(node:26816) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/bnbstocks/tests/submission-settlement.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to \\?\C:\bnbstocks\package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ actual-fixture effects and twelve canonical confirmations produce exact budget evidence (29.4522ms)
+✔ three confirmations cannot release a budget hold and unrelated transaction is rejected (8.6098ms)
+✔ reorganization after initial verified effects cannot settle and reverted status uses only captured receipt (6.1126ms)
+(node:3276) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/bnbstocks/tests/submission.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to \\?\C:\bnbstocks\package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ default disabled and confirmation/owner guards cannot reach wallet or reserve budget (28.811ms)
+✔ concurrent exact requests reserve once, commit start before wallet, and never repeat submission (62.2388ms)
+✔ fresh changed calldata/policy/allowance and quote expiry cancel before signing (22.1917ms)
+✔ ambiguous wallet failure remains durable unknown across reopen with held budget and no retry (139.3055ms)
+✔ invalid returned hash preserves unknown; verified receipt links actual spend and finality (63.6186ms)
+✔ lost wallet hash can only recover through exact observed-transaction verifier without another send (30.4372ms)
+✔ post-validation intent revision changes cancel the reserved hold before wallet call (32.8086ms)
+✔ browser handoff commits started before returning calldata once, persists hashed ticket and never signs server-side (18.687ms)
+✔ handoff transport failure preserves UNKNOWN started hold and will not redeliver (19.3513ms)
+✔ first status read is empty without creating or recovering a submission and remains owner isolated (14.5298ms)
+✔ crash between budget and submission commits recovers without sending again (10.5403ms)
+✔ recovery propagates durable hash and cancellation without another signer call (29.755ms)
+✔ trusted Bell caps narrow whole-wallet pending budgets and cannot widen personal caps (27.7937ms)
+✔ cancelled basket intent cannot reach standalone submission even when cancellation races validation (14.6188ms)
+(node:2248) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/bnbstocks/tests/tools.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to \\?\C:\bnbstocks\package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ public Bell reads and comparison work without private authority (30.5582ms)
+✔ wallet address cannot authenticate and mutation requires ownership plus user confirmation (31.6869ms)
+✔ receipt owner lookup and unsupported execution/research remain truthful (7.6716ms)
+✔ version comparison includes policy limits and removals (7.1891ms)
+✔ paper contribution preview requires verified private scope (3.951ms)
+✔ preparation tools use trusted owner, distinct scope and reject injected wallets (12.8032ms)
+✔ Bell preparation passes full trusted auth and never enables execution (12.3798ms)
+✔ policy draft is private, unsaved, uses current account policy and rejects spending clauses (12.1685ms)
+✔ underlying tool is public, binds curated ticker and issuer, rejects extra authority (3.068ms)
+(node:100) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/bnbstocks/tests/trading.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to \\?\C:\bnbstocks\package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ swap success requires exact wallet debit and minimum stock receipt (9.9203ms)
+✔ real SWAP quote and build validate despite docs' RWA RFQ blanket statement (17.2013ms)
+✔ swap effects allow only the verified funding allowance decrement (2.7005ms)
+✔ unverified native gas deltas and contradictory effects fail closed (0.9229ms)
+✔ mismatched chain, recipient token, amount, decimals, fee and honeypot cannot pass (1.9593ms)
+✔ real approval builder encodes exact 5-USDT amount and quote spender (12.6702ms)
+✔ amounts preserve exact units and ratio; never round excessive precision (1.8175ms)
+✔ actual approval success does not imply actual swap success (8.2201ms)
+(node:30628) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/bnbstocks/tests/underlying.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to \\?\C:\bnbstocks\package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ actual sanitized underlying fixtures preserve sourced profile and exact market strings (106.853ms)
+✔ wrong chain contract issuer ticker or asset type is unavailable independently (29.4343ms)
+✔ optional numeric data is null and failed independent endpoint never gains fallback facts (19.8623ms)
+✔ safe external links allow HTTPS public domains only and sanitize links without fetching (6.7493ms)
+✔ server resolution binding rejects unsupported discovery before provider requests (25.693ms)
+✔ missing future retrieval times fail closed and documented English description is preserved (3.4147ms)
+(node:7080) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/bnbstocks/tests/wallet-contribution.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to \\?\C:\bnbstocks\package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ real holdings contribution targets underweight without selling or mutating input (54.819ms)
+✔ stricter Bell trade reserve exposure controls and exact micro-dollar remainder apply (8.6044ms)
+✔ untracked targets, zero-value account and rounding cannot spend existing cash (60.2897ms)
+✔ invalid inconsistent stale and future snapshots fail closed (4.4897ms)
+✔ known daily and weekly ceilings bound cumulative proposals without claiming remaining budget (4.6563ms)
+(node:29224) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/bnbstocks/tests/wallet-signer.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to \\?\C:\bnbstocks\package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ wallet signer requires gate, matching chain and matching active account (6.7544ms)
+✔ wallet signer passes exact pinned calldata and amounts without automatic chain switching (5.1121ms)
+ℹ tests 301
+ℹ suites 0
+ℹ pass 301
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 21222.2494

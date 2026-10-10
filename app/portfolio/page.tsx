@@ -1,0 +1,7 @@
+import {Navigation} from "../navigation";
+import {PortfolioView} from "./view";
+import {WalletPortfolio} from "./wallet";
+import {PortfolioModeSwitch} from './mode-switch';
+import {liveTradingEnabled,liveTradeCapUsd} from "../../lib/mode";
+export const dynamic="force-dynamic";
+export default async function Portfolio({searchParams}:{searchParams:Promise<{mode?:string}>}){const wallet=(await searchParams).mode!=='paper';const live=liveTradingEnabled();return <main><Navigation mode={wallet?'mainnet':'paper'}/><section className="hero compact"><p className="eyebrow">{wallet?'BNB Smart Chain · Actual holdings':'Virtual money. Real practice.'}</p><h1>{wallet?'Your real wallet.':'Your paper portfolio.'}</h1><p className="intro">{wallet?'Connect your wallet to read actual tokenized-stock balances. Your private key never leaves your wallet.':'Practice with $10,000 in virtual dollars. Paper positions and receipts never touch real wallet funds.'}</p></section><PortfolioModeSwitch wallet={wallet} live={live}/>{wallet?<>{live?<div className="notice"><h2>Live trading is on.</h2><p>Every approval and purchase is shown in your own wallet for confirmation, limited to {liveTradeCapUsd()} USDT per trade, and only counted after onchain confirmation. Autopilot remains in checks-only mode.</p></div>:<div className="notice"><h2>Live purchases are switched off.</h2><p>Quotes, simulations and holdings work. No approval or purchase can be submitted until live trading is enabled.</p></div>}<WalletPortfolio/></>:<PortfolioView/>}</main>;}

@@ -6,3 +6,10 @@ node_modules/
 *.db-*
 logs/*.jsonl
 *.tsbuildinfo
+
+# SSH private keys
+*.pem
+test-results/
+*.sqlite*
+tools/agents/vendor-review/
+logs/agentic-auth*.json

@@ -1,0 +1,16 @@
+{
+  "name": "firstbell-studio-workspace",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "read-only-review": "node app/agent/src/readOnlyMain.mjs",
+    "setup:check": "node app/agent/src/setupMain.mjs",
+    "mcp": "node app/agent/src/mcpMain.ts"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "dependencies": {
+    "smol-toml": "1.3.4"
+  }
+}

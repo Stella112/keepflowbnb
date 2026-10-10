@@ -1,0 +1,11 @@
+# Flow prompt draft — 2026-10-08
+
+The deterministic parser supports eight curated tickers, selected company aliases, explicit percentages, equal weighting, cash reserve, a single-stock cap suggestion and no-auto-sell intent. It validates basis-point totals with the existing Flow schema. It rejects missing/conflicting weights and unsupported requested curated assets. It does not infer sector membership, select investments, preserve arbitrary complex clauses, produce investment advice or execute anything. Review the structured draft before saving. Defaults are disclosed.
+
+`POST /api/research/draft` checks same-origin, rate-limits, bounds and validates input, and obtains current supported tokens through the existing signed Binance discovery client. Provider failure returns unavailable, with no fabricated draft/data. Returned token prices and market states are timestamped discovery information, not executable quotes or analyst reports. Source: [official Binance RWA API](https://web3.binance.com/en/dev-docs/catalog/web3-wallet/api/rest-api/rwa-data), inspected 2026-10-08; token list and platform lookup are documented signed endpoints on BSC 56.
+
+The create editor can apply a proposal but still requires separate saving. Policy suggestions remain unsaved; draft text is not execution authority. Existing fork/edit provenance is preserved by the editor's existing save path.
+
+No LLM/Agent Studio/paid research provider is called. No research merchant or x402 price/payment was verified. Those mandate capabilities remain unimplemented/unverified; this parser is clearly labeled and is not their acceptance evidence. Existing KeepFlow MCP source remains unlocated, and this is not a replacement MCP server.
+
+Local tests: `node --test tests/research.test.ts` — five passed, including negative/signed-weight rejection, unknown allocated token rejection and negation isolation for prohibited actions. The prompt textarea is disabled while its request is pending, preventing prompt edits from receiving an old draft response. Browser/VPS provider flow has not been verified by this workstream. Test fixtures are local parser inputs, not live discovery proof. No funds, credentials or permissions changed.

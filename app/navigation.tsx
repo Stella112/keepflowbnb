@@ -1,0 +1,4 @@
+import Link from "next/link";
+import {PRODUCT_NAME} from "../lib/brand";
+import {liveTradingEnabled} from "../lib/mode";
+export function Navigation({mode="mainnet"}:{mode?:"mainnet"|"paper"}={}){const badge=mode==="paper"?"PAPER MODE · VIRTUAL MONEY":liveTradingEnabled()?"BSC MAINNET · YOUR WALLET":"BSC MAINNET · CHECKS ONLY";return <><header className="app-header"><Link className="brand" href="/">{PRODUCT_NAME}<i aria-hidden="true">↗</i></Link><span className={mode==="paper"?"badge":"badge live"}>{badge}</span></header><nav className="app-nav" aria-label="Main navigation"><Link href="/bells">Explore Flows</Link><Link href="/portfolio">My wallet</Link><Link href="/my-bells">My Flows</Link><Link href="/autopilot">Autopilot</Link><Link href="/agent">Research</Link><Link href="/create">Create a Flow</Link><Link href="/#stocks">Stocks</Link><Link href="/portfolio?mode=paper">Paper trading</Link><Link href="/account">Account</Link></nav></>;}

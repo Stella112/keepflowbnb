@@ -1,1425 +1,684 @@
-# FIRST BELL — FINAL MASTER BUILD MANDATE
+# FIRST BELL
+# FINAL MASTER ENGINEERING MANDATE
+## CLAUDE.md / AGENTS.md
 
-> **Canonical build contract for Claude Code + Codex**
->
-> Put this file at the repo root as `CLAUDE.md`.
-> Codex must also read this document before reviewing or modifying the project.
->
-> Re-read it:
-> - at the beginning of every coding session;
-> - before starting a new phase;
-> - before any mainnet transaction;
-> - before marking any integration as complete.
+**Version:** 2.0 — October 8, 2026  
+**Project:** First Bell  
+**Network:** BNB Smart Chain Mainnet  
+**Chain ID:** 56  
+**Hackathon:** BNB Hack: Tokenized Stocks Edition  
+**Deadline:** October 11, 2026, 12:00 UTC  
+**Target internal freeze:** October 10, 2026, 20:00 UTC  
+**Product owner:** Maris  
+**Lead engineer:** Claude Code  
+**Independent engineer and verifier:** Codex
 
----
+**Product tagline:** Scan it. Own it. Fork it. Automate it.
 
-# 0. MISSION
-
-You are building a real submission for:
-
-**BNB Hack: Tokenized Stocks Edition**
-
-Hard deadline:
-
-**Sunday, 11 October 2026 — 12:00 UTC**
-
-The human product owner is:
-
-**Maris**
-
-The working project codename is:
-
-**First Bell**
-
-The public brand is NOT permanently locked.
-
-Centralize branding so the project can be renamed without restructuring the app.
-
-Example:
-
-```ts
-export const PRODUCT_NAME = "First Bell";
-```
-
-Do not scatter the name across files.
-
-Working tagline:
-
-**Scan it. Own it. Fork it. Automate it.**
-
-The product:
-
-> First Bell turns tokenized stocks and transparent portfolios into shareable links. A user can discover a company or portfolio, purchase the underlying tokenized stocks on BNB Chain, fork the portfolio into their own version, and optionally let a permissioned agent maintain recurring contributions and portfolio rules.
-
-Simple consumer explanation:
-
-> Discover a stock or portfolio. Own it onchain. Put it on autopilot.
-
-This is not an ideation exercise.
-
-This is an implementation mandate.
-
-A smaller product that works reliably on BSC mainnet is better than a large product with half-working sponsor integrations.
+**Product thesis:** First Bell makes investment intent portable.
 
 ---
 
-# 1. OPERATING PRINCIPLES
+# 0. THE MISSION
 
-These rules are non-negotiable.
+Build a fully functioning First Bell application using real BNB Chain infrastructure, verified Binance integrations, actual tokenized stocks, real wallet transactions and production-grade security boundaries.
 
-## 1.1 Working beats impressive-looking
+First Bell transforms a stock, portfolio or natural-language investment idea into a shareable, versioned and executable investment mandate called a Bell.
 
-Prioritize:
+Users can discover a Bell, open it through a link or QR, connect Binance Wallet, fund a purchase in USDT, acquire the underlying supported tokenized stocks, fork the portfolio and automate future activity under their own policies.
+
+The existing First Bell MCP makes the same services available to compatible AI assistants.
+
+BNB Agent Studio supplies research and persistent agent capabilities.
+
+Binance Agentic Wallet provides a controlled execution route for supported agent-driven operations.
+
+Paymaster sponsors eligible BSC gas fees through a genuinely compatible transaction pathway.
+
+**The goal is the complete functioning product, not merely a hackathon mockup.**
+
+## Mandatory end-to-end journey
 
 ```text
-verified integration
->
-beautiful mock
+Discover First Bell
+        ↓
+Open general QR / Bell link / AI assistant
+        ↓
+Connect Binance Wallet
+        ↓
+Select or create a Bell
+        ↓
+Research supported tokenized stocks
+        ↓
+Review assets and allocations
+        ↓
+Enter USDT investment amount
+        ↓
+Resolve actual supported stock tokens
+        ↓
+Obtain executable market quotes
+        ↓
+Intersect Bell policy and personal policy
+        ↓
+Simulate real transactions
+        ↓
+Check Paymaster eligibility
+        ↓
+Obtain required wallet authorization
+        ↓
+Execute on BSC Mainnet
+        ↓
+Confirm transactions and final balances
+        ↓
+Generate Bell Receipt
+        ↓
+Fork / Share / Follow
+        ↓
+Activate authorized Autopilot
+        ↓
+Manage through First Bell MCP
 ```
 
-and:
+Every arrow must correspond to actual code and a verified integration.
 
-```text
-one real BSC transaction
->
-ten simulated features
-```
+No stage may be replaced by fabricated behavior.
 
 ---
 
-## 1.2 Verified beats assumed
+# 1. ABSOLUTE ENGINEERING PRINCIPLES
 
-Never implement an external integration from memory.
+These rules have priority over all convenience, deadlines and aesthetic preferences.
 
-Read the official documentation.
+## 1.1 Build real software
 
-Make a real request where possible.
+Do not produce a landing-page-only prototype.
 
-Capture the response.
+Do not stop at scaffolding.
 
-Validate it.
+Do not create buttons without functional handlers.
 
-Only then integrate it.
+Do not display a successful investment without real confirmation.
 
----
+Do not replace failing production APIs with fabricated values.
 
-## 1.3 Product scope is frozen
+Do not label an unimplemented feature as available.
 
-Do not redesign First Bell unless:
+## 1.2 The entire agreed product remains in scope
 
-1. official documentation proves an intended capability unavailable;
-2. a live API behaves differently from documentation;
-3. a security limitation makes the proposed implementation unsafe;
-4. Maris explicitly changes scope.
+The required product includes:
 
-Do not invent additional hackathon features because they sound impressive.
+1. Binance Wallet-first onboarding.
+2. General and Bell-specific QR entry.
+3. Live tokenized-stock discovery.
+4. Actual USDT stock purchases.
+5. Portfolio Bells, including support for up to eight assets where executable.
+6. Shareable links.
+7. Forking.
+8. Immutable Bell versions.
+9. Personal policies.
+10. Contribution-first rebalancing.
+11. Autopilot.
+12. Bell Receipts.
+13. Existing First Bell MCP.
+14. Natural-language portfolio creation.
+15. Research integration.
+16. Binance Agentic Wallet.
+17. BNB Agent Studio.
+18. Paymaster gas sponsorship.
+19. x402-enabled paid research or agent services.
+20. Production deployment.
+21. Security testing.
+22. Mainnet evidence.
+23. Developer Experience evidence.
+24. Hackathon submission readiness.
 
----
+**No engineer may silently remove these capabilities.**
 
-## 1.4 Investigate ordinary engineering failures yourself
+Implementation may be ordered by dependency.
 
-Do NOT stop and ask Maris for every normal coding error.
+If a capability is genuinely blocked by missing provider support, credentials, permissions, legal eligibility or an incompatible external API, record that blocker with evidence and escalate it.
 
-Investigate:
+Do not invent a workaround that compromises funds or security.
 
-- compilation errors;
-- dependency issues;
-- schema mismatches;
-- integration bugs;
-- failed unit tests;
-- runtime errors;
-- deployment errors;
-- ordinary API debugging.
+Do not claim the entire product is complete until all mandatory acceptance gates pass.
 
-Stop and request human input only when one of these applies:
-
-1. an API key, secret or account action is required;
-2. a real mainnet transaction will spend money;
-3. Binance requires approval/application/account confirmation;
-4. official docs materially contradict one another;
-5. live API behavior materially contradicts the docs;
-6. a scope-changing product decision is required;
-7. a feature appears genuinely impossible with available infrastructure.
-
-When blocked, report:
-
-```text
-EXPECTED:
-...
-
-OBSERVED:
-...
-
-EVIDENCE:
-...
-
-ATTEMPTS:
-...
-
-SAFEST FALLBACK:
-...
-
-DECISION NEEDED:
-...
-```
-
-Never guess around a blocker.
-
----
-
-# 2. TEAM ROLES
-
-There are three actors.
-
----
-
-## 2.1 MARIS — PRODUCT OWNER / HUMAN
-
-Maris owns:
-
-- product direction;
-- final scope;
-- API registrations;
-- credentials;
-- Binance account actions;
-- wallet confirmations;
-- funding test wallets;
-- mainnet spend approval;
-- final branding;
-- demo recording;
-- hackathon submission;
-- writing the Developer Experience Report narrative.
-
-The agents must not fabricate actions that require Maris.
-
----
-
-## 2.2 CLAUDE CODE — LEAD BUILDER
-
-Claude Code is the primary implementation agent.
-
-Claude owns:
-
-- repository bootstrap;
-- architecture;
-- web application;
-- UX;
-- Bell creation;
-- Bell pages;
-- QR/share flows;
-- stock pages;
-- wallet connection;
-- frontend state;
-- backend route orchestration;
-- portfolio UX;
-- fork UX;
-- Autopilot UX;
-- receipt UX;
-- deployment;
-- documentation;
-- integration of reviewed Codex work;
-- milestone coordination.
-
-Claude maintains:
-
-```text
-docs/STATUS.md
-docs/DECISIONS.md
-docs/VERIFIED_FACTS.md
-docs/API_VERIFICATION.md
-docs/DEVEX_RAW.md
-docs/DX_EVIDENCE.md
-docs/CODEX_QUEUE.md
-docs/MAINNET_RUNBOOK.md
-docs/ARCHITECTURE.md
-docs/DEMO_SCRIPT.md
-docs/AGENT_STUDIO_PROOF.md
-```
-
-After every meaningful milestone:
-
-update `docs/STATUS.md`.
-
----
-
-## 2.3 CODEX — BACKEND / VERIFICATION / ADVERSARIAL REVIEWER
-
-Codex is not another frontend builder.
-
-Codex owns or reviews:
-
-- Binance authentication/signing;
-- REST client correctness;
-- request validation;
-- response schemas;
-- captured fixtures;
-- RWA normalization;
-- stock representation resolution;
-- quote pipeline;
-- approval handling;
-- simulation pipeline;
-- transaction execution safety;
-- contribution-first rebalancing;
-- deterministic policy engine;
-- idempotency;
-- retry/backoff rules;
-- mainnet safety;
-- integration tests;
-- adversarial failure tests;
-- code review;
-- security review.
-
-Codex's job is partly to prove Claude wrong.
-
-Codex should actively test questions such as:
-
-```text
-What happens if the quote expires?
-
-What happens if the selected token becomes paused?
-
-What happens if only one provider has liquidity?
-
-What happens if approval succeeds and swap fails?
-
-What happens if basket leg 2 fails after leg 1 succeeded?
-
-What happens if the user rejects the wallet signature?
-
-What happens if the wallet changes chains?
-
-What happens if API response fields change?
-
-What happens if RWA search returns an unknown provider?
-
-What happens if Binance returns HTTP 429?
-
-What happens if timestamp signing is rejected?
-
-What happens if simulation passes but the quote changes before signing?
-
-What happens if a scheduled Autopilot run is triggered twice?
-
-What happens if USDT balance is insufficient?
-
-What happens if the contribution is too small to execute?
-
-What happens if selling is disabled but drift cannot be corrected with deposits?
-
-What happens if reference-price semantics cannot be proven?
-
-What happens if a provider uses a token/share ratio different from another provider?
-
-What happens if a response validates structurally but contains an unexpected semantic value?
-```
-
-A phase is not fully complete until the relevant Codex review either:
-
-```text
-PASSED
-```
-
-or:
-
-```text
-PASSED WITH DOCUMENTED LIMITATIONS
-```
-
----
-
-## 2.4 IF CLAUDE CANNOT DIRECTLY INVOKE CODEX
-
-Claude must never pretend Codex reviewed something.
-
-Instead write a complete task to:
-
-```text
-docs/CODEX_QUEUE.md
-```
-
-Every task must contain:
-
-```text
-GOAL
-
-FILES TO INSPECT
-
-FILES ALLOWED TO MODIFY
-
-OFFICIAL DOCUMENTATION
-
-KNOWN VERIFIED FACTS
-
-EXPECTED BEHAVIOR
-
-FAILURE CASES TO TEST
-
-TESTS REQUIRED
-
-ACCEPTANCE CRITERIA
-
-THINGS NOT TO CHANGE
-```
-
-Maris can then paste the task into Codex.
-
----
-
-# 3. ANTI-HALLUCINATION PROTOCOL
-
-This section overrides speed.
-
-The largest risk in this project is a convincing-looking implementation that calls APIs, parameters, fields, wallets or contracts that do not actually exist.
-
----
-
-## 3.1 Never invent integration facts
+## 1.3 No hallucinations
 
 Never invent:
 
-- endpoint paths;
-- query parameters;
-- JSON fields;
-- headers;
-- authentication requirements;
-- token addresses;
-- decimals;
-- chain IDs;
-- contract ABIs;
-- CLI commands;
-- wallet capabilities;
-- Agent Studio commands;
-- Agentic Wallet commands;
-- x402/B402 fields;
-- provider IDs;
-- approval spenders;
-- quote lifetimes;
-- rate limits;
-- error codes.
+- Binance API endpoints.
+- Wallet APIs.
+- CLI commands.
+- SDK exports.
+- Token contracts.
+- Token decimals.
+- Issuer mappings.
+- Market prices.
+- Quote validity.
+- Approval spenders.
+- Signing payloads.
+- Paymaster capabilities.
+- Agentic Wallet session capabilities.
+- Transaction hashes.
+- Research reports.
+- Market status.
+- Liquidity.
+- Transaction confirmations.
+- Successful tests.
+- Performance measurements.
+- Agent identity registrations.
 
-Each integration fact must come from at least one of:
+Every integration assertion must be traceable to authoritative evidence.
 
-1. official documentation;
-2. a live API response;
-3. an onchain read;
-4. an official SDK implementation inspected directly.
+## 1.4 Three levels of evidence
 
----
+A feature may be:
 
-# 4. VERIFIED FACTS SYSTEM
+**DOCUMENTATION VERIFIED:** Its API or mechanism is confirmed in an official source.
 
-Maintain:
+**LOCALLY VERIFIED:** Code has run successfully against its intended local or external integration with recorded evidence.
 
-```text
-docs/VERIFIED_FACTS.md
-```
+**LIVE VERIFIED:** It has operated successfully in its intended deployed or BSC Mainnet environment.
 
-Each entry must contain:
+Documentation verification is not live verification.
 
-```text
-FACT:
-...
+A successful simulation is not live execution.
 
-SOURCE:
-official URL / captured response / onchain read
+A transaction hash is not final settlement.
 
-DATE VERIFIED:
-YYYY-MM-DD
+A frontend screenshot is not proof of an integration.
 
-VERIFICATION METHOD:
-...
+## 1.5 No false certainty
 
-CODE DEPENDENCIES:
-...
-```
+If the docs and live behavior disagree, record the discrepancy.
 
-Code depending on an unverified external assumption is considered unfinished.
+If an assumption has not been tested, label it unverified.
 
----
+If a provider fails, show the actual error state.
 
-## 4.1 Verification states
+If a market is unavailable, show that it is unavailable.
 
-Use:
+If a feature needs approval, wait for approval.
 
-```text
-NOT STARTED
-DOC VERIFIED
-LIVE RESPONSE VERIFIED
-SIMULATION VERIFIED
-MAINNET VERIFIED
-```
+Do not state that a capability works because you believe it should.
 
-Do not use vague statuses like:
+## 1.6 No unauthorized funds movement
 
-```text
-DONE
-```
+Neither Claude nor Codex can independently authorize spending.
 
-for third-party integrations.
+All user transactions require the applicable owner authorization.
+
+Agent execution must remain within previously approved, revocable wallet permissions.
+
+Never ask for seed phrases.
+
+Never put private keys in frontend code.
+
+Never use a founder-controlled backend wallet as an unrestricted substitute for users' wallets.
 
 ---
 
-# 5. CAPTURE REAL API RESPONSES
+# 2. TEAM STRUCTURE
 
-For every external Binance endpoint used by the demo path:
+## 2.1 Maris — Product owner
 
-save one sanitized real response under:
+Maris controls:
+
+- Product vision.
+- Final architecture decisions when genuine tradeoffs exist.
+- Binance account setup.
+- API key registration.
+- Wallet setup and access.
+- Mainnet funding.
+- Financial expenditure approval.
+- Paymaster funding approval.
+- Agent permission approval.
+- External account authorization.
+- Final branding.
+- Demo approval.
+- Developer Experience Report narrative.
+- Submission.
+
+Do not assume an agent may make these decisions.
+
+## 2.2 Claude Code — Lead builder
+
+Claude Code is responsible for making the entire product work.
+
+Responsibilities:
+
+### Architecture
+- Audit the existing repository.
+- Preserve working code.
+- Choose compatible dependencies.
+- Maintain system architecture.
+- Coordinate shared contracts.
+- Integrate backend modules.
+- Resolve build failures.
+
+### Application
+- Wallet-first onboarding.
+- Stock pages.
+- Bell creation.
+- Bell detail pages.
+- Link sharing.
+- QR generation.
+- Forking.
+- Version comparisons.
+- Portfolio dashboard.
+- Purchase review.
+- Transaction progress.
+- Autopilot dashboard.
+- Receipts.
+- MCP setup and user flows.
+
+### Integration
+- Binance Web3 API integration.
+- Transaction-engine wiring.
+- Paymaster adapter.
+- Agentic Wallet adapter.
+- Agent Studio service.
+- Research integration.
+- MCP service integration.
+
+### Delivery
+- Build.
+- Typecheck.
+- Tests.
+- Production deployment.
+- README.
+- Mobile testing.
+- Demo script.
+- Submission preparation.
+
+Claude is accountable for the complete integrated result.
+
+## 2.3 Codex — Backend engineer and adversarial verifier
+
+Codex owns the correctness of financially sensitive infrastructure.
+
+Responsibilities:
+
+### Binance infrastructure
+- Authentication.
+- Request signing.
+- Zod schemas.
+- Real response fixtures.
+- Rate limiting.
+- Error handling.
+- Token resolution.
+- Quote validation.
+- Approval verification.
+- Transaction preparation.
+- Simulation.
+- Broadcasting.
+- Confirmation reconciliation.
+
+### Financial correctness
+- Basis-point allocation.
+- Integer amount arithmetic.
+- Token decimal conversion.
+- Quote expiry.
+- Reserve handling.
+- Exposure calculations.
+- Provider normalization.
+- Partial basket execution.
+- Idempotency.
+
+### Security
+- Policy engine.
+- Authorization checks.
+- MCP security.
+- Wallet permission boundaries.
+- Paymaster eligibility constraints.
+- Agent execution isolation.
+- Replay protection.
+- Sensitive-data handling.
+
+### Independent verification
+Codex must challenge Claude's implementation.
+
+Codex must deliberately attempt to find:
+
+- Unsafe signing.
+- Unauthorized mainnet execution.
+- Stale quotes.
+- Wrong-chain execution.
+- Duplicate purchases.
+- Approval-spender mistakes.
+- Policy bypasses.
+- Incorrect financial calculations.
+- Leaked secrets.
+- Invented UI outcomes.
+- Incorrect transaction success states.
+
+Codex does not simply approve Claude's work.
+
+## 2.4 Division of work
+
+Claude owns user-facing implementation and overall integration.
+
+Codex owns sensitive backend implementation and independent review.
+
+When both must work on related code:
+
+1. Define the shared interface.
+2. Assign file ownership.
+3. Implement independently.
+4. Test the components.
+5. Integrate.
+6. Run system-level tests.
+7. Conduct independent review.
+8. Fix findings.
+9. Retest.
+
+Do not have both agents overwrite the same files simultaneously.
+
+## 2.5 Codex handoff
+
+If direct Codex execution is available, use the actual supported interface.
+
+If not, Claude must create a runnable task in:
+
+`docs/CODEX_QUEUE.md`
+
+Each task must specify:
 
 ```text
-fixtures/api/
+Task ID:
+Objective:
+Relevant documentation:
+Files to inspect:
+Files permitted to modify:
+Expected interfaces:
+Security constraints:
+Required tests:
+Acceptance criteria:
+Evidence to return:
+Files not to modify:
 ```
 
-Example:
-
-```text
-fixtures/api/rwa-search-nvda.json
-fixtures/api/rwa-underlying-market-nvda.json
-fixtures/api/aggregator-quote-nvda.json
-fixtures/api/transaction-simulate.json
-```
-
-Strip:
-
-- secrets;
-- auth headers;
-- user-sensitive data.
-
-Build TypeScript types and Zod schemas from:
-
-1. the official reference;
-2. the captured live response.
-
-Never build response types purely from memory.
+Never claim Codex reviewed anything without an actual Codex result.
 
 ---
 
-# 6. RUNTIME VALIDATION
+# 3. OPERATING RULES
 
-Every external response must be parsed with Zod.
+## 3.1 Inspect before editing
 
-If validation fails:
+First inspect:
 
-1. do not silently coerce the value;
-2. create a structured error;
-3. record the mismatch in DX evidence;
-4. preserve the raw sanitized response for debugging;
-5. fail visibly but safely.
+- Repository structure.
+- Current branch.
+- Uncommitted changes.
+- Commit history.
+- Existing First Bell MCP.
+- Existing API clients.
+- Existing wallet logic.
+- Existing database.
+- Existing policies.
+- Current UI.
+- Existing tests.
+- Environment variables.
+- Current deployment.
 
-No `any` for external API data.
+Do not rewrite functional modules unnecessarily.
 
----
+Do not delete existing work.
 
-# 7. NO FAKE PRODUCTION DATA
+## 3.2 Stop-and-ask conditions
 
-Mocks are allowed only in development/tests.
+Stop and request an exact human action only when:
 
-Mocks must live under:
+1. API credentials or external account access is needed.
+2. A real-money transaction requires approval.
+3. A paid service requires funding authorization.
+4. A wallet permission must be approved.
+5. A legal or account-eligibility question prevents use.
+6. Official documentation cannot resolve a material security-sensitive choice.
+7. A mandatory capability is proven unsupported by the available infrastructure.
+8. A change would alter custody or execution authority.
 
-```text
-dev/mock/
-```
+For routine engineering decisions, choose the most conservative viable solution, document it and continue.
 
-or:
-
-```text
-fixtures/
-```
-
-Production behavior may never silently fall back to fake:
-
-- stock prices;
-- balances;
-- quotes;
-- issuer information;
-- transaction hashes;
-- slippage;
-- market status;
-- portfolios.
-
-If live data is unavailable, show:
-
-```text
-Data temporarily unavailable.
-```
-
-The demo must clearly distinguish:
-
-```text
-LIVE
-DRY RUN
-SIMULATION
-```
-
----
-
-# 8. PRODUCT SUMMARY
-
-**First Bell** is a consumer investing layer for tokenized stocks on BNB Chain.
-
-It turns:
-
-```text
-stocks
-```
-
-and:
-
-```text
-transparent portfolios
-```
-
-into:
-
-```text
-shareable, programmable links
-```
-
-The user thinks in:
-
-- companies;
-- dollars;
-- portfolios.
-
-First Bell hides:
-
-- tokenized representations;
-- issuer differences;
-- contract addresses;
-- approvals;
-- routing;
-- simulations;
-- portfolio drift;
-- transaction machinery.
-
----
-
-# 9. CORE PRODUCT CONCEPTS
-
-## 9.1 Bell
-
-A **Bell** is a shareable investment definition.
-
-It is NOT:
-
-- a fund;
-- a vault;
-- a custody contract;
-- a pooled investment vehicle.
-
-### Single Stock Bell
-
-Example:
-
-```text
-NVIDIA
+## 3.3 Mainnet execution
 
 Start with:
-10 USDT
-```
 
-### Portfolio Bell
-
-Example:
-
-```text
-AI Compute
-
-NVDA    30%
-MSFT    25%
-GOOGL   20%
-AMZN    15%
-USDT    10%
-```
-
-The Bell stores investment intent.
-
-Prefer:
-
-```json
-{
-  "ticker": "NVDA",
-  "targetWeightBps": 3000
-}
-```
-
-Do not permanently bind a Bell to a hard-coded token contract unless required by a documented immutable reason.
-
-The execution engine resolves the actual supported token representation at execution time.
-
----
-
-## 9.2 Fork
-
-A user can copy a Bell and create their own version.
-
-Example:
-
-Original:
-
-```text
-AI Compute
-
-NVDA   30
-MSFT   25
-GOOGL  20
-AMZN   15
-USDT   10
-```
-
-Fork:
-
-```text
-My AI Compute
-
-NVDA   20
-MSFT   25
-GOOGL  25
-AMZN   15
-BNB     5
-USDT   10
-```
-
-The fork is independent.
-
-The original creator has:
-
-- no custody;
-- no withdrawal rights;
-- no execution rights;
-- no unilateral control.
-
----
-
-## 9.3 Autopilot
-
-Autopilot does NOT predict stocks.
-
-Autopilot enforces deterministic portfolio rules.
-
-Example:
-
-```text
-Contribution:
-20 USDT weekly
-
-Max single-company exposure:
-40%
-
-Stable reserve:
-10%
-
-Drift threshold:
-5 percentage points
-
-Max autonomous trade:
-10 USDT
-
-Max accepted slippage:
-0.50%
-
-Selling existing holdings:
-OFF
-```
-
-Priority:
-
-1. new contributions first;
-2. minimize unnecessary selling;
-3. remain inside user policy;
-4. simulate before execution;
-5. skip unsafe executions;
-6. explain every action.
-
----
-
-## 9.4 Strategy update
-
-A creator or agent may publish a new version of a Bell.
-
-A follower's personal agent may:
-
-1. retrieve the new strategy;
-2. compare it with the previous version;
-3. validate proposed changes against the user's own rules;
-4. apply only permitted changes.
-
-Strategy creator instructions never override user policy.
-
----
-
-# 10. PRODUCT DIFFERENTIATION
-
-Do NOT position First Bell as:
-
-> a bStocks vs Ondo vs xStocks router.
-
-Other projects already focus on route comparison.
-
-Representation selection is infrastructure.
-
-The consumer should see:
-
-```text
-NVIDIA
-```
-
-not:
-
-```text
-NVDAB
-NVDAon
-NVDAx
-```
-
-unless they open technical details.
-
-First Bell's differentiation is:
-
-```text
-distribution
-+
-first ownership
-+
-forkable portfolios
-+
-guarded automation
-```
-
----
-
-# 11. HACKATHON REQUIREMENTS
-
-Official main track:
-
-**Tokenized Stocks Products & Agents**
-
-Treat these rules as immutable unless official organizers publish a change.
-
-Required:
-
-- at least one of bStocks, Ondo or xStocks is central;
-- BSC mainnet;
-- spot only;
-- no perps;
-- cross-asset portfolios allowed;
-- public repository;
-- deployed app or runnable instructions;
-- demo video four minutes or less strongly recommended;
-- Developer Experience Report mandatory.
-
-Judging:
-
-```text
-Technical implementation      30%
-Creativity & originality      25%
-Developer Experience Report   25%
-Product quality & UX          20%
-```
-
-Special prizes:
-
-```text
-Best Use of Agentic Wallet / Wallet Skills — $2,000
-
-Best Use of BNB Agent Studio — $2,000
-```
-
-Do not compromise the core submission to chase special prizes.
-
----
-
-# 12. CORE SCOPE — MUST SHIP
-
-## 12.1 Curated stock discovery
-
-Do NOT build a giant stock marketplace before the core works.
-
-Ship initially with approximately:
-
-```text
-3–4 curated Bells
-```
-
-and approximately:
-
-```text
-6–8 supported stock tickers
-```
-
-where live APIs confirm support.
-
-Suggested examples only:
-
-```text
-NVDA
-AAPL
-MSFT
-GOOGL
-META
-AMZN
-TSLA
-one supported ETF
-```
-
-Never present an unsupported ticker.
-
----
-
-## 12.2 Stock link page
-
-Route:
-
-```text
-/s/[ticker]
-```
-
-Display:
-
-- company/ticker;
-- live supported token data;
-- market status;
-- available representations under technical details;
-- onchain/reference information only where semantics are verified;
-- buy panel.
-
----
-
-## 12.3 Wallet connection
-
-Must support a documented EIP-1193-compatible wallet flow on BSC.
-
-Target compatibility includes Binance Web3 Wallet if officially supported through the chosen integration path.
-
-Requirements:
-
-- detect wallet;
-- request connection;
-- obtain address;
-- verify chain;
-- request BSC chain switch if supported;
-- handle rejection;
-- sign transactions;
-- show tx hash;
-- verify confirmation.
-
-Do not store private keys.
-
----
-
-## 12.4 Single stock buy
-
-Core guaranteed funding path:
-
-```text
-USDT
-→
-tokenized stock
-```
-
-Flow:
-
-```text
-resolve
-→
-quote
-→
-policy
-→
-approval if needed
-→
-simulate
-→
-user signs
-→
-broadcast
-→
-confirm
-→
-verify balance
-→
-receipt
-```
-
----
-
-## 12.5 Bell creation
-
-Bell supports:
-
-- stock Bell;
-- portfolio Bell;
-- title;
-- description;
-- creator wallet;
-- holdings;
-- basis-point weights;
-- optional stable reserve;
-- stable public ID;
-- version;
-- content hash;
-- creation time;
-- fork origin.
-
----
-
-## 12.6 Bell page
-
-Route:
-
-```text
-/b/[bellId]
-```
-
-Show:
-
-- holdings;
-- target percentages;
-- investment amount;
-- QR;
-- share;
-- fork;
-- invest.
-
----
-
-## 12.7 Basket investment
-
-Basket buys are NOT atomic.
-
-Execute legs sequentially.
-
-Example:
-
-```text
-Leg 1 NVDA — success
-Leg 2 MSFT — failed
-Leg 3 GOOGL — not started
-```
-
-If a leg fails:
-
-1. stop remaining legs by default;
-2. record already-completed trades honestly;
-3. mark remaining legs `NOT_STARTED`;
-4. show exact partial state;
-5. never label the basket purchase complete.
-
-Do not attempt compensating sells automatically.
-
----
-
-## 12.8 Fork
-
-User can:
-
-- copy portfolio;
-- add/remove holdings;
-- change weights;
-- modify reserve;
-- save as independent Bell.
-
----
-
-## 12.9 Policy engine
-
-Pure deterministic functions.
-
-No external I/O.
-
-Input:
-
-```ts
-ProposedTrade
-MarketSnapshot
-PortfolioState
-UserPolicy
-```
-
-Output:
-
-```ts
-{
-  allowed: boolean;
-  code: string;
-  reason: string;
-}
-```
-
-100% unit tested for demo-path rules.
-
----
-
-## 12.10 Receipts
-
-Route:
-
-```text
-/r/[receiptId]
-```
-
-Receipt must show:
-
-- requested action;
-- selected representation;
-- reason;
-- amount;
-- quote;
-- simulation result;
-- policy result;
-- tx hash;
-- final status.
-
-Basket receipt:
-
-per leg.
-
----
-
-## 12.11 Autopilot
-
-Minimum must-ship version:
-
-single operator / Maris wallet is acceptable.
-
-Autopilot must:
-
-1. read current portfolio;
-2. read available contribution;
-3. calculate target shortfall;
-4. allocate new contribution to underweight assets first;
-5. resolve/quote each leg;
-6. apply policy;
-7. simulate;
-8. execute or skip;
-9. persist decision receipt.
-
----
-
-## 12.12 Execution modes
-
-Required:
-
-```text
-DRY_RUN
-LIVE
-```
-
-Default:
-
-```text
-DRY_RUN
-```
-
-Also require:
-
-```text
+```env
+EXECUTION_MODE=DRY_RUN
 MAINNET_WRITE_ENABLED=false
+AUTOPILOT_LIVE_ENABLED=false
 ```
 
-by default.
+Explicit human approval is required before enabling a financial write operation.
 
-A live write requires BOTH:
+Never automatically change these flags to bypass safeguards.
 
-```text
-EXECUTION_MODE=LIVE
-```
+## 3.4 Continuous execution
 
-and:
+Work through each phase until its acceptance tests pass or a real external blocker is evidenced.
 
-```text
-MAINNET_WRITE_ENABLED=true
-```
+Do not stop merely because code was generated.
 
-and explicit user action.
+Do not provide generic reassurance or long progress essays.
+
+At the end of each phase, report factual results.
 
 ---
 
-# 13. STRETCH FEATURES
+# 4. HACKATHON REQUIREMENTS AND ELIGIBILITY
 
-Only start these after the mainnet single-stock buy and core Bell flows work.
+Official event:
 
-Priority:
+https://www.bnbchain.org/en/hackathons/tokenized-stocks
 
-```text
-S1 Agentic Wallet adapter
+Required network: BSC Mainnet.
 
-S2 Strategy updates
+At least one of these tokenized-stock families must be central:
 
-S3 Agent Studio deployment
+- bStocks.
+- Ondo.
+- xStocks.
 
-S4 MCP server
+Spot only.
 
-S5 B402 paid strategy/data update
+No perps.
 
-S6 Card/on-ramp experiment
+A public repository and reproducible project access are required.
 
-S7 Mainnet gas sponsorship/paymaster
+Prepare a short demo video.
 
-S8 DeFi idle-USDT yield
-```
+The Developer Experience Report is mandatory and accounts for 25% of judging.
 
-Stretch features must never block core submission.
+## Judging
 
----
+- Technical implementation: 30%.
+- Creativity and originality: 25%.
+- Developer Experience Report: 25%.
+- Product quality and UX: 20%.
 
-# 14. OUT OF SCOPE
+## Special prizes
 
-Do not build:
+Agentic Wallet / Wallet Skills: $2,000.
 
-- perps;
-- leverage;
-- margin;
-- options;
-- shorting;
-- prediction markets;
-- AI stock prediction;
-- sentiment trading;
-- "AI beats the market";
-- custom token;
-- First Bell governance;
-- social feed;
-- chat;
-- NFTs;
-- custody;
-- pooled funds;
-- custom AMM;
-- custom liquidity pool;
-- custom vault;
-- native mobile app;
-- giant analytics terminal;
-- complicated smart contracts;
-- arbitrary multi-chain support.
+BNB Agent Studio: $2,000.
+
+Build both integrations to compete credibly, but never claim special-prize eligibility merely because a package was installed.
+
+## Eligibility gate
+
+Check the official eligibility and restricted-region rules before initiating paid mainnet work or submission.
+
+The event excludes certain locations and residences, including the UK and Canada.
+
+Do not infer eligibility from nationality, wallet address or VPN location.
+
+Do not recommend bypassing regional restrictions.
+
+Record the human-confirmed eligibility status without collecting unnecessary personal details.
 
 ---
 
-# 15. SMART CONTRACT POLICY
+# 5. PROJECT REPOSITORY AND STACK
 
-Default:
+Preserve the existing working architecture when viable.
 
-```text
-NO CUSTOM SMART CONTRACT
-```
+For a new or incomplete implementation, the preferred stack is:
 
-Do not deploy Solidity merely to appear technically sophisticated.
-
-Before proposing a contract, document:
-
-```text
-WHY NECESSARY
-
-WHAT EXISTING INFRASTRUCTURE CANNOT DO
-
-CUSTODY IMPLICATIONS
-
-SECURITY SURFACE
-
-UPGRADE MODEL
-
-GAS COST
-
-TEST PLAN
-```
-
-Maris must approve before contract development begins.
-
----
-
-# 16. TECH STACK
-
-Use a small, practical stack.
-
-Frontend/backend:
-
-- Next.js App Router;
-- TypeScript strict mode;
-- Tailwind CSS;
-- Zod;
-- viem;
-- wagmi where appropriate;
-- QR generation library;
+- Next.js App Router.
+- TypeScript strict.
+- Tailwind CSS.
+- viem.
+- wagmi where compatible with Binance Wallet.
+- Zod.
+- Drizzle ORM.
+- PostgreSQL for reliable hosted persistence.
+- SQLite only when deployment persistence requirements allow.
 - Vitest.
+- Playwright for the critical browser journey.
+- An official maintained MCP SDK.
+- Verified Binance Web3 API client or exact documented signing implementation.
+- Lightweight QR-generation library.
 
-Persistence:
+Avoid needless microservices.
 
-Prefer:
+Do not introduce Redis unless genuinely needed.
 
-```text
-SQLite + Drizzle
-```
+Do not build a custom indexer.
 
-for local speed unless deployment requirements make it impractical.
+Do not create custom smart contracts unless a required capability truly cannot be implemented safely through the documented infrastructure and Maris approves the design.
 
-If production deployment needs persistent hosted storage:
-
-switch to PostgreSQL only with a clear migration.
-
-Do not add:
-
-- Redis;
-- queues;
-- Kafka;
-- microservices;
-
-unless proven necessary.
-
-Autopilot:
-
-simple Node process / cron-compatible runner.
-
-No complex distributed scheduler for hackathon MVP.
-
----
-
-# 17. REPOSITORY STRUCTURE
-
-Recommended:
+## Suggested modules
 
 ```text
-/
-├── app/
-│   ├── s/[ticker]/
-│   ├── b/[bellId]/
-│   ├── b/new/
-│   ├── r/[receiptId]/
-│   ├── autopilot/
-│   └── api/
-│
-├── lib/
-│   ├── binance/
-│   │   ├── auth.ts
-│   │   ├── rwa.ts
-│   │   ├── market.ts
-│   │   ├── trading.ts
-│   │   ├── transaction.ts
-│   │   ├── wallet.ts
-│   │   └── b402.ts
-│   │
-│   ├── resolver/
-│   ├── policy/
-│   ├── execution/
-│   ├── autopilot/
-│   ├── bells/
-│   ├── receipts/
-│   └── dx/
-│
-├── agent/
-│
-├── scripts/
-│   ├── smoke.ts
-│   └── autopilot.ts
-│
-├── fixtures/
-│   └── api/
-│
-├── tests/
-│
-├── docs/
-│   ├── STATUS.md
-│   ├── DECISIONS.md
-│   ├── VERIFIED_FACTS.md
-│   ├── API_VERIFICATION.md
-│   ├── DEVEX_RAW.md
-│   ├── DX_EVIDENCE.md
-│   ├── CODEX_QUEUE.md
-│   ├── MAINNET_RUNBOOK.md
-│   ├── ARCHITECTURE.md
-│   ├── AGENT_STUDIO_PROOF.md
-│   └── DEMO_SCRIPT.md
-│
-├── logs/
-│   └── .gitkeep
-│
-├── .env.example
-├── CLAUDE.md
-├── README.md
-└── package.json
+src/
+  app/
+  components/
+  lib/
+    binance/
+    wallets/
+    chain/
+    assets/
+    bells/
+    execution/
+    policy/
+    paymaster/
+    autopilot/
+    research/
+    agent-studio/
+    agentic-wallet/
+    mcp/
+    receipts/
+  db/
+  tests/
+
+docs/
+  STATUS.md
+  DECISIONS.md
+  VERIFIED_FACTS.md
+  API_VERIFICATION.md
+  ARCHITECTURE.md
+  SECURITY.md
+  MAINNET_RUNBOOK.md
+  CODEX_QUEUE.md
+  CODEX_REVIEW.md
+  DEVEX_RAW.md
+  DEVEX_HUMAN_NOTES.md
+  DX_EVIDENCE.md
+  DEMO_SCRIPT.md
+  SUBMISSION_CHECKLIST.md
+  BLOCKERS.md
+  RISK.md
+  evidence/
 ```
 
----
+The actual layout may differ if existing code should be preserved.
 
-# 18. ENVIRONMENT
+## Environment template
 
-Example only.
+Create `.env.example` with names, never secrets.
 
-Never commit real values.
+Candidate configuration:
 
 ```env
 BINANCE_WEB3_API_KEY=
-BINANCE_WEB3_API_SECRET=
-BINANCE_WEB3_BASE_URL=
+BINANCE_WEB3_SECRET_KEY=
+BINANCE_WEB3_BASE_URL=https://web3.binance.com/build
 
 BSC_RPC_URL=
-
-DATABASE_URL=file:./firstbell.db
+DATABASE_URL=
+NEXT_PUBLIC_APP_URL=
 
 EXECUTION_MODE=DRY_RUN
 MAINNET_WRITE_ENABLED=false
 LIVE_MAX_TRADE_USD=5
 
-AUTOPILOT_OPERATOR_ADDRESS=
+AUTOPILOT_LIVE_ENABLED=false
+AGENTIC_WALLET_ENABLED=false
 
-NEXT_PUBLIC_APP_URL=
+PAYMASTER_ENABLED=false
+PAYMASTER_PROVIDER=
+PAYMASTER_RPC_URL=
+
+AGENT_STUDIO_ENABLED=false
+AGENT_STUDIO_ENDPOINT=
+
+RESEARCH_ENABLED=false
+RESEARCH_SPEND_LIMIT_USD=0
+
+MCP_ENABLED=true
 ```
 
-Do not invent Agent Studio environment variables before the official scaffold/docs prove them.
+These are application configuration names, not claimed external API configuration requirements.
+
+Add verified provider-specific variables as required.
+
+Do not expose server-side secrets through `NEXT_PUBLIC_` variables.
 
 ---
 
-# 19. OFFICIAL RESOURCES
+# 6. OFFICIAL DOCUMENTATION
 
-These are the primary sources of truth.
+Use primary sources.
 
-## Hackathon
-
-https://www.bnbchain.org/en/hackathons/tokenized-stocks
-
-## Developer portal
-
-https://web3.binance.com/en/dev-portal
-
-## Web3 API
+## Binance Web3 API
 
 https://web3.binance.com/en/dev-docs/introduction
 
-## Authentication
-
 https://web3.binance.com/en/dev-docs/authentication
 
-## REST
+https://web3.binance.com/en/dev-docs/llms.txt
 
-https://web3.binance.com/en/dev-docs/catalog/web3-wallet/api/rest-api
+https://web3.binance.com/en/dev-docs/llms-full.txt
 
-## RWA
+## API modules
+
+RWA:
 
 https://web3.binance.com/en/dev-docs/catalog/web3-wallet/api/rest-api/rwa-data
 
-## Market
+Market:
 
 https://web3.binance.com/en/dev-docs/catalog/web3-wallet/api/rest-api/general-data
 
-## Trading
+Trading:
 
 https://web3.binance.com/en/dev-docs/catalog/web3-wallet/api/rest-api/trading-api
 
-## Transaction
+Transaction:
 
 https://web3.binance.com/en/dev-docs/catalog/web3-wallet/api/rest-api/transaction-api
 
-## Wallet
+Wallet:
 
 https://web3.binance.com/en/dev-docs/catalog/web3-wallet/api/rest-api/wallet-api
 
-## Portfolio
+Address portfolio:
 
 https://web3.binance.com/en/dev-docs/catalog/web3-wallet/api/rest-api/address-portfolio
 
-## DeFi
-
-https://web3.binance.com/en/dev-docs/catalog/web3-wallet/api/rest-api/defi-data
-
-https://web3.binance.com/en/dev-docs/catalog/web3-wallet/api/rest-api/defi-transaction
-
-## B402
+B402:
 
 https://web3.binance.com/en/dev-docs/catalog/web3-wallet/api/rest-api/b402-payments
 
@@ -1433,1797 +692,231 @@ https://developers.binance.com/en/docs/products/agentic-wallet/use-cases/trading
 
 https://developers.binance.com/en/docs/products/agentic-wallet/reference/skills
 
-## Wallet Skills
-
-https://developers.binance.com/en/docs/products/wallet-skills/overview
-
-## Skills repo
-
 https://github.com/binance/binance-skills-hub
 
-## Agent Studio
+## Binance Wallet dApp testing
+
+https://developers.binance.com/en/docs/products/web3-dapp/self-testing
+
+## BNB Agent Studio
 
 https://www.bnbchain.org/en/bnb-agent-studio
 
-## BNB docs
+## BSC Paymaster
+
+https://docs.bnbchain.org/bnb-smart-chain/developers/paymaster/overview/
+
+https://docs.bnbchain.org/bnb-smart-chain/developers/paymaster/wallet-integration/
+
+## Other
 
 https://docs.bnbchain.org
 
-## BscTrace
-
 https://bsctrace.com
-
-## PancakeSwap
 
 https://pancakeswap.finance
 
-## Documentation index
+https://github.com/bnb-chain/stockanalyst-agent-demo
 
-https://web3.binance.com/en/dev-docs/llms.txt
+## Verification record
 
-## Full documentation
+For each integration record:
 
-https://web3.binance.com/en/dev-docs/llms-full.txt
+- Exact documentation URL.
+- Date inspected.
+- Endpoint/package/command.
+- Authentication.
+- Parameters.
+- Response fields.
+- Network.
+- Permissions.
+- Error behavior.
+- Real test result.
+- Evidence location.
+- Known limitations.
 
----
-
-# 20. KNOWN ENDPOINT INDEX — VERIFY BEFORE USE
-
-The following endpoint names/paths were taken from the current documentation index supplied for this build.
-
-They are provided to reduce discovery time.
-
-**Their parameters, response shapes, limits and exact semantics must still be verified from the official reference and live calls before implementation.**
-
----
-
-## 20.1 RWA Data
-
-Candidate paths to verify:
-
-```text
-GET /api/v1/dex/market/rwa/platforms
-
-GET /api/v1/dex/market/rwa/tokens
-
-GET /api/v1/dex/market/rwa/search
-
-GET /api/v1/dex/market/rwa/price
-
-GET /api/v1/dex/market/rwa/underlying-profile
-
-GET /api/v1/dex/market/rwa/underlying-market
-```
+Never rely on this mandate as a replacement for current documentation.
 
 ---
 
-## 20.2 Market
+# 7. BINANCE API AUTHENTICATION
 
-Candidate paths to verify:
-
-```text
-POST /api/v1/dex/market/price
-
-POST /api/v1/dex/market/price-info
-
-GET /api/v1/dex/market/candles
-
-GET /api/v1/dex/market/token/top-liquidity
-```
-
----
-
-## 20.3 Trading / Aggregator
-
-Candidate paths to verify:
+The official Binance Web3 API uses:
 
 ```text
-GET /api/v1/dex/aggregator/supported/chain
-
-GET /api/v1/dex/aggregator/approve-transaction
-
-GET /api/v1/dex/aggregator/quote
-
-GET /api/v1/dex/aggregator/swap
-
-GET /api/v1/dex/aggregator/history
-```
-
----
-
-## 20.4 Transaction
-
-Candidate paths to verify:
-
-```text
-GET /api/v1/dex/pre-transaction/gas-price
-
-POST /api/v1/dex/pre-transaction/gas-limit
-
-POST /api/v1/dex/pre-transaction/simulate
-
-POST /api/v1/dex/pre-transaction/broadcast-transaction
-
-GET /api/v1/dex/post-transaction/transaction-detail-by-txhash
-```
-
----
-
-## 20.5 Wallet / Portfolio
-
-Candidate paths to verify:
-
-```text
-POST /api/v1/dex/balance/token-balances-by-address
-
-GET /api/v1/dex/balance/all-token-balances-by-address
-
-GET /api/v1/dex/market/portfolio/overview
-```
-
----
-
-## 20.6 B402
-
-Candidate paths to verify:
-
-```text
-POST /api/v2/b402/supported
-
-POST /api/v2/b402/verify
-
-POST /api/v2/b402/settle
-```
-
----
-
-# 21. API VERIFICATION TABLE
-
-Before implementing an endpoint, record in:
-
-```text
-docs/API_VERIFICATION.md
-```
-
-Fields:
-
-```text
-CAPABILITY
-
-OFFICIAL DOCUMENTATION URL
-
-ENDPOINT / COMMAND
-
-HTTP METHOD
-
-REQUEST PARAMETERS
-
-REQUIRED HEADERS
-
-AUTHENTICATION
-
-CHAIN PARAMETER FORMAT
-
-RESPONSE FIELDS USED
-
-ERROR FORMAT
-
-RATE LIMIT
-
-QUOTE VALIDITY
-
-VERIFIED VIA LIVE REQUEST?
-yes/no
-
-CAPTURED FIXTURE
-
-NOTES
-```
-
----
-
-# 22. AUTHENTICATION — VERIFY, DO NOT ASSUME
-
-Do not treat the following as immutable facts until they are verified from the current Authentication documentation or official SDK.
-
-Current implementation hints to verify include:
-
-```text
-Base URL possibly:
+Base URL:
 https://web3.binance.com/build
-```
 
-and possible headers:
-
-```text
+Required headers:
 X-OC-APIKEY
 X-OC-TIMESTAMP
 X-OC-SIGN
 ```
 
-and possible signing scheme:
+The documented HMAC-SHA256 signing construction is:
 
 ```text
-timestamp
-+
-HTTP method
-+
-request path
-+
-raw body
+preHash =
+  timestamp +
+  UPPERCASE_HTTP_METHOD +
+  full_request_path_with_query +
+  raw_request_body
+
+signature =
+  Base64(HMAC_SHA256(secret, preHash))
 ```
 
-with:
+The signed request path must include `/build`.
 
-```text
-HMAC-SHA256
-+
-Base64
-```
+The path and query serialization must match the bytes sent on the wire.
 
-The request path may need to include:
+Verify the exact signing behavior from the current Authentication page.
 
-```text
-/build
-```
+## Required tests
 
-in signing.
+- Valid signature.
+- Missing `/build` prefix.
+- Incorrect timestamp.
+- Wrong method.
+- Reordered query string.
+- Modified body after signing.
+- Invalid API key.
+- Clock skew.
+- Request timeout.
+- Rate limit.
+- Network failure.
+- Nonzero business error code.
 
-VERIFY THIS.
+Use a fixed timestamp and dummy secret for deterministic signature tests.
 
-Do not copy it blindly.
+Capture the first real successful authenticated response.
 
----
+Store a sanitized fixture.
 
-# 23. AUTH EDGE CASES TO VERIFY
-
-Investigate explicitly:
-
-## Clock skew
-
-A builder report suggests a possible timestamp/clock-skew error code:
-
-```text
-40103
-```
-
-and a possible header:
-
-```text
-X-OC-RECV-WINDOW
-```
-
-This is a HINT ONLY.
-
-Verify through official docs/live API.
-
-If confirmed:
-
-add clock-skew handling and document it.
+Never retry a state-changing request blindly.
 
 ---
 
-## Rate limits
+# 8. BINANCE API MODULES
 
-A builder report suggests a possible limit near:
+Use real documented endpoints.
 
-```text
-5 requests/second per endpoint
-```
+The following paths are candidates from the official documentation and must be checked before implementation.
 
-This is NOT an accepted fact.
-
-Verify.
-
-Once verified:
-
-implement bounded concurrency/rate handling accordingly.
-
----
-
-# 24. API CLIENT
-
-All Binance signed API calls occur server-side.
-
-Never expose API secret in browser bundles.
-
-Implement one centralized client.
-
-Responsibilities:
-
-- URL construction;
-- exact signing;
-- timestamp;
-- optional nonce if documented;
-- timeout;
-- retries;
-- response validation;
-- error normalization;
-- DX logging.
-
-Do not log:
-
-- secrets;
-- full auth headers;
-- sensitive wallet information.
-
----
-
-# 25. RETRIES
-
-Safe/idempotent reads may use:
+## RWA
 
 ```text
-bounded exponential backoff
+GET /api/v1/dex/market/rwa/platforms
+GET /api/v1/dex/market/rwa/tokens
+GET /api/v1/dex/market/rwa/search
+GET /api/v1/dex/market/rwa/price
+GET /api/v1/dex/market/rwa/underlying-profile
+GET /api/v1/dex/market/rwa/underlying-market
 ```
 
-Only retry errors proven retryable.
-
-State-changing transactions must NOT be blindly retried.
-
-Example:
+## Market
 
 ```text
-broadcast timed out
+POST /api/v1/dex/market/price
+POST /api/v1/dex/market/price-info
+GET  /api/v1/dex/market/candles
+GET  /api/v1/dex/market/token/top-liquidity
 ```
 
-does NOT mean:
+## Trading
 
 ```text
-broadcast again
+GET /api/v1/dex/aggregator/supported/chain
+GET /api/v1/dex/aggregator/quote
+GET /api/v1/dex/aggregator/approve-transaction
+GET /api/v1/dex/aggregator/swap
 ```
 
-First determine whether the transaction was accepted.
+Additional Trading API methods, including RFQ routes and order-status endpoints, must be handled according to the actual route type.
+
+Do not assume every quote becomes a standard EVM swap transaction.
+
+## Transaction
+
+```text
+GET  /api/v1/dex/pre-transaction/gas-price
+POST /api/v1/dex/pre-transaction/gas-limit
+POST /api/v1/dex/pre-transaction/simulate
+POST /api/v1/dex/pre-transaction/broadcast-transaction
+```
+
+Use the currently documented transaction and order-status lookups for settlement verification.
+
+## Wallet
+
+Use the current documented balance and transaction-detail endpoints.
+
+## Data validation
+
+Every external response must be runtime-validated.
+
+Build Zod schemas from documented contracts and sanitized real responses.
+
+If the response differs from the expected schema, fail visibly and log the mismatch.
+
+Mocks are permitted for isolated tests only.
+
+Production must not silently return fabricated data.
 
 ---
 
-# 26. RWA PROVIDER MODEL
+# 9. BINANCE WALLET-FIRST EXPERIENCE
 
-Hackathon supports:
+Binance Wallet must be the first and most prominent wallet option.
 
-- bStocks;
-- Ondo;
-- xStocks.
+Use its correct official branding.
 
-Do NOT hard-code this union into core domain types.
+Secondary supported BSC wallets can appear below it.
 
-Use:
+## Connection requirements
 
-```ts
-type RwaProviderId = string;
-```
+Test:
 
-The API may return other IDs.
+- Binance Wallet discovery.
+- Correct provider integration.
+- Address retrieval.
+- Chain ID 56.
+- Network switch.
+- Account changes.
+- User rejection.
+- Wallet disconnection.
+- Desktop connection.
+- Mobile connection.
+- Phone browser.
+- Wallet in-app browser when supported.
 
-Only display or execute verified providers.
+Do not assume the presence of an EIP-1193 provider automatically means it is Binance Wallet.
 
-If xStocks is not available through the specific Binance RWA endpoints used:
+Do not fabricate a wallet-connect success screen.
 
-do not fake xStocks support.
+## Wallet creation
 
-Correct support for two real providers beats dishonest support for three.
+Use only a documented supported onboarding path.
 
----
+Do not assume scanning a QR creates a Binance Wallet.
 
-# 27. TOKEN ADDRESSES
+Do not assume Agentic Wallet is created through the ordinary consumer connection.
 
-Never manually paste stock token contract addresses into production code.
-
-Resolve from:
-
-- verified RWA API;
-- verified official provider source;
-- onchain validation.
-
-Cache only if necessary.
-
-The Bell itself should remain ticker/intention oriented.
+If the user does not have a compatible wallet, show the verified onboarding route.
 
 ---
 
-# 28. TOKEN DECIMALS
+# 10. QR CODES AND LINKS
 
-Never assume:
+First Bell supports two QR formats.
 
-```text
-18 decimals
-```
+## General First Bell QR
 
-Read decimals from:
+Opens the First Bell onboarding and investment experience.
 
-- official API;
-- token contract.
+## Bell-specific QR
 
-Use `bigint` for token amounts.
-
-Never use JS floating-point values for onchain amounts.
-
----
-
-# 29. REFERENCE-PRICE SEMANTICS
-
-Do NOT assume a field named:
-
-```text
-referencePrice
-```
-
-means:
-
-> latest NYSE/Nasdaq underlying stock price.
-
-Before enabling market-gap guards:
-
-verify:
-
-- what exact value is returned;
-- whether it is underlying equity price;
-- whether issuer conversion ratios affect it;
-- whether timestamps are provided;
-- what happens outside traditional market hours.
-
-Until verified:
-
-```text
-UnderlyingMarketGuard = disabled
-```
-
-or:
-
-```text
-informational only
-```
-
-Never mislabel a normalized token valuation as an official market reference.
-
----
-
-# 30. STOCK REPRESENTATION NORMALIZATION
-
-This is critical.
-
-Do NOT route simply by:
-
-```text
-most tokens received per USDT
-```
-
-Different tokenized representations may use different economic ratios or structures.
-
-Candidate comparison must be based on:
-
-```text
-normalized economic exposure/value
-```
-
-after:
-
-- fees;
-- price impact;
-- conversion ratio;
-- issuer-specific economics where documented.
-
-If cross-provider normalization cannot be proven confidently:
-
-do NOT automatically claim one provider offers better execution.
-
-Fallback:
-
-1. use a configured verified default provider;
-2. disclose that cross-provider economic normalization is not yet proven;
-3. keep comparison informational.
-
-Correctness beats fake optimization.
-
----
-
-# 31. RESOLUTION RESULT
-
-Implement something like:
-
-```ts
-type ResolutionResult = {
-  ticker: string;
-  candidates: Candidate[];
-  selected?: Candidate;
-  status:
-    | "READY"
-    | "NO_SUPPORTED_ASSET"
-    | "NO_LIQUIDITY"
-    | "POLICY_BLOCKED"
-    | "MARKET_BLOCKED"
-    | "SIMULATION_FAILED";
-  reason: string;
-};
-```
-
-Candidate concept:
-
-```ts
-type Candidate = {
-  provider: string;
-  tokenAddress: string;
-  symbol: string;
-  chainId: number;
-  assetType: string;
-  tokenPrice?: string;
-  normalizedExposure?: string;
-  underlyingMarketData?: unknown;
-  quote?: unknown;
-  expectedOutput?: string;
-  slippageBps?: number;
-  approvalRequired?: boolean;
-  quoteExpiry?: string;
-};
-```
-
-Use exact fields only after verification.
-
----
-
-# 32. PROVIDER SELECTION POLICY
-
-Candidate is eligible only when:
-
-1. verified BSC asset;
-2. verified spot asset;
-3. currently tradable;
-4. executable quote exists;
-5. required minimum is met;
-6. slippage under user limit;
-7. simulation passes;
-8. no policy block.
-
-Among economically comparable candidates:
-
-choose best verified post-cost execution.
-
-If comparability is not provable:
-
-do not rank automatically.
-
----
-
-# 33. TRADING APPROVALS
-
-Never approve unlimited USDT by default.
-
-Prefer:
-
-```text
-exact required amount
-```
-
-unless documented infrastructure requires otherwise.
-
-Record:
-
-```text
-token
-spender
-amount
-transaction hash
-```
-
----
-
-# 34. APPROVAL SPENDER
-
-Do not assume one universal aggregator spender.
-
-Some RWA/RFQ routes may require route/vendor-specific approval behavior.
-
-A field such as:
-
-```text
-vendorName
-```
-
-was previously discussed but is currently considered:
-
-```text
-UNVERIFIED
-```
-
-Do NOT code against that field until official docs/live responses confirm:
-
-- whether it exists;
-- what it means;
-- how spender selection works.
-
-The general requirement remains:
-
-> use the spender explicitly required by the verified quote/build/approval flow.
-
----
-
-# 35. QUOTE EXPIRY
-
-Treat quote freshness as first-class state.
-
-Do not invent:
-
-```text
-30-second quote validity
-```
-
-if Binance does not document it.
-
-If expiry information exists:
-
-use it.
-
-If expiry is undocumented:
-
-requote immediately before final transaction construction/signing.
-
-Never submit obviously stale calldata.
-
----
-
-# 36. SINGLE-LEG BUY STATE MACHINE
-
-Persist state transitions.
-
-Suggested:
-
-```text
-IDLE
-
-RESOLVING
-
-QUOTING
-
-POLICY_CHECK
-
-POLICY_REJECTED
-
-APPROVAL_REQUIRED
-
-APPROVAL_SIMULATING
-
-APPROVAL_AWAITING_SIGNATURE
-
-APPROVAL_BROADCASTING
-
-APPROVAL_CONFIRMED
-
-BUILDING_SWAP
-
-SIMULATING_SWAP
-
-SIMULATION_FAILED
-
-DRY_RUN_COMPLETE
-
-AWAITING_SIGNATURE
-
-BROADCASTING
-
-CONFIRMING
-
-SUCCESS
-
-FAILED
-```
-
-The exact implementation may differ.
-
-What matters is:
-
-state must be explicit.
-
----
-
-# 37. BUY PIPELINE
-
-Mandatory order:
-
-```text
-resolve
-↓
-quote
-↓
-policy check
-↓
-allowance check
-↓
-approval build if required
-↓
-approval simulation where supported
-↓
-approval signature
-↓
-approval confirmation
-↓
-requote if needed
-↓
-swap build
-↓
-transaction simulation
-↓
-user confirmation
-↓
-signature
-↓
-broadcast
-↓
-confirmation
-↓
-balance verification
-↓
-receipt
-```
-
-Never show:
-
-```text
-SUCCESS
-```
-
-just because a transaction hash exists.
-
-Verify final state.
-
----
-
-# 38. BASKET EXECUTION
-
-Portfolio Bell purchases execute sequentially.
-
-Example:
-
-```text
-NVDA
-→ success
-
-MSFT
-→ success
-
-GOOGL
-→ failure
-
-AMZN
-→ not started
-```
-
-After a failure:
-
-default behavior:
-
-```text
-STOP
-```
-
-Do not automatically continue unless a later verified product decision changes this.
-
-Do not automatically reverse successful previous legs.
-
-Receipt must show partial ownership clearly.
-
----
-
-# 39. POLICY ENGINE
-
-No LLM decides whether money moves.
-
-LLM may:
-
-- explain;
-- summarize;
-- translate natural-language preference into a proposed structured policy.
-
-Deterministic code must:
-
-- validate;
-- calculate;
-- approve;
-- reject;
-- select permitted actions.
-
----
-
-# 40. POLICY RESULT
-
-Return:
-
-```ts
-{
-  allowed: boolean;
-  code: string;
-  reason: string;
-}
-```
-
-Reason must be understandable by a normal consumer.
-
-Example:
-
-```text
-Purchase skipped because the available quote exceeded your 0.5% slippage limit.
-```
-
-Not:
-
-```text
-ERR_SLIPPAGE_BPS_67
-```
-
----
-
-# 41. POLICY RULES
-
-Possible rules include:
-
-```text
-TOKEN_PAUSED
-
-MAX_SLIPPAGE
-
-MAX_TRADE
-
-MAX_EXPOSURE
-
-MIN_STABLE_RESERVE
-
-STALE_DATA
-
-QUOTE_EXPIRED
-
-SIMULATION_FAILED
-
-NOT_BSC
-
-NOT_SPOT
-
-INSUFFICIENT_LIQUIDITY
-
-UNDERLYING_MARKET_GAP
-```
-
-Do not activate a rule until required data semantics are verified.
-
----
-
-# 42. PRODUCT DEFAULT THRESHOLDS
-
-Any numeric thresholds are:
-
-```text
-product/demo defaults
-```
-
-NOT:
-
-```text
-financially safe levels
-```
-
-For example, if a temporary demo default is:
-
-```text
-maxSlippage = 0.50%
-```
-
-this means:
-
-> the product owner chose this policy value for the demo.
-
-It does NOT mean:
-
-> 0.50% is objectively safe.
-
-The UI and documentation must not make false safety claims.
-
----
-
-# 43. UNDERLYING MARKET GUARD
-
-Only enable after reference-price semantics are verified.
-
-Possible behavior:
-
-```text
-underlying market closed
-
-AND
-
-verified token-vs-underlying divergence
->
-user-configured threshold
-
-→
-
-SKIP
-```
-
-Example user-facing reason:
-
-```text
-Purchase skipped because the underlying market is closed and this token is outside your configured price-gap limit.
-```
-
-Do not claim:
-
-```text
-we prevented a loss
-```
-
----
-
-# 44. CONTRIBUTION-FIRST REBALANCING
-
-Signature product feature.
-
-Given:
-
-```text
-target allocations
-current values
-new USDT contribution
-```
-
-calculate underweight positions.
-
-Allocate the new contribution to underweight holdings first.
-
-Example target:
-
-```text
-NVDA    40%
-MSFT    30%
-GOOGL   20%
-USDT    10%
-```
-
-Current:
-
-```text
-NVDA    48%
-MSFT    24%
-GOOGL   18%
-USDT    10%
-```
-
-Contribution:
-
-```text
-20 USDT
-```
-
-Do NOT sell NVDA automatically.
-
-Allocate toward:
-
-```text
-MSFT
-GOOGL
-```
-
-first.
-
----
-
-# 45. SELLING
-
-Default:
-
-```text
-allowSellingExistingPositions = false
-```
-
-Existing holdings may be sold only when:
-
-```text
-allowSellingExistingPositions = true
-```
-
-and:
-
-- deterministic policy permits it;
-- user/agent wallet permissions permit it;
-- simulation succeeds.
-
----
-
-# 46. CONTRIBUTION ALGORITHM
-
-Implement as pure deterministic math.
-
-No network calls.
-
-Inputs:
-
-```text
-target weights
-current USD-equivalent portfolio
-new contribution
-reserve target
-min trade size
-```
-
-Outputs:
-
-```text
-planned contribution legs
-unallocated reserve
-reasoning metadata
-```
-
-Comprehensive unit tests required.
-
-Codex must adversarially review it.
-
----
-
-# 47. AUTOPILOT IDEMPOTENCY
-
-Critical.
-
-Autopilot must not double-buy if the scheduler fires twice.
-
-Each scheduled run gets a deterministic key.
-
-Example:
-
-```text
-policyId + scheduledPeriod
-```
-
-Example:
-
-```text
-policy_123:2026-10-09
-```
-
-or:
-
-```text
-policy_123:2026-W41-Friday
-```
-
-Persist it.
-
-If duplicate:
-
-return previous run.
-
-Do not execute again.
-
-Unit test required.
-
----
-
-# 48. AUTOPILOT FLOW
-
-For each run:
-
-```text
-load policy
-↓
-check idempotency
-↓
-read wallet portfolio
-↓
-price holdings
-↓
-calculate current weights
-↓
-calculate contribution allocation
-↓
-for each proposed leg:
-    resolve
-    quote
-    policy
-    simulate
-    execute or skip
-↓
-persist receipts
-↓
-persist run result
-```
-
----
-
-# 49. AGENTIC WALLET
-
-Do not describe Agentic Wallet as:
-
-> automatic email-created wallet.
-
-Current understanding to verify from official docs:
-
-- Binance account required;
-- existing Binance MPC Wallet may be required;
-- Agentic Wallet has keyless/MPC characteristics;
-- trading permissions/limits may be controlled through Binance;
-- agent tools/skills/CLI are central to interaction.
-
-VERIFY EVERYTHING before implementation.
-
----
-
-# 50. AGENTIC WALLET ROLE
-
-Core web first-buy flow must not depend on unproven Agentic Wallet browser integration.
-
-Base architecture:
-
-```text
-Web purchase:
-supported connected wallet
-```
-
-and:
-
-```text
-Autopilot / AI execution:
-Agentic Wallet where verified and feasible
-```
-
-If a supported direct dApp integration exists:
-
-document and use it.
-
-If not:
-
-do not fake one.
-
----
-
-# 51. AGENTIC WALLET FEASIBILITY SPIKE
-
-Do this immediately after the first real mainnet stock buy succeeds.
-
-Do not wait until the very final day.
-
-Investigate:
-
-- sign-in flow;
-- CLI/tools;
-- session persistence;
-- multi-user support;
-- tokenized-security support;
-- automation permissions;
-- execution output format;
-- error states;
-- daily limits;
-- token scope;
-- high-risk confirmations.
-
-Document in:
-
-```text
-docs/VERIFIED_FACTS.md
-```
-
-If multi-user sessions are unsupported:
-
-use Agentic Wallet only for Maris/operator demo and state that limitation honestly.
-
----
-
-# 52. AGENT STUDIO
-
-Do NOT assume commands such as:
-
-```text
-npm install -g @bnbagent/studio-cli
-```
-
-or:
-
-```text
-bag skills install
-```
-
-are valid.
-
-They are currently:
-
-```text
-UNVERIFIED
-```
-
-Discover exact Agent Studio setup from current official documentation.
-
-Record:
-
-```text
-installation
-scaffold command
-runtime
-deployment flow
-identity registration
-wallet model
-x402 integration
-```
-
-before writing agent deployment code.
-
----
-
-# 53. AGENT STUDIO GOAL
-
-If successfully integrated, prove:
-
-- persistent deployed agent;
-- actual runtime;
-- actual ERC-8004 identity if supported/used;
-- reachable endpoint;
-- execution logs;
-- strategy update capability.
-
-Store evidence in:
-
-```text
-docs/AGENT_STUDIO_PROOF.md
-```
-
-Never claim:
-
-```text
-ERC-8004 agent
-```
-
-unless registration is real and evidenced.
-
----
-
-# 54. B402
-
-B402 is NOT the user's stock payment method.
-
-Use only for machine-to-machine commerce.
-
-Preferred use:
-
-```text
-User Portfolio Agent
-↓
-requests strategy/data update
-↓
-remote strategy/data service requires payment
-↓
-B402/x402 payment
-↓
-structured strategy/data returned
-↓
-First Bell policy engine validates
-↓
-permitted action only
-```
-
-If no credible paid service is available:
-
-skip B402 rather than forcing it.
-
----
-
-# 55. STRATEGY AGENTS
-
-Stretch feature.
-
-Creator publishes:
-
-```text
-AI Compute v1.2
-```
-
-with target weights.
-
-User may follow it.
-
-Following does NOT give creator custody.
-
-Update flow:
-
-```text
-strategy update
-↓
-diff old/new
-↓
-user policy validation
-↓
-contribution-first adjustment
-↓
-simulation
-↓
-permitted execution
-```
-
----
-
-# 56. MCP
-
-Stretch.
-
-Possible tools:
-
-```text
-search_stock
-
-get_stock
-
-create_bell
-
-get_bell
-
-fork_bell
-
-quote_stock
-
-quote_bell
-
-simulate_stock_buy
-
-simulate_bell_buy
-
-get_portfolio
-
-get_receipt
-```
-
-Do not expose unrestricted arbitrary transaction execution.
-
----
-
-# 57. CARD / FIAT ON-RAMP
-
-Not part of core MVP.
-
-Do not collect:
-
-- PAN;
-- CVV;
-- raw payment credentials.
-
-After all must-ship gates pass:
-
-investigate Binance-supported hosted on-ramp / Buy Any Token capability.
-
-Only expose UI if live verification confirms:
-
-- supported target token;
-- payment method;
-- quote;
-- destination;
-- completion callback/flow.
-
-Core demo must survive without card support.
-
----
-
-# 58. PAYMASTER
-
-Stretch only.
-
-Do not advertise:
-
-```text
-gasless
-```
-
-unless actual BSC mainnet gas sponsorship works.
-
-Testnet Agent Studio sponsorship does not prove mainnet sponsorship.
-
-If unavailable:
-
-show required gas honestly.
-
----
-
-# 59. DEFI
-
-Optional only.
-
-Possible use:
-
-idle USDT reserve.
-
-Do not auto-deposit user stablecoins.
-
-If implemented:
-
-- explicit opt-in;
-- verified protocol;
-- clear risk disclosure;
-- simulation;
-- redeem path;
-- no unsafe protocol chosen just to satisfy sponsor API coverage.
-
----
-
-# 60. BELLS DATA MODEL
-
-Minimum conceptual model:
-
-```ts
-Bell {
-  id
-  version
-  type
-  title
-  description
-  creatorAddress
-  visibility
-  defaultContributionAmount
-  recurringSuggestion
-  reserveBps
-  forkedFromId?
-  contentHash
-  createdAt
-  updatedAt
-}
-```
-
----
-
-# 61. BELL ASSET
-
-```ts
-BellAsset {
-  id
-  bellId
-  ticker
-  assetClass
-  targetWeightBps
-  maxWeightBps?
-  sortOrder
-}
-```
-
-Weights including stable reserve:
-
-```text
-10,000 basis points
-```
-
-Validate server-side.
-
----
-
-# 62. POLICY MODEL
-
-```ts
-PortfolioPolicy {
-  id
-  ownerAddress
-  bellId
-  contributionAmount
-  contributionAsset
-  cadence
-  rebalanceThresholdBps
-  maxSingleAssetWeightBps
-  minStableReserveBps
-  maxTradeAmount
-  maxSlippageBps
-  allowSellingExistingPositions
-  enabled
-  createdAt
-  updatedAt
-}
-```
-
----
-
-# 63. RECEIPT MODEL
-
-```ts
-DecisionReceipt {
-  id
-  walletAddress
-  bellId?
-  policyId?
-  decisionType
-  status
-  requestedAmount?
-  executedAmount?
-  reasonCode
-  humanReason
-  marketSnapshot?
-  simulationResult?
-  transactionHash?
-  createdAt
-}
-```
-
-Possible statuses:
-
-```text
-EXECUTED
-
-SKIPPED
-
-BLOCKED
-
-FAILED
-
-PARTIAL
-
-DRY_RUN_COMPLETE
-```
-
----
-
-# 64. BASKET LEG MODEL
-
-Each leg records:
-
-```text
-ticker
-
-provider
-
-tokenAddress
-
-amountInUsdt
-
-quote snapshot
-
-policy result
-
-simulation
-
-approval tx?
-
-swap tx?
-
-state
-
-human reason
-```
-
----
-
-# 65. UI PRINCIPLES
-
-This must look like a consumer financial product.
-
-Avoid:
-
-- generic Web3 dashboards;
-- dark neon trading terminal;
-- giant chart walls;
-- excessive gradients;
-- purple AI aesthetic;
-- glowing cards;
-- raw contract addresses on main screens;
-- blockchain jargon;
-- ten competing CTAs.
-
-Prefer:
-
-- clean typography;
-- generous spacing;
-- mobile-first layout;
-- strong hierarchy;
-- one primary action;
-- restrained color;
-- clear loading/error states.
-
----
-
-# 66. MOBILE FIRST
-
-Primary demo width:
-
-approximately:
-
-```text
-380 px
-```
-
-Every core screen must be usable on mobile.
-
-Desktop must remain polished.
-
----
-
-# 67. MAIN SCREENS
-
-## Landing
-
-Headline:
-
-```text
-Stocks and portfolios you can share, own and automate.
-```
-
-Actions:
-
-```text
-Explore Bells
-
-Create a Bell
-```
-
----
-
-## Explore
-
-Keep scope small.
-
-Show approximately:
-
-```text
-3–4 curated Bells
-```
-
-plus a few supported stocks.
-
-No fake live pricing.
-
----
-
-## Stock page
-
-Route:
-
-```text
-/s/NVDA
-```
-
-Show:
-
-```text
-NVIDIA
-
-market status
-
-amount
-
-estimated stock received
-
-buy
-```
-
-Technical issuer/provider details collapsed.
-
----
-
-## Bell page
-
-Example:
-
-```text
-AI Compute
-
-NVDA    30%
-MSFT    25%
-GOOGL   20%
-AMZN    15%
-USDT    10%
-
-[ Invest ]
-
-[ Fork ]
-
-[ Share ]
-```
-
----
-
-## Buy review
-
-Show:
-
-```text
-You pay
-
-Estimated stock/exposure
-
-Selected route/provider
-
-Estimated slippage
-
-Estimated network cost
-
-Simulation status
-```
-
----
-
-## Success
-
-```text
-You now own NVIDIA.
-```
-
-Then:
-
-```text
-Put it on Autopilot
-```
-
----
-
-## Portfolio
-
-Show:
-
-- current holdings;
-- target weights;
-- actual weights;
-- stable reserve;
-- receipts.
-
-No unnecessary chart complexity.
-
----
-
-## Autopilot
-
-Consumer language:
-
-```text
-Invest:
-20 USDT
-
-Every:
-Friday
-
-Keep portfolio balanced:
-ON
-
-Max automatic trade:
-10 USDT
-
-Maximum slippage:
-0.5%
-
-Sell existing positions automatically:
-OFF
-```
-
----
-
-## Receipts
-
-Timeline:
-
-```text
-BOUGHT
-
-SKIPPED
-
-REBALANCED
-
-BLOCKED
-
-FAILED
-```
-
-Every item gets one plain-English explanation.
-
----
-
-# 68. MARKET STATUS UX
-
-When verified data exists:
-
-show:
-
-```text
-US market open
-```
-
-or:
-
-```text
-US market closed
-```
-
-and next-open time only when supplied/derivable from verified API data.
-
-Do not calculate market holidays from memory.
-
----
-
-# 69. QR
-
-QR contains HTTPS Bell URL only.
+Opens a particular Bell.
 
 Example:
 
@@ -3231,1420 +924,2134 @@ Example:
 https://firstbell.example/b/ai-compute
 ```
 
-Do not put in QR:
+The URL above is illustrative, not a registered deployment.
 
-- private key;
-- auth token;
-- wallet session;
-- user secret;
-- payment credential.
+A QR encodes only the verified HTTPS URL and non-sensitive routing context.
 
-Test QR with an actual phone.
+Never encode:
 
----
+- Private keys.
+- Wallet sessions.
+- Signing permissions.
+- Seed phrases.
+- Secret API credentials.
+- Executable calldata.
 
-# 70. MAINNET SAFETY
+## Mobile behavior
 
-Default:
+A person scanning a Bell QR must be able to:
 
-```env
-EXECUTION_MODE=DRY_RUN
-MAINNET_WRITE_ENABLED=false
-LIVE_MAX_TRADE_USD=5
-```
+1. Open the correct Bell.
+2. See its assets and allocation.
+3. Connect Binance Wallet.
+4. Choose a purchase amount.
+5. Review the execution.
+6. Approve the transaction.
+7. View the actual result.
 
-No code path may broadcast unless:
+Preserve Bell context throughout wallet connection.
 
-```text
-EXECUTION_MODE == LIVE
-```
-
-AND:
-
-```text
-MAINNET_WRITE_ENABLED == true
-```
-
-AND:
-
-explicit human action occurs.
-
-Scheduled mainnet Autopilot is disabled until Maris explicitly enables it.
+QR onboarding and purchase must work on real devices before being marked live.
 
 ---
 
-# 71. REAL MONEY
-
-Before a live transaction:
-
-display:
-
-```text
-NETWORK:
-BSC MAINNET
-
-REAL FUNDS:
-YES
-
-MAX AMOUNT:
-X USDT
-```
-
-Maris must explicitly approve first live transaction.
-
-Never automatically increase test amount.
-
----
-
-# 72. LIVE TRANSACTION TARGET
-
-First proof:
-
-approximately:
-
-```text
-≤ 5 USDT
-```
-
-or smallest practical amount.
-
-Later demo may use:
-
-```text
-5–10 USDT
-```
-
-only with explicit approval.
-
----
-
-# 73. ERROR UX
-
-Never expose raw API JSON on main consumer flow.
-
-Examples:
-
-```text
-This stock is temporarily unavailable.
-
-No executable route is available for this amount.
-
-The quote changed, so we refreshed it.
-
-Your wallet does not contain enough USDT.
-
-A small amount of BNB may be required for network gas.
-
-The transaction simulation failed, so nothing was submitted.
-
-You rejected the transaction.
-
-Your portfolio rule blocked this purchase.
-```
-
-Technical details may be behind:
-
-```text
-Details
-```
-
----
-
-# 74. DX EVIDENCE — CRITICAL
-
-Developer Experience Report = 25% of score.
-
-Maris writes the actual report narrative.
-
-Claude/Codex collect raw evidence.
-
-Agents must NEVER invent:
-
-- frustration;
-- opinions;
-- onboarding times;
-- documentation problems;
-- API issues.
-
----
-
-# 75. RAW DX LOG
-
-Maintain machine-readable:
-
-```text
-logs/dx.jsonl
-```
-
-Gitignore sensitive/raw logs as appropriate.
-
-Each API call should capture:
-
-```text
-timestamp UTC
-
-module
-
-endpoint
-
-HTTP status
-
-business error code
-
-error message
-
-latency ms
-
-retry count
-
-schema validation result
-
-market state if relevant
-
-note
-```
-
----
-
-# 76. HUMAN DEVEX NOTES
-
-Maintain:
-
-```text
-docs/DEVEX_RAW.md
-```
-
-This file may contain:
-
-- raw factual observations generated by Claude;
-- exact errors;
-- URLs;
-- response behavior;
-- timestamps;
-- debugging steps.
-
-Maris adds:
-
-- personal observations;
-- judgement;
-- recommendations;
-- final prose.
-
-Claude does NOT write the final DevEx narrative.
-
----
-
-# 77. AUTOMATED DX METRICS
-
-Generate:
-
-```text
-docs/DX_EVIDENCE.md
-```
-
-with factual tables only.
-
-Include where enough samples exist:
-
-```text
-request counts
-
-success/error counts
-
-errors grouped by code
-
-latency p50
-
-latency p95
-
-schema mismatch counts
-
-retry counts
-
-provider availability
-
-observed liquidity differences
-
-observed slippage by trade size
-
-weekend vs weekday behavior
-
-open-market vs closed-market observations
-
-provider differences for same ticker
-```
-
-Do not manufacture statistical significance.
-
-If sample size is tiny:
-
-show sample count.
-
----
-
-# 78. DOCUMENTATION PROBLEM LOG
-
-When docs cause a real problem:
-
-record:
-
-```text
-URL
-
-section
-
-what documentation stated
-
-what live behavior showed
-
-error
-
-workaround
-
-time spent
-```
-
-This becomes valuable DevEx evidence.
-
----
-
-# 79. README
-
-README must include:
-
-1. what First Bell is;
-2. problem;
-3. product;
-4. why BNB Chain;
-5. architecture;
-6. Binance APIs used;
-7. Bell model;
-8. fork model;
-9. Autopilot model;
-10. wallet architecture;
-11. local setup;
-12. environment variables;
-13. DRY_RUN vs LIVE;
-14. mainnet warning;
-15. demo flow;
-16. known limitations;
-17. DevEx evidence link;
-18. special-prize integrations;
-19. explicit incomplete/stretch items.
-
-Add Mermaid architecture diagram.
-
----
-
-# 80. TESTING
-
-## Unit tests
-
-Required:
-
-```text
-Bell weight validation
-
-fork behavior
-
-content hash/versioning
-
-contribution-first allocation
-
-stable reserve
-
-max weight
-
-max trade
-
-slippage block
-
-selling disabled
-
-idempotency
-
-quote freshness handling
-
-API error normalization
-
-auth signing test vectors once verified
-
-receipt state transitions
-```
-
----
-
-## Integration tests
-
-Where credentials/API access permit:
-
-```text
-RWA platforms
-
-RWA search
-
-RWA provider normalization
-
-quote
-
-approval builder
-
-transaction simulation
-
-wallet balances
-
-portfolio read
-```
-
----
-
-## Playwright
-
-Keep scope small.
-
-One critical E2E test is enough initially:
-
-```text
-landing
-→
-open Bell
-→
-connect mocked/test wallet context
-→
-get quote
-→
-review
-→
-simulate
-→
-receipt
-```
-
-Do not burn the week writing a huge browser suite.
-
----
-
-# 81. PHASE GATES
-
-Never jump randomly between features.
-
----
-
-## GATE 0 — Repository + docs
-
-Pass when:
-
-- repo initialized;
-- app boots;
-- strict TS enabled;
-- docs created;
-- `.env.example`;
-- secrets ignored;
-- no secret committed;
-- official docs index read.
-
----
-
-## GATE 1 — Authentication
-
-Pass when:
-
-a real harmless authenticated Binance API request succeeds.
-
-Record:
-
-- exact signing scheme;
-- sanitized request metadata;
-- sanitized response;
-- latency;
-- any timestamp problems.
-
----
-
-## GATE 2 — RWA discovery
-
-Pass when:
-
-```text
-NVDA
-```
-
-returns real BSC tokenized-stock data.
-
-Record:
-
-- actual providers;
-- contracts;
-- field semantics;
-- market fields.
-
-Display live NVDA data in UI.
-
----
-
-## GATE 3 — Quote
-
-Pass when:
-
-```text
-USDT
-→
-one real NVDA tokenized representation
-```
-
-returns an executable quote.
-
-No broadcast yet.
-
----
-
-## GATE 4 — Simulation
-
-Pass when the candidate transaction is successfully simulated using the documented transaction API flow.
-
-Record:
-
-- inputs;
-- response;
-- errors;
-- gas if available.
-
----
-
-## GATE 5 — First mainnet buy
-
-This is the most important technical milestone.
-
-Human approval required.
-
-Execute:
-
-```text
-≤ 5 USDT
-```
-
-or smallest practical amount.
-
-Pass only if:
-
-- BSC mainnet;
-- tx confirmed;
-- hash saved;
-- resulting position verified;
-- receipt created.
-
----
-
-## GATE 6 — Bells
-
-Pass when:
-
-- single-stock Bell works;
-- portfolio Bell works;
-- QR works;
-- share link works;
-- Bell stores ticker/intention rather than hard-coded issuer contract.
-
----
-
-## GATE 7 — Basket buy
-
-Pass when:
-
-- 3-leg dry-run succeeds;
-- sequential execution state exists;
-- forced failure on leg 2 produces honest partial result.
-
----
-
-## GATE 8 — Fork
-
-Pass when:
-
-- Bell forks;
-- weights editable;
-- independent Bell created;
-- parent retained for provenance;
-- creator has no control over fork.
-
----
-
-## GATE 9 — Autopilot math
-
-Pass when:
-
-- intentionally drifted portfolio exists;
-- contribution-first algorithm directs new money to underweights;
-- no automatic selling occurs.
-
----
-
-## GATE 10 — Guarded execution
-
-Pass when:
-
-- one scenario produces EXECUTE;
-- one produces SKIP/BLOCK;
-- both have correct human-readable receipt.
-
----
-
-## GATE 11 — Agentic Wallet feasibility
-
-Pass when official integration has been:
-
-```text
-DOC VERIFIED
-```
-
-and preferably:
-
-```text
-LIVE VERIFIED
-```
-
-If unsupported:
-
-document limitation and proceed.
-
----
-
-## GATE 12 — Agent Studio
-
-Pass only with actual deployment proof.
-
----
-
-## GATE 13 — B402
-
-Pass only after a real useful paid machine-to-machine request.
-
----
-
-# 82. DAY PLAN — DEADLINE DISCIPLINE
-
-Current date:
-
-**4 October 2026**
-
-Deadline:
-
-**11 October 2026, 12:00 UTC**
-
-Aim to finish core implementation BEFORE deadline day.
-
----
-
-## OCT 4 — Recon + API proof
-
-Target:
-
-```text
-Gate 0
-Gate 1
-most of Gate 2
-```
-
-Do:
-
-- initialize repo;
-- read llms.txt;
-- inspect Authentication;
-- inspect RWA;
-- inspect Trading integration flow;
-- inspect Transaction simulate;
-- create verified-facts system;
-- get first authenticated request;
-- capture first fixtures;
-- resolve NVDA.
-
-Do NOT spend the day designing UI.
-
----
-
-## OCT 5 — Quote + simulation + minimal stock UI
-
-Target:
-
-```text
-Gate 2
-Gate 3
-Gate 4
-```
-
-Do:
-
-- RWA integration;
-- Zod validation;
-- quote;
-- approval requirements;
-- transaction build;
-- simulation;
-- `/s/NVDA`;
-- receipt skeleton.
-
----
-
-## OCT 6 — FIRST MAINNET BUY
-
-Non-negotiable target:
-
-```text
-GATE 5
-```
-
-By end of Tuesday 6 Oct:
-
-a real small BSC mainnet tokenized-stock transaction should work.
-
-If this is not working:
-
-stop building bells/autopilot and fix execution.
-
----
-
-## OCT 7 — Bells + QR + basket
-
-Target:
-
-```text
-Gate 6
-Gate 7
-```
-
-Do:
-
-- Bell persistence;
-- 3–4 curated Bells;
-- QR;
-- share links;
-- basket sequential execution;
-- partial failure receipts.
-
-Also begin Agentic Wallet feasibility spike.
-
----
-
-## OCT 8 — Fork + Autopilot
-
-Target:
-
-```text
-Gate 8
-Gate 9
-Gate 10
-```
-
-Do:
-
-- fork;
-- contribution-first algorithm;
-- policy engine;
-- decision log;
-- guarded skip.
-
----
-
-## OCT 9 — Polish core + Agentic Wallet
-
-Core should be substantially finished.
-
-Target:
-
-- mobile polish;
-- deployment;
-- README;
-- Codex adversarial review;
-- Agentic Wallet integration if verified;
-- fix all demo-path issues.
-
-Do not add new core features.
-
----
-
-## OCT 10 — Special prize / evidence / video prep
-
-Only after core works.
-
-Possible:
-
-- Agent Studio;
-- B402;
-- MCP;
-- strategy update.
-
-Also:
-
-- DevEx evidence;
-- demo script;
-- deployment testing;
-- clean fresh-clone setup;
-- secret scan;
-- mainnet runbook.
-
----
-
-## OCT 11 — SUBMISSION ONLY
-
-Do not plan major engineering work for deadline morning.
-
-Use for:
-
-- final video;
-- submission form;
-- final repo verification;
-- links;
-- DevEx report;
-- final transaction evidence.
-
----
-
-# 83. PRIORITY ORDER
-
-When time gets tight:
-
-```text
-1. Real mainnet buy
-
-2. Correct simulation
-
-3. Bells + QR
-
-4. Professional mobile UX
-
-5. Fork
-
-6. Contribution-first Autopilot
-
-7. Receipts
-
-8. Agentic Wallet
-
-9. Agent Studio
-
-10. B402
-
-11. MCP
-
-12. Card/on-ramp
-
-13. Paymaster
-
-14. DeFi
-```
-
-Never invert this list merely to collect APIs.
-
----
-
-# 84. DESIGN OF CURATED BELLS
-
-Do not spend time building a giant discovery catalog.
-
-Ship 3–4 polished examples.
-
-Possible categories:
-
-```text
-AI Compute
-
-Mega Tech
-
-First Stock Starter
-
-Balanced Tech + USDT
-```
-
-Use only supported live assets.
-
----
-
-# 85. CLAIMS DISCIPLINE
-
-Never say:
-
-```text
-guaranteed return
-
-safe investment
-
-risk-free
-
-prevents losses
-
-AI knows the best stock
-
-best-performing stock
-
-protected from market losses
-
-guaranteed better execution
-```
-
-First Bell is:
-
-> software that helps users execute and maintain their own transparent portfolio rules.
-
----
-
-# 86. LLM BOUNDARY
-
-LLMs may:
-
-- explain;
-- summarize;
-- propose;
-- translate human text to a structured policy draft.
-
-LLMs may NOT:
-
-- generate arbitrary calldata;
-- bypass policy;
-- select unsupported contracts;
-- sign;
-- broadcast;
-- decide to ignore risk guards;
-- invent market data.
-
----
-
-# 87. RECEIPT EXAMPLES
-
-## Executed
-
-```text
-BUY EXECUTED
-
-NVIDIA
-
-10.00 USDT
-
-Provider:
-<verified provider>
-
-Simulation:
-Passed
-
-Policy:
-Passed
-
-Transaction:
-0x...
-
-Reason:
-NVIDIA was below your target allocation.
-```
-
----
-
-## Skipped
-
-```text
-BUY SKIPPED
-
-NVIDIA
-
-10.00 USDT
-
-Reason:
-The available quote exceeded your configured slippage limit.
-
-Action:
-10 USDT remained unspent.
-```
-
----
-
-## Partial basket
-
-```text
-BASKET PARTIALLY COMPLETED
-
-NVDA
-Executed
-
-MSFT
-Failed during simulation
-
-GOOGL
-Not started
-
-AMZN
-Not started
-
-No automatic reversal was performed.
-```
-
----
-
-# 88. DEPLOYMENT
-
-Prefer simple deployment.
-
-Likely:
-
-```text
-Vercel
-```
-
-or equivalent.
-
-If SQLite persistence is unsuitable for deploy target:
-
-switch to managed PostgreSQL.
-
-Do not redesign the backend.
-
----
-
-# 89. SECRET SAFETY
-
-Before every public push:
-
-check:
-
-```text
-git diff
-
-git status
-```
-
-Search for:
-
-- API keys;
-- secrets;
-- private keys;
-- auth tokens;
-- wallet session material.
-
-Use a simple secret scanner/pre-commit check if practical.
-
----
-
-# 90. GIT PRACTICE
-
-Commit small working steps.
-
-Examples:
-
-```text
-feat(binance): add verified signed api client
-
-feat(rwa): resolve tokenized stocks by ticker
-
-feat(trading): quote usdt stock purchases
-
-feat(execution): simulate swap before signing
-
-feat(bells): create shareable portfolio bells
-
-feat(portfolio): implement contribution-first rebalance
-
-feat(receipts): record partial basket execution
-
-test(auth): add signing test vectors
-
-docs(dx): add verified api observations
-```
-
-Never produce one giant final commit.
-
----
-
-# 91. STATUS REPORT FORMAT
-
-At the end of each phase:
-
-```text
-CURRENT GATE:
-Gate X — name
-
-DONE:
-- ...
-
-LIVE VERIFIED:
-- ...
-
-SIMULATION VERIFIED:
-- ...
-
-DOC VERIFIED ONLY:
-- ...
-
-NOT VERIFIED:
-- ...
-
-CODEX REVIEW:
-pending / passed / issues
-
-DX EVIDENCE ADDED:
-- ...
-
-BLOCKERS:
-- ...
-
-NEXT:
-- ...
-
-MAINNET FUNDS SPENT:
-X
-```
-
-Do not say:
-
-> "Almost done."
-
-Use evidence.
-
----
-
-# 92. CODEX REVIEW GATE
-
-Before a phase is marked complete, Codex reviews relevant backend/safety behavior.
-
-At minimum Codex must review:
-
-```text
-authentication
-
-RWA schemas
-
-provider normalization
-
-approval handling
-
-quote expiry
-
-simulation
-
-single trade state machine
-
-basket partial failure
-
-allocation algorithm
-
-idempotency
-
-policy engine
-
-mainnet guard
-```
-
----
-
-# 93. MAINNET RUNBOOK
-
-Maintain:
-
-```text
-docs/MAINNET_RUNBOOK.md
-```
-
-Before any real purchase:
-
-check:
-
-```text
-correct wallet
-
-correct BSC chain
-
-correct token
-
-verified quote
-
-max value <= LIVE_MAX_TRADE_USD
-
-simulation passed
-
-sufficient USDT
-
-sufficient native gas
-
-MAINNET_WRITE_ENABLED=true
-
-explicit user confirmation
-```
-
-After:
-
-record:
-
-```text
-tx hash
-
-block
-
-stock
-
-provider
-
-USDT spent
-
-stock received
-
-final wallet balance
-
-receipt ID
-```
-
----
-
-# 94. DEMO SCRIPT
-
-Maximum:
-
-```text
-4 minutes
-```
-
-Recommended structure:
-
-## 0:00–0:25
-
-Problem:
-
-> Tokenized stocks exist onchain, but discovery, wallet execution and portfolio maintenance still feel like separate workflows.
-
----
-
-## 0:25–0:50
-
-Show a Bell:
-
-```text
-AI Compute
-```
-
-Show:
-
-- share link;
-- QR;
-- transparent holdings.
-
----
-
-## 0:50–1:40
-
-Investor opens Bell.
-
-Show:
-
-- wallet;
-- 5 USDT or similar;
-- real RWA data;
-- quote;
-- simulation;
-- live BSC execution;
-- transaction receipt.
-
----
-
-## 1:40–2:05
-
-Show resulting stock holding.
-
-Show Bell receipt.
-
----
-
-## 2:05–2:35
-
-Fork Bell.
-
-Change one weight.
-
-Save independent version.
-
----
-
-## 2:35–3:15
-
-Turn on Autopilot.
-
-Show:
-
-- portfolio drift;
-- contribution-first allocation;
-- no unnecessary selling.
-
----
-
-## 3:15–3:35
-
-Show a blocked/skipped trade.
+# 11. BELL MANIFEST
+
+A Bell is a portable investment mandate.
+
+It defines investment intent, not custody.
+
+## Required data
+
+- Bell ID.
+- Slug.
+- Schema version.
+- Published version.
+- Creator identity.
+- Name.
+- Description.
+- Visibility.
+- Underlying assets.
+- Target weights.
+- USDT reserve.
+- Policy.
+- Automation preferences.
+- Content hash.
+- Source Bell/version where forked.
+- Creation/publish timestamps.
 
 Example:
 
-```text
-Skipped because quote exceeded your configured limit.
+```json
+{
+  "schemaVersion": 1,
+  "id": "bell_ai_compute",
+  "version": 1,
+  "name": "AI Compute",
+  "creatorAddress": "0x...",
+  "assets": [
+    { "ticker": "NVDA", "weightBps": 3000 },
+    { "ticker": "MSFT", "weightBps": 2500 },
+    { "ticker": "GOOGL", "weightBps": 2000 },
+    { "ticker": "AMZN", "weightBps": 1500 },
+    { "asset": "USDT_RESERVE", "weightBps": 1000 }
+  ],
+  "policy": {
+    "maxSingleAssetWeightBps": 3500,
+    "maxSlippageBps": 50,
+    "allowAutomaticSelling": false,
+    "contributionFirst": true
+  }
+}
 ```
 
----
+This is First Bell's proposed internal schema, not a Binance response.
 
-## 3:35–3:50
+## Validation
 
-If genuinely working:
+- Weights total 10,000 basis points.
+- No invalid or negative weights.
+- No duplicated holdings after normalization.
+- No unsupported asset type.
+- No arbitrary execution target.
+- No invalid policy values.
+- No hidden wallet permissions.
+- No creator-controlled transaction calldata.
 
-show Agentic Wallet / Agent Studio / B402.
+## Versioning
 
-Do not show fake integrations.
+Published Bell versions are immutable.
 
----
+Create deterministic hashes from canonical serialized content.
 
-## 3:50–4:00
+Store every published version.
 
-Close:
+Do not claim a Bell is recorded onchain merely because it has a local content hash.
 
-> First Bell makes tokenized stocks distributable. Discover a stock or portfolio anywhere, own the underlying assets directly, fork it into your own strategy, and let a permissioned agent keep it inside the rules you choose.
+## Direct ownership
 
----
+A Bell does not issue a First Bell basket token.
 
-# 95. DEFINITION OF DONE
+When a user invests, the intended supported tokenized assets are purchased for that user.
 
-The project is complete only when:
-
-- production build passes;
-- core tests pass;
-- mobile UI works;
-- deployment works;
-- signed Binance API request works;
-- RWA discovery works;
-- quote works;
-- simulation works;
-- one real BSC mainnet stock purchase works;
-- stock position is verified afterward;
-- Bell creation works;
-- QR works;
-- Bell investment dry-run works;
-- basket partial failure handled honestly;
-- fork works;
-- contribution-first rebalancing works;
-- at least one guarded SKIP works;
-- receipts work;
-- no fake production data;
-- no secrets leaked;
-- DevEx factual evidence exists;
-- README works from clean clone;
-- demo path rehearsed;
-- no UNVERIFIED markers remain on core demo path.
-
-Agentic Wallet / Agent Studio / B402 may remain labelled as stretch if they cannot be completed honestly.
+The creator receives no custody rights.
 
 ---
 
-# 96. FINAL MANDATE
+# 12. CREATE, SHARE, FORK AND FOLLOW
 
-Build the smallest version of First Bell that completely proves the thesis.
+## Create
 
-The winning core is:
+A user selects holdings and sets percentages.
+
+They may choose a theme or construct a custom portfolio.
+
+A Bell can contain up to eight holdings, subject to verified execution feasibility.
+
+More holdings can be considered later without redesigning the underlying model.
+
+## Share
+
+Generate:
+
+- Canonical URL.
+- QR.
+- Copy-link action.
+- Social preview.
+
+## Fork
+
+Forking creates an independent Bell.
+
+The user may:
+
+- Add assets.
+- Remove assets.
+- Change weights.
+- Modify reserves.
+- Tighten policies.
+- Change permitted automation.
+
+Preserve source attribution.
+
+Do not copy source wallet permissions.
+
+## Follow
+
+Users may follow a Bell's public updates.
+
+Following is informational by default.
+
+It does not authorize creator-controlled trading.
+
+## Strategy updates
+
+When the creator publishes a new version:
+
+- Detect changes.
+- Compare allocations.
+- Show an update diff.
+- Explain the effect on the follower.
+- Check the follower's personal policy.
+- Require the applicable user authorization before execution.
+
+Do not allow an upstream creator to override user rules.
+
+---
+
+# 13. STOCK RESOLUTION AND ISSUER SAFETY
+
+A stock ticker is not a token contract.
+
+For every requested ticker:
+
+1. Search actual RWA instruments.
+2. Filter to supported BSC assets.
+3. Record issuer/platform.
+4. Verify contract address.
+5. Verify decimals.
+6. Check market status.
+7. Check trading restrictions.
+8. Check available executable routes.
+9. Record source and timestamp.
+
+Initial search candidates can include:
 
 ```text
-shareable Bell
-↓
-real stock discovery
-↓
-real quote
-↓
-real simulation
-↓
-real BSC purchase
-↓
-verified ownership
-↓
-forkable portfolio
-↓
-contribution-first automation
-↓
-guarded execution
-↓
-clear receipt
+NVDA
+MSFT
+GOOGL
+AMZN
+TSLA
+AAPL
+AMD
+QQQ
 ```
 
-Then deepen the AI stack.
+Do not claim they are all currently executable.
 
-When uncertain:
+Use real API responses to determine availability.
 
-```text
-working > impressive-looking
+## Multiple issuers
 
-verified > assumed
+Different issuers can represent the same underlying company differently.
 
-real response > remembered schema
+Check:
 
-consumer UX > crypto jargon
+- Token/share ratios.
+- Economic exposure.
+- Pricing conventions.
+- Distribution/dividend treatment where relevant.
+- Market availability.
+- Liquidity.
+- Fees.
+- Redemption restrictions.
 
-deterministic execution > LLM improvisation
+Never compare issuers merely by output-token count.
 
-honest limitation > fake feature
+If a fair comparison is impossible, disclose the limitation and use a clearly defined verified route.
 
-mainnet safety > deadline panic
-```
+## Market-hours reference
 
-Proceed until the current phase acceptance criteria are satisfied.
+Do not assume a field called reference price means official exchange closing price.
 
-Do not claim success without evidence.
+Verify its exact semantics.
+
+Only enable reference-gap policy rules after the semantics and timestamp treatment have been established.
 
 ---
 
-# 97. FIRST ACTIONS — START NOW
+# 14. CORE TRANSACTION ENGINE
 
-Execute these in order:
+This is the most important part of First Bell.
+
+## Required pipeline
 
 ```text
-1. Initialize the repository.
-
-2. Add CLAUDE.md.
-
-3. Create:
-   docs/STATUS.md
-   docs/DECISIONS.md
-   docs/VERIFIED_FACTS.md
-   docs/API_VERIFICATION.md
-   docs/DEVEX_RAW.md
-   docs/DX_EVIDENCE.md
-   docs/CODEX_QUEUE.md
-   docs/MAINNET_RUNBOOK.md
-   docs/ARCHITECTURE.md
-   docs/DEMO_SCRIPT.md
-
-4. Read:
-   hackathon page
-   llms.txt
-   authentication
-   RWA docs
-   trading integration flow
-   transaction simulation
-   wallet documentation
-
-5. Build an endpoint verification table.
-
-6. Verify the authentication/signing scheme.
-
-7. Make one harmless authenticated request.
-
-8. Capture the sanitized real response.
-
-9. Add the verified auth facts to VERIFIED_FACTS.md.
-
-10. Test NVDA RWA search.
-
-11. Capture the real NVDA response.
-
-12. Record which providers actually appear.
-
-13. Build Zod schemas from official docs + real response.
-
-14. Display real NVDA information in a minimal page.
-
-15. Ask Codex to adversarially review:
-    auth
-    schemas
-    assumptions
-
-16. Continue to quote integration.
-
-17. Do not execute any mainnet transaction until Gate 4 simulation passes and Maris explicitly approves.
+WALLET_CONNECTED
+        ↓
+CHAIN_VERIFIED
+        ↓
+ASSET_RESOLVED
+        ↓
+BALANCES_CHECKED
+        ↓
+QUOTE_REQUESTED
+        ↓
+QUOTE_VALIDATED
+        ↓
+POLICY_APPROVED
+        ↓
+ALLOWANCE_CHECKED
+        ↓
+APPROVAL_PREPARED_IF_NEEDED
+        ↓
+APPROVAL_SIMULATED
+        ↓
+APPROVAL_AUTHORIZED
+        ↓
+APPROVAL_CONFIRMED
+        ↓
+QUOTE_REFRESHED_IF_REQUIRED
+        ↓
+POLICY_RECHECKED
+        ↓
+SWAP_BUILT
+        ↓
+SWAP_SIMULATED
+        ↓
+PAYMASTER_CHECKED
+        ↓
+USER_AUTHORIZATION
+        ↓
+TRANSACTION_SUBMITTED
+        ↓
+TRANSACTION_CONFIRMED
+        ↓
+BALANCES_VERIFIED
+        ↓
+RECEIPT_GENERATED
 ```
 
-Start with Phase 0 immediately.
+Account for route-specific exceptions such as RFQ order signing and asynchronous settlement.
+
+## Quote expiry
+
+Binance Trading documentation describes cached quote identifiers with roughly 30-second validity.
+
+Implement quote expiration explicitly.
+
+A quote must be refreshed before execution if stale.
+
+A refreshed quote requires any relevant new policy checks and simulation.
+
+Do not reuse stale calldata.
+
+## Approval spender
+
+Resolve the exact spender for the selected verified route.
+
+Do not assume every route uses the same spender.
+
+Do not approve an unrelated contract.
+
+Avoid unlimited approvals unless specifically justified, verified and approved.
+
+## Simulation
+
+Simulate the relevant approval and stock purchase before broadcast.
+
+Record:
+
+- Request identity.
+- Simulation time.
+- Predicted outcome.
+- Relevant balance changes.
+- Allowance changes.
+- Failure reasons.
+- Gas estimates.
+
+Simulation success is not transaction success.
+
+## Confirmation
+
+Do not treat a transaction hash as a completed purchase.
+
+Check:
+
+- Chain.
+- Transaction receipt.
+- Execution status.
+- Relevant logs.
+- Recipient.
+- Actual token balance changes.
+- Actual spending.
+- Final execution state.
+
+Store reproducible evidence.
+
+## Failure handling
+
+Support:
+
+- Wallet rejection.
+- Wrong chain.
+- Expired quote.
+- Insufficient balance.
+- Insufficient gas.
+- Approval failure.
+- RFQ order rejection.
+- Reverted swap.
+- Pending transaction.
+- Transaction timeout.
+- Inconsistent balance.
+- Provider failure.
+
+Never automatically repeat a potentially submitted transaction.
+
+Reconcile before retry.
+
+---
+
+# 15. MULTI-ASSET BASKET EXECUTION
+
+The engine must support up to eight assets in a Bell.
+
+Actual executable legs depend on:
+
+- Supported instruments.
+- Liquidity.
+- Minimum trade sizes.
+- USDT balance.
+- Gas.
+- Sponsorship availability.
+- Wallet permissions.
+
+## Allocation
+
+Use integer basis points.
+
+Keep reserve amounts separate.
+
+Use bigint for token base units.
+
+Do not overspend due to rounding.
+
+## Execution
+
+Sequential execution is the default unless a real verified atomic mechanism is provided.
+
+A transaction is complete only after confirmation.
+
+## Partial failure
+
+If leg three fails:
+
+- Preserve successful legs one and two.
+- Record their actual balances.
+- Stop remaining legs by default.
+- Mark the overall basket partially completed.
+- Record unspent USDT.
+- Present a truthful receipt.
+- Never claim the basket fully completed.
+- Never automatically reverse purchases.
+
+## Testing
+
+Test:
+
+- One-stock Bell.
+- Two-stock basket.
+- Four-asset basket.
+- Eight-asset plan.
+- Eight-asset live execution when actual minimums, liquidity and funds allow.
+- Unavailable asset.
+- Partial failure.
+- Expired quote.
+- Insufficient reserve.
+- Duplicate execution.
+- Wallet cancellation.
+- Sponsorship failure.
+
+Do not label eight-asset execution live until it has actually worked.
+
+---
+
+# 16. POLICY ENGINE
+
+The policy engine is deterministic.
+
+An AI cannot change the rules at execution time.
+
+The policy engine must be implemented as pure functions with typed inputs and outputs.
+
+Example:
+
+```ts
+type PolicyDecision = {
+  allowed: boolean;
+  code: string;
+  humanReason: string;
+  policyVersion: string;
+  evaluatedAt: string;
+};
+```
+
+## Required policy controls
+
+- BSC-only.
+- Spot-only.
+- Supported issuer.
+- Supported token.
+- Maximum spend per trade.
+- Maximum daily spending.
+- Maximum weekly spending.
+- Maximum slippage.
+- Maximum single-company exposure.
+- Minimum USDT reserve.
+- Optional liquidity thresholds.
+- Quote freshness.
+- Price data freshness.
+- Trading pause/halt checks.
+- Selling permissions.
+- Drift thresholds.
+- Authorization validity.
+- Simulation outcome.
+
+Optional market-gap policies must remain inactive until the reference-price semantics are proven.
+
+## Policy intersection
+
+```text
+BELL RULES
+     ∩
+PERSONAL USER RULES
+     ∩
+WALLET PERMISSIONS
+     ∩
+EXECUTION SAFETY CHECKS
+     ∩
+SPONSOR RULES WHEN SPONSORED
+     =
+PERMITTED ACTION
+```
+
+Sponsor rules govern sponsorship eligibility, not whether an otherwise valid user-funded transaction may proceed.
+
+If sponsorship is denied, a normal-gas fallback requires its own checks and the user's appropriate approval.
+
+A creator cannot override a follower's rules.
+
+An AI cannot override user restrictions.
+
+## Examples
+
+An agent proposes buying 10 USDT of NVIDIA.
+
+If the purchase violates the user's concentration limit, block it.
+
+An agent proposes selling an overweight stock.
+
+If automatic selling is disabled, block it.
+
+An agent proposes executing an expired quote.
+
+Block and re-quote.
+
+Every decision has a clear reason.
+
+---
+
+# 17. CONTRIBUTION-FIRST REBALANCING
+
+Autopilot prioritizes using new contributions to reduce portfolio drift before selling existing positions.
+
+Inputs:
+
+- Target weights.
+- Current position values.
+- Stablecoin reserve.
+- New contribution.
+- Per-asset limits.
+- Trade minimums.
+- Selling permissions.
+- Drift threshold.
+
+## Deterministic calculation
+
+For portfolio value V and contribution C:
+
+```text
+New portfolio value = V + C
+
+Target value for asset i:
+targetWeight_i × (V + C)
+
+Shortfall_i:
+max(0, targetValue_i - currentValue_i)
+```
+
+Allocate investable contribution toward underweight holdings, subject to:
+
+- Reserve requirements.
+- Per-trade limits.
+- Exposure limits.
+- Minimum trade sizes.
+- Available liquidity.
+- Rounding.
+- Policy rules.
+
+If no valid transaction is possible, retain available USDT and explain why.
+
+## Required tests
+
+- Zero contribution.
+- Full allocation.
+- Insufficient contribution.
+- Maximum exposure.
+- Reserve preservation.
+- Rounding down.
+- No overspending.
+- Overweight asset receives no contribution.
+- Automatic selling prohibited.
+- All trades below minimum.
+- No tradable assets.
+- Duplicate allocation request.
+
+---
+
+# 18. LIVE AUTOPILOT
+
+Autopilot must support a real operating mode, not only visual previews.
+
+However, live unattended execution requires actual scoped signing permission.
+
+## Modes
+
+**PREVIEW:** Calculates proposed actions.
+
+**DRY_RUN:** Uses real data, quotes and simulation without broadcasting.
+
+**LIVE_AUTHORIZED:** Executes within verified wallet permissions and user-approved policies.
+
+## Required actions
+
+- Enable.
+- Disable.
+- Pause.
+- Resume.
+- Change contribution schedule.
+- Change limits.
+- View next planned contribution.
+- View execution history.
+- View skipped decisions.
+- Inspect receipts.
+- Revoke or terminate execution authorization through the supported wallet mechanism.
+
+## Scheduler safety
+
+Create a deterministic idempotency key:
+
+```text
+userId:bellId:policyVersion:scheduledPeriod
+```
+
+Use a durable unique database constraint and execution state tracking.
+
+A second invocation must not double-buy.
+
+## Security
+
+A cron job does not provide transaction-signing authority.
+
+A server-side scheduler cannot impersonate a user.
+
+Do not rely on stored browser wallet sessions for unattended signing.
+
+Use Binance Agentic Wallet or another explicitly approved, documented, revocable permission mechanism compatible with the actual execution design.
+
+Do not create a central wallet that can spend arbitrary user funds.
+
+## Live proof
+
+Demonstrate:
+
+1. User policy enabled.
+2. Valid session/permission.
+3. Real portfolio read.
+4. Contribution proposal.
+5. Valid policy decision.
+6. Real quote and simulation.
+7. Authorized execution.
+8. Mainnet confirmation.
+9. Receipt.
+10. One independently verified rejected or skipped decision.
+
+Until all necessary permissions are verified, keep autonomous live execution disabled.
+
+---
+
+# 19. FIRST BELL MCP — PRESERVE AND EXPAND
+
+There must be one First Bell MCP.
+
+Do not discard the existing MCP implementation.
+
+Do not create an unrelated Sarf clone.
+
+Audit the existing MCP before modifying it.
+
+## Required MCP tools
+
+Read-only:
+
+```text
+search_stock
+get_stock
+get_stock_research
+get_bell
+get_bell_versions
+get_portfolio
+get_portfolio_drift
+get_receipt
+explain_decision
+```
+
+Bell management:
+
+```text
+create_bell
+fork_bell
+modify_bell
+compare_bell_versions
+```
+
+Natural-language interface:
+
+```text
+create_bell_from_prompt
+create_policy_from_prompt
+modify_bell_from_prompt
+```
+
+Execution preparation:
+
+```text
+quote_stock
+quote_bell
+simulate_stock_buy
+simulate_bell_buy
+preview_next_contribution
+preview_rebalance
+```
+
+Sensitive execution:
+
+```text
+prepare_bell_execution
+request_bell_execution
+get_execution_status
+```
+
+These are desired application-level tool names, not claimed Binance SDK methods.
+
+Reuse verified existing tool names when already implemented.
+
+## Natural-language example
+
+The user tells Claude:
+
+"Create a 100 USDT AI-stock Bell, keep 10% in USDT, cap one stock at 30%, and don't automatically sell."
+
+The MCP:
+
+1. Parses the intent.
+2. Retrieves real supported ticker candidates.
+3. Retrieves current research where authorized.
+4. Produces a proposed Bell.
+5. Validates all weights.
+6. Produces structured personal policy suggestions.
+7. Returns the draft for review.
+8. Creates the Bell after required user authorization.
+
+The MCP does not independently spend funds.
+
+## Security
+
+MCP authorization must distinguish:
+
+- Public read.
+- Private read.
+- User-owned Bell mutation.
+- Policy mutation.
+- Execution preparation.
+- Execution authorization.
+
+Never accept a client-provided wallet address alone as authentication.
+
+Use a verified wallet sign-in/authorization mechanism for sensitive user identity.
+
+Check ownership.
+
+Apply rate limits.
+
+Validate inputs with Zod.
+
+Do not expose arbitrary transaction signing tools.
+
+## Integration tests
+
+Test the actual MCP from a compatible client.
+
+A valid proof must show:
+
+- Client connection.
+- Tool discovery.
+- Real tool call.
+- Actual application result.
+- Correct policy behavior.
+- No unauthorized financial execution.
+
+---
+
+# 20. BINANCE AGENTIC WALLET
+
+Binance Agentic Wallet is a distinct integration from regular Binance Wallet.
+
+## Prerequisites
+
+Official documentation requires:
+
+- Binance account.
+- Existing Binance MPC Wallet.
+- Agentic Wallet setup.
+- Binance App authorization.
+- Appropriate Wallet Skills/CLI.
+
+Do not assume ordinary wallet connection completes these prerequisites.
+
+## Integration objective
+
+Make Agentic Wallet a constrained execution option for First Bell Autopilot and authorized MCP requests.
+
+The user must maintain control of permissions.
+
+## Security requirements
+
+Configure permissions through the supported Binance App settings.
+
+Where available, verify:
+
+- Daily spend limits.
+- Asset scopes.
+- High-risk confirmations.
+- Supported BSC execution.
+- Session validity.
+- Revocation.
+- Failure behavior.
+
+The LLM cannot raise limits or change wallet security settings.
+
+## Multi-user session question
+
+Independently verify whether the documented tooling supports multiple unrelated user sessions in one hosted backend.
+
+Do not assume CLI authentication is a multi-tenant SDK.
+
+If only a single operator workflow is supported, implement and label that exact supported scope.
+
+Do not expose one user's Agentic Wallet session to other users.
+
+## Live acceptance
+
+A working integration requires:
+
+- A real authorized Agentic Wallet setup.
+- At least one authenticated capability call.
+- Verified restriction enforcement.
+- A supported stock-related execution or equivalent permitted onchain proof.
+- A recorded denied action.
+- A confirmed result where execution was performed.
+
+A package installed on disk does not count.
+
+---
+
+# 21. PAYMASTER — MANDATORY ENGINEERING WORKSTREAM
+
+Paymaster remains central to First Bell.
+
+It must not be silently cut.
+
+Its goal is to let eligible users purchase supported tokenized stocks without separately funding BNB gas.
+
+## Critical architectural fact
+
+The BSC EOA Paymaster flow requires a compatible wallet and transaction-signing path.
+
+The documented workflow includes:
+
+1. Sponsorability check.
+2. Zero-gas-price transaction preparation where supported.
+3. User signing.
+4. Submission through the Paymaster-supported pathway.
+5. Onchain confirmation.
+
+Do not assume a normal browser-wallet transaction automatically becomes sponsored.
+
+Do not assume Binance Wallet supports every operation needed for raw signed transaction submission.
+
+## Required investigation
+
+Claude and Codex must jointly determine:
+
+- Which BSC Paymaster service is supported.
+- Whether Binance Wallet exposes the required signing/submission behavior.
+- Whether the chosen sponsor can sponsor the relevant tokenized-stock approvals and swaps.
+- Whether sponsor registration or funding is required.
+- Which policies the sponsor can enforce.
+- Whether a compatible alternate wallet execution method is necessary.
+- The actual mainnet costs.
+- How sponsored transaction failure is reported.
+
+Investigate documented providers including applicable EOA Paymaster infrastructure such as MegaFuel where supported.
+
+## Application adapter
+
+Implement an internal abstraction:
+
+```text
+checkSponsorship
+prepareSponsoredExecution
+authorizeSponsoredExecution
+submitSponsoredExecution
+verifySponsoredExecution
+```
+
+Map these abstractions to actual verified provider APIs.
+
+Do not fabricate external RPC methods.
+
+## Sponsorship policy
+
+Only sponsor permitted transactions.
+
+Example restrictions:
+
+- BSC Mainnet.
+- Approved stock-token routes.
+- Approved router/spender contracts.
+- Bounded gas usage.
+- Per-wallet budget.
+- Per-period budget.
+- Valid quote.
+- Passing simulation.
+- Approved user action.
+
+Reject unrelated transfers.
+
+Reject unsupported tokens.
+
+Reject arbitrary calldata.
+
+## Fallback
+
+If sponsorship is unavailable:
+
+- Explain the failure.
+- Show actual BNB gas requirements.
+- Allow a normal transaction only with sufficient BNB and valid user approval.
+- Preserve Paymaster code and documented blocker.
+- Do not say the transaction is gasless.
+
+## Live acceptance
+
+A genuine Paymaster milestone requires a real sponsored BSC Mainnet transaction with:
+
+- Original transaction.
+- Relevant sponsorship policy.
+- Sponsorship submission evidence.
+- Confirmed onchain execution.
+- Gas outcome.
+- Reproducible receipt.
+
+A sponsorability response alone does not prove gas sponsorship works.
+
+---
+
+# 22. BNB AGENT STUDIO
+
+BNB Agent Studio is the persistent agent and research infrastructure.
+
+It is not the same as First Bell MCP.
+
+## First Bell MCP
+
+Exposes First Bell functionality to external AI clients.
+
+## Agent Studio
+
+Runs or coordinates an autonomous service with its own supported runtime, wallet and identity.
+
+The two must interoperate without being conflated.
+
+## Setup
+
+Official BNB Agent Studio references currently document:
+
+```bash
+npm install -g @bnbagent/studio-cli
+bag skills install
+```
+
+Verify package identity, installation requirements and supported deployment options before installation.
+
+## Agent responsibilities
+
+Build one purposeful First Bell agent.
+
+Suggested duties:
+
+- Retrieve authorized research.
+- Monitor public Bell information.
+- Examine portfolio drift.
+- Prepare strategy-update proposals.
+- Generate structured review tasks.
+- Produce decision inputs.
+- Call First Bell services through controlled interfaces.
+
+It cannot override personal investment policies.
+
+It cannot sign unrestricted user transactions.
+
+## Identity and runtime
+
+Where supported, establish:
+
+- Agent identity.
+- Cloud runtime.
+- Reachable service endpoint.
+- Appropriate wallet.
+- Spending limits.
+- Health checks.
+- Deployment logs.
+- Relevant task interface.
+- Real operational evidence.
+
+## Mainnet distinction
+
+The BNB-managed free trial may be testnet-only.
+
+Do not represent a testnet trial as BSC Mainnet stock execution.
+
+If production cloud deployment is required, follow the official supported deployment path and obtain required human account authorization.
+
+## Live acceptance
+
+Show:
+
+- Actual deployed agent.
+- Reachable endpoint.
+- Supported onchain identity registration.
+- Real request and response.
+- Correct budget policy.
+- Operational runtime evidence.
+- Actual communication with First Bell services.
+
+---
+
+# 23. STOCK RESEARCH AND x402
+
+First Bell research must be source-grounded.
+
+Do not let a language model arbitrarily generate stock ratings and present them as external analysis.
+
+## Research sources
+
+Use:
+
+- Binance RWA data.
+- Binance Market API.
+- Verified fundamental and underlying information.
+- BNB Agent Studio research services.
+- Documented x402-compatible research providers.
+
+## Research workflow
+
+```text
+User investment question
+        ↓
+First Bell MCP
+        ↓
+Live asset eligibility lookup
+        ↓
+Verified research request
+        ↓
+Research provider result
+        ↓
+Source/timestamp verification
+        ↓
+Structured Bell proposal
+        ↓
+Deterministic policy validation
+        ↓
+User review
+```
+
+AI research remains advisory information.
+
+It is not permission to trade.
+
+## x402
+
+Integrate an actual paid research or agent-service call where supported.
+
+Verify:
+
+- Merchant/service identity.
+- Actual price.
+- Payment token.
+- Spending authorization.
+- Payment network.
+- Payment proof.
+- Service response.
+- Error handling.
+- Budget limit.
+
+Keep research fees separate from the user's portfolio principal.
+
+Do not hardcode the cost of a research report without checking the live price.
+
+Do not fabricate successful payments.
+
+## Asynchronous research
+
+If research takes longer than a normal request:
+
+- Create a job state.
+- Poll or receive results using supported mechanisms.
+- Display pending status.
+- Store the final sourced result.
+- Handle timeout and failure.
+- Avoid duplicate paid requests.
+
+The core stock-purchase experience must not depend on an optional slow research call.
+
+---
+
+# 24. BELL RECEIPTS
+
+Every important decision requires a truthful record.
+
+## Receipt information
+
+- Bell ID and version.
+- Wallet.
+- Mode.
+- Requested asset.
+- Selected issuer.
+- Token contract.
+- Requested USDT.
+- Quote data.
+- Slippage.
+- Policy result.
+- Simulation result.
+- Sponsorship result.
+- Authorization result.
+- Transaction or order ID.
+- Network.
+- Confirmation status.
+- Actual received tokens.
+- Remaining USDT.
+- Error or skip reason.
+
+## Receipt types
+
+- Purchase.
+- Basket purchase.
+- Partial execution.
+- Policy rejection.
+- Autopilot execution.
+- Autopilot skip.
+- Strategy update.
+- Failed execution.
+
+## Integrity
+
+Receipts must correspond to recorded events.
+
+Do not invent missing fields.
+
+A simulated receipt must be labeled simulated.
+
+A partially completed basket must be labeled partial.
+
+An unconfirmed transaction must remain pending.
+
+## MCP explanations
+
+When a user asks:
+
+"Why did my agent skip NVIDIA?"
+
+Retrieve the actual recorded policy decision and explain it.
+
+Do not allow the LLM to invent an explanation.
+
+---
+
+# 25. DATA MODEL
+
+Minimum conceptual entities:
+
+```text
+UserWallet
+WalletAuthorization
+Bell
+BellVersion
+BellAsset
+BellFork
+BellFollower
+UserPolicy
+ExecutionIntent
+ExecutionLeg
+QuoteSnapshot
+PolicyDecision
+TransactionRecord
+BellReceipt
+AutopilotSchedule
+AutopilotRun
+ResearchJob
+ResearchResult
+AgentRuntime
+SponsorshipAttempt
+ApiEvidenceLog
+```
+
+Use real database persistence.
+
+Do not depend on ephemeral memory for financial execution state.
+
+Use database uniqueness constraints and transactions for idempotency.
+
+Implement ownership checks for private state.
+
+Persist transaction state transitions.
+
+Allow execution reconciliation after a server restart.
+
+No public route should expose a user's private authorization tokens.
+
+---
+
+# 26. PRODUCT DESIGN
+
+Create a polished, professional financial application.
+
+The visual style should be:
+
+- Minimal.
+- Distinctive.
+- Refined.
+- Mobile-first.
+- Accessible.
+- Fast.
+- Clean typography.
+- Restrained color.
+- High-quality spacing.
+- Clear transaction status.
+
+Avoid generic AI visuals and unnecessary crypto decorations.
+
+Do not imitate Binance's product UI wholesale.
+
+## Required screens
+
+1. Landing.
+2. Explore Bells.
+3. Stock detail.
+4. Connect Binance Wallet.
+5. Bell creation.
+6. Bell details.
+7. Bell investment review.
+8. Transaction progress.
+9. Transaction receipts.
+10. Fork editor.
+11. Portfolio.
+12. Autopilot.
+13. Personal policy settings.
+14. MCP/AI integration.
+15. Research.
+16. Agent execution permissions.
+17. Activity/history.
+
+## Primary UX rule
+
+Expose familiar concepts:
+
+- Companies.
+- Investment amounts.
+- Percentages.
+- Wallet.
+- Portfolio.
+- Buy.
+- Share.
+- Fork.
+- Automate.
+
+Put technical protocol details under expandable advanced sections.
+
+Never hide issuer risks, transaction costs or confirmation status.
+
+## Device testing
+
+Test at approximately 380px viewport width.
+
+Test real phone interaction.
+
+Verify that a QR can be opened from a different device.
+
+Verify wallet handoff and return to the correct Bell.
+
+---
+
+# 27. SECURITY MANDATE
+
+Codex must produce an adversarial review before live execution.
+
+## Mandatory attacks to test
+
+- User A attempts to edit User B's Bell.
+- User A attempts to modify User B's policy.
+- A malicious MCP client requests an arbitrary transfer.
+- A prompt injection attempts to bypass rules.
+- An external research result contains instructions to leak secrets.
+- A stale quote is replayed.
+- A duplicate scheduled run attempts a second purchase.
+- An approval targets the wrong spender.
+- A transaction uses the wrong token.
+- A transaction targets the wrong chain.
+- An API response reports success but the transaction reverts.
+- A sponsored transaction fails and the app claims gasless completion.
+- A wallet session is expired or revoked.
+- A user disables automation while a run is pending.
+- A portfolio calculation exceeds available USDT.
+- A basket partially completes and the UI reports full success.
+
+Test more than the happy path.
+
+## Secret handling
+
+No secrets in:
+
+- Git.
+- Browser bundles.
+- Public logs.
+- Screenshots.
+- Documentation.
+- Analytics.
+- Client-side environment variables.
+
+Run secret scanning before pushing.
+
+## Financial constraints
+
+- No unrestricted approvals.
+- No arbitrary transaction destinations.
+- No hidden spending.
+- No unsupported custody.
+- No unauthorized signing.
+- No silent chain switching.
+- No blind broadcast retries.
+- No execution on failed simulation.
+- No override of personal policy by AI output.
+
+---
+
+# 28. TESTING
+
+## Unit tests
+
+Cover:
+
+- Manifest validation.
+- Basis-point totals.
+- Hash determinism.
+- Fork independence.
+- Token decimal conversion.
+- Allocation rounding.
+- Stablecoin reserves.
+- Exposure.
+- Policy intersection.
+- Contribution-first rebalancing.
+- Quote freshness.
+- Idempotency.
+- Receipt states.
+
+## API integration tests
+
+Cover:
+
+- Authentication.
+- Actual RWA lookup.
+- Asset resolution.
+- Quote.
+- Approval.
+- Simulation.
+- Balance read.
+- Transaction status.
+- Malformed API responses.
+- API rate limits.
+- Timeout.
+- Business error codes.
+
+## Wallet tests
+
+Cover:
+
+- Binance Wallet connection.
+- Chain verification.
+- Rejected signing.
+- Wallet switching.
+- Disconnect.
+- Session expiration.
+- Agentic Wallet authorization.
+- Permission rejection.
+
+## Paymaster tests
+
+Cover:
+
+- Eligible transaction.
+- Ineligible transaction.
+- Missing budget.
+- Unsupported wallet.
+- Failed submission.
+- Successful sponsored submission.
+- Correct onchain result.
+
+## MCP tests
+
+Cover:
+
+- Actual client connection.
+- Existing tools.
+- New natural-language tools.
+- Invalid allocation.
+- Malicious instruction.
+- Unauthorized execution.
+- Policy rejection.
+- Receipt explanation.
+
+## Agent tests
+
+Cover:
+
+- Research request.
+- Paid request budget.
+- Runtime health.
+- Service timeout.
+- Duplicate research jobs.
+- Permission boundaries.
+- Agent Studio integration.
+
+## Browser E2E
+
+At least one full browser scenario must cover the purchase journey.
+
+A supervised live mainnet test must separately prove real financial execution.
+
+## Test reporting
+
+Never report passing tests without execution output.
+
+Record:
+
+- Command.
+- Date.
+- Exit status.
+- Test count.
+- Failures.
+- Evidence path.
+
+---
+
+# 29. MAINNET RUNBOOK
+
+Before the first mainnet transaction, create:
+
+`docs/MAINNET_RUNBOOK.md`
+
+Include:
+
+- Wallet address.
+- Network.
+- Asset contract.
+- Input USDT contract.
+- Approval spender.
+- Amount.
+- Gas estimate.
+- Sponsorship status.
+- Expected transaction sequence.
+- Current quote information.
+- Policy result.
+- Simulation result.
+- Maximum permitted spend.
+- Stop conditions.
+- Confirmation procedure.
+- Human approval requirement.
+
+## Small live tests first
+
+Start with the smallest genuinely executable amount after human approval.
+
+Do not exceed the configured live-trade cap.
+
+Increase only when necessary to test a valid supported route and after renewed human approval.
+
+## Unknown transaction state
+
+If a transaction times out:
+
+- Do not automatically retry.
+- Inspect nonce.
+- Inspect transaction hash.
+- Check pending state.
+- Check receipts.
+- Check resulting balances.
+- Reconcile.
+
+Only then decide whether another transaction is necessary.
+
+---
+
+# 30. DEVELOPER EXPERIENCE REPORT
+
+The Developer Experience Report represents 25% of the hackathon score.
+
+This is not optional.
+
+Maris owns the personal narrative.
+
+Claude and Codex collect real facts and measurements.
+
+## Required evidence
+
+- Time to first successful API request.
+- Authentication problems.
+- Incorrect documentation.
+- Confusing setup.
+- Response schema inconsistencies.
+- Rate limits.
+- API latency.
+- Quote availability.
+- Liquidity.
+- Slippage.
+- Provider differences.
+- Market-hours behavior.
+- Tokenized-stock reference-price behavior.
+- Approval spender differences.
+- Transaction simulation.
+- Binance Wallet connection.
+- Agentic Wallet setup.
+- Paymaster compatibility.
+- Agent Studio setup.
+- x402 payments.
+- Suggested developer API improvements.
+
+## Logs
+
+Write sanitized structured logs to:
+
+`logs/dx.jsonl`
+
+Suggested fields:
+
+```text
+timestampUtc
+module
+endpoint
+httpStatus
+businessCode
+businessMessage
+latencyMs
+retryCount
+schemaValidation
+marketState
+executionMode
+result
+notes
+```
+
+No secrets.
+
+## Reports
+
+`docs/DEVEX_RAW.md` contains direct technical observations.
+
+`docs/DEVEX_HUMAN_NOTES.md` is reserved for Maris's own experience and opinions.
+
+`docs/DX_EVIDENCE.md` contains factual summaries and measurements.
+
+Do not invent DevEx events.
+
+Do not produce AI-authored personal testimony pretending to be Maris.
+
+---
+
+# 31. EVIDENCE-BASED ACCEPTANCE GATES
+
+Every gate must contain proof.
+
+## GATE 0 — Repository and eligibility
+
+- Repository inspected.
+- Current implementation recorded.
+- Existing MCP identified.
+- Eligibility checked.
+- Working environment.
+- Secrets protected.
+
+## GATE 1 — Binance API
+
+- Real signed request.
+- Signing tests.
+- Response fixture.
+- Error handling.
+
+## GATE 2 — RWA discovery
+
+- Real supported tokenized stock.
+- Verified chain.
+- Verified contract.
+- Verified issuer.
+- Actual live response.
+
+## GATE 3 — Binance Wallet
+
+- Real supported connection.
+- Correct chain.
+- Mobile compatibility.
+- Signing flow.
+
+## GATE 4 — Quote and simulation
+
+- Real USDT quote.
+- Approval path.
+- Policy check.
+- Real Binance Transaction API simulation.
+
+## GATE 5 — Mainnet single-stock buy
+
+- Human authorization.
+- Actual transaction.
+- Onchain confirmation.
+- Balance verified.
+- Receipt.
+- Explorer evidence.
+
+## GATE 6 — Bell
+
+- Create.
+- Publish.
+- Share.
+- QR.
+- Immutable version.
+- Integrity validation.
+
+## GATE 7 — Fork
+
+- Independent fork.
+- Edited weights.
+- Correct source attribution.
+- Policies remain independent.
+
+## GATE 8 — Basket
+
+- Correct allocation.
+- Real executable legs.
+- Confirmed purchases.
+- Correct partial-failure handling.
+- Eight-asset execution tested where supported.
+
+## GATE 9 — Policies
+
+- Deterministic engine.
+- Allow and reject tests.
+- Personal policy intersection.
+- No AI override.
+
+## GATE 10 — Autopilot
+
+- Live position data.
+- Drift calculation.
+- Contribution-first allocation.
+- Real dry-run.
+- Idempotency.
+- Authorized live execution evidence.
+- Rejection evidence.
+
+## GATE 11 — MCP
+
+- Existing MCP preserved.
+- Real connected client.
+- Natural-language Bell creation.
+- Policy drafting.
+- Quotes and previews.
+- User authorization boundaries.
+
+## GATE 12 — Paymaster
+
+- Actual compatibility verification.
+- Sponsor policy.
+- Real supported sponsored transaction.
+- Confirmed mainnet result.
+
+## GATE 13 — Agentic Wallet
+
+- Authenticated wallet setup.
+- Verified spending permissions.
+- Real supported operation.
+- Restricted-operation denial.
+- Actual confirmation evidence where relevant.
+
+## GATE 14 — Agent Studio and x402
+
+- Deployed agent.
+- Reachable service.
+- Identity/runtime evidence.
+- Real paid research/service call.
+- Actual structured result.
+- Controlled budget.
+
+## GATE 15 — Final product and submission
+
+- Production deployment.
+- Phone-tested.
+- Public repository.
+- Reproducible setup.
+- Honest feature inventory.
+- Demo.
+- DevEx report.
+- Security review.
+- All mandatory gates verified.
+
+A gate cannot pass on a mock.
+
+A blocked gate remains blocked until the cause is resolved.
+
+---
+
+# 32. EXECUTION ORDER
+
+Build by dependency, not by excitement.
+
+## Phase A — Repository and credentials
+
+- Audit existing work.
+- Create documents.
+- Check credentials.
+- Verify official APIs.
+- Make first authenticated call.
+- Audit existing MCP.
+
+## Phase B — Single-stock execution
+
+- Discover stock.
+- Connect Binance Wallet.
+- Quote.
+- Policy.
+- Approve.
+- Simulate.
+- Execute.
+- Verify.
+- Receipt.
+
+This is the first mainnet milestone.
+
+## Phase C — Bell system
+
+- Manifest.
+- Create.
+- Publish.
+- Version.
+- Share.
+- QR.
+- Fork.
+- Multi-asset execution.
+
+## Phase D — MCP and intelligence
+
+- Preserve existing MCP.
+- Expand tools.
+- Natural-language Bell creation.
+- Policy generation.
+- Research retrieval.
+- Explainability.
+
+## Phase E — Sponsorship
+
+- Provider investigation.
+- Binance Wallet compatibility.
+- Sponsorship policy.
+- Supported transaction signing.
+- Real mainnet sponsored execution.
+
+## Phase F — Autopilot and Agentic Wallet
+
+- Portfolio drift.
+- Contribution-first allocator.
+- Schedule.
+- Idempotency.
+- Wallet permissions.
+- Dry-run and live execution.
+- Receipts.
+
+## Phase G — Agent Studio and x402
+
+- Agent deployment.
+- Identity.
+- Runtime.
+- Research/payment integration.
+- MCP coordination.
+- Budget controls.
+
+## Phase H — Polish and submission
+
+- E2E tests.
+- Security audit.
+- Fixes.
+- Production deployment.
+- Phone tests.
+- Demo.
+- DevEx report.
+- Submission.
+
+All phases are delivery targets.
+
+Dependency order must not become an excuse for silently removing later phases.
+
+---
+
+# 33. DEADLINE STRATEGY
+
+## October 8
+
+- Audit repo.
+- Validate existing MCP.
+- Verify documentation.
+- Establish authenticated Binance calls.
+- Confirm wallet and provider prerequisites.
+- Initiate Paymaster compatibility investigation.
+
+## October 9
+
+- Complete real stock discovery.
+- Complete quote/simulation.
+- Complete wallet connection.
+- Prove small authorized mainnet purchase.
+- Implement Bells and forks.
+- Integrate MCP foundations.
+
+## October 10
+
+- Finish baskets.
+- Finish policies and Autopilot.
+- Complete Paymaster integration attempts and tests.
+- Complete Agentic Wallet integration.
+- Complete Agent Studio/x402 integration.
+- Fix security findings.
+- Deploy.
+- Collect final DevEx evidence.
+
+## October 10, 20:00 UTC
+
+Target internal code freeze.
+
+From this point, prioritize fixing critical failures over adding unrelated functionality.
+
+## October 11, before 12:00 UTC
+
+- Final mainnet verification.
+- Final deployment check.
+- Final security review.
+- Record demo.
+- Finish human-authored DevEx report.
+- Verify public links.
+- Submit.
+
+The target is every feature functioning live.
+
+If a genuine blocker prevents complete delivery, it must remain recorded rather than being silently cut or falsely completed.
+
+Do not jeopardize the complete submission while repeatedly attempting an unsupported external integration.
+
+---
+
+# 34. DEMO REQUIREMENTS
+
+Target a video of four minutes or less.
+
+The live demo should show the strongest functioning end-to-end journey.
+
+Suggested sequence:
+
+1. First Bell introduction.
+2. Open Bell from share link/QR.
+3. Connect Binance Wallet.
+4. Show real stock and portfolio data.
+5. Request actual USDT quote.
+6. Show policy evaluation.
+7. Simulate and authorize.
+8. Show confirmed mainnet purchase.
+9. Show assets in wallet.
+10. Open Bell Receipt.
+11. Fork and edit the Bell.
+12. Use First Bell MCP to create a new Bell by natural language.
+13. Demonstrate Autopilot and its limits.
+14. Demonstrate verified Paymaster, Agentic Wallet, Agent Studio and x402 capabilities where live.
+
+Do not pretend a previously recorded demo is happening live.
+
+A genuine recorded transaction may be used as evidence if its status and date are clear.
+
+Never insert a fake success screen.
+
+---
+
+# 35. OUT OF SCOPE
+
+Do not expand into:
+
+- Perpetual futures.
+- Margin.
+- Leverage.
+- Options.
+- Short selling.
+- Prediction markets.
+- Proprietary stock tokens.
+- Unnecessary vaults.
+- Custody contracts.
+- Copy-trading funds.
+- Price prediction models.
+- General AI trading bots.
+- Social feeds.
+- NFTs.
+- Governance tokens.
+- Cross-chain bridges.
+- Custom exchanges.
+- Unrelated payment products.
+- Creator revenue-sharing systems.
+- DeFi yield on unused USDT.
+- Unverified card onramps.
+- Complex multi-agent debates.
+
+If one of these features is necessary to implement a required First Bell capability, document exactly why and seek approval before adding it.
+
+The existence of related Binance APIs does not justify including every module.
+
+---
+
+# 36. PROGRESS REPORT FORMAT
+
+After each completed phase, report:
+
+```text
+FIRST BELL — ENGINEERING STATUS
+
+CURRENT PHASE:
+
+VERIFIED LIVE:
+- ...
+
+VERIFIED LOCAL:
+- ...
+
+IMPLEMENTED, NOT VERIFIED:
+- ...
+
+BLOCKED:
+- ...
+
+CODEX REVIEW:
+- Pending / Passed / Issues found
+
+TESTS:
+- Command:
+- Passed:
+- Failed:
+
+BINANCE API EVIDENCE:
+- ...
+
+MAINNET TRANSACTIONS:
+- Count:
+- Actual funds spent:
+- Transaction references:
+
+PAYMASTER:
+- ...
+
+MCP:
+- ...
+
+AGENTIC WALLET:
+- ...
+
+AGENT STUDIO:
+- ...
+
+DEVEX EVIDENCE:
+- ...
+
+TOP THREE NEXT ACTIONS:
+1.
+2.
+3.
+```
+
+Never use ambiguous statements such as:
+
+- "Should work."
+- "Basically done."
+- "Production-ready" without verification.
+- "Connected" when only configured.
+- "Gasless" without actual sponsored execution.
+
+---
+
+# 37. FINAL COMPLETION CONDITIONS
+
+Do not declare First Bell fully complete until:
+
+- Real Binance API integrations work.
+- Binance Wallet connection works.
+- A real supported stock purchase succeeds on BSC Mainnet.
+- The resulting balance is verified.
+- Bells can be created, shared, versioned and forked.
+- Multi-asset execution works as documented.
+- Policies are enforced.
+- Receipts are truthful.
+- The existing MCP works from an actual client.
+- Natural-language requests produce valid Bell proposals.
+- Autopilot executes only with authorized permissions.
+- Agentic Wallet restrictions have been demonstrated.
+- Paymaster sponsorship has been demonstrated on a real qualifying transaction.
+- Agent Studio is deployed and operational.
+- x402 research/service integration has been demonstrated.
+- Security review passes.
+- Critical E2E tests pass.
+- The deployed application works on mobile.
+- The Developer Experience evidence is complete.
+- The public repository and submission artifacts are ready.
+
+The final verdict must be:
+
+**COMPLETE — ALL REQUIRED GATES VERIFIED**
+
+or
+
+**INCOMPLETE — SPECIFIC GATES BLOCKED OR UNVERIFIED**
+
+No third category may be used to disguise incomplete required work.
+
+A working subset may be submitted honestly if the deadline arrives, but it must not be described as the complete product.
+
+---
+
+# 38. FIRST EXECUTION INSTRUCTIONS
+
+Claude Code, execute the following now.
+
+### Task 1: Inspect
+
+Audit the existing First Bell repository.
+
+Do not assume it is empty.
+
+Locate the existing MCP before modifying architecture.
+
+### Task 2: Verify
+
+Read official Binance and BNB documentation.
+
+Record integration facts.
+
+Confirm eligibility and external account prerequisites requiring human action.
+
+### Task 3: Establish evidence
+
+Create the status, verification, security, Codex queue and DevEx evidence files.
+
+### Task 4: Assign backend review
+
+Create specific Codex tasks for:
+
+- Authentication.
+- Stock resolution.
+- Transaction engine.
+- Policy engine.
+- Paymaster.
+- Agentic Wallet.
+- MCP authorization.
+- Mainnet safety.
+
+### Task 5: Prove a real API call
+
+Implement or verify Binance Web3 authentication.
+
+Execute one harmless authenticated read request.
+
+Save sanitized evidence.
+
+### Task 6: Prove stock execution
+
+Resolve a real tokenized stock.
+
+Build an actual USDT quote.
+
+Simulate the transaction.
+
+Prepare the human-approved small mainnet purchase.
+
+Confirm actual execution and final balances.
+
+### Task 7: Build the complete product
+
+Continue through Bells, baskets, forking, existing MCP, policies, Autopilot, Paymaster, Agentic Wallet, Agent Studio and x402.
+
+### Task 8: Independently verify
+
+Run tests.
+
+Have Codex challenge the implemented system.
+
+Fix critical failures.
+
+Retest.
+
+### Task 9: Deploy and submit
+
+Prepare a stable production deployment, public repository, demo and genuine DevEx evidence.
+
+---
+
+# FINAL ENGINEERING COMMAND
+
+You are not here to produce impressive-looking source code.
+
+You are here to build a functioning tokenized-stock product on BNB Chain.
+
+Keep every agreed First Bell capability in the engineering scope.
+
+Do not replace difficult integrations with fictional implementations.
+
+Do not remove Paymaster.
+
+Do not remove the existing MCP.
+
+Do not treat the Sarf-inspired copilot as a separate product.
+
+Do not confuse Binance Wallet with Binance Agentic Wallet.
+
+Do not let research dictate unauthorized trades.
+
+Do not let creators control other people's wallets.
+
+Do not allow AI-generated calldata to bypass policy.
+
+Do not fabricate stock availability, balances, sponsorship, transactions, receipts, agent behavior or Developer Experience evidence.
+
+Implement incrementally, prove each integration, preserve working code and proceed to the next dependency.
+
+When credentials or permission are needed, ask for the precise human action.
+
+When an external capability cannot work, provide the exact verified blocker and proposed resolution.
+
+When a test fails, fix it and rerun it.
+
+When real money is involved, require the appropriate authorization.
+
+**First Bell must turn an investment intent into a real, user-controlled tokenized-stock position on BNB Chain, and support the complete lifecycle through Bells, policies, agents, automation and verifiable receipts.**
+
+**Start by auditing the repository and proving Binance API authentication. Then continue through the acceptance gates.**

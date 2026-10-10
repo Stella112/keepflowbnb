@@ -1,5 +1,5 @@
 {
-  "name": "first-bell",
+  "name": "keepflow",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -8,19 +8,27 @@
     "start": "next start",
     "typecheck": "tsc --noEmit",
     "verify:api": "node --env-file=.env.local scripts/verify-api.ts",
-    "test:auth": "node --test tests/auth.test.ts"
+    "test:auth": "node --test tests/auth.test.ts",
+    "test": "node --test tests/*.test.ts",
+    "deploy:lightsail": "node scripts/deploy.mjs",
+    "preview:lightsail": "node scripts/local-preview.mjs"
   },
   "dependencies": {
+    "@modelcontextprotocol/sdk": "1.32.1",
     "next": "latest",
+    "qrcode": "^1.5.4",
     "react": "latest",
     "react-dom": "latest",
-    "zod": "latest",
-    "server-only": "latest"
+    "server-only": "latest",
+    "viem": "^2.57.3",
+    "zod": "latest"
   },
   "devDependencies": {
-    "typescript": "latest",
+    "@playwright/test": "^1.63.0",
     "@types/node": "latest",
+    "@types/qrcode": "^1.5.6",
     "@types/react": "latest",
-    "@types/react-dom": "latest"
+    "@types/react-dom": "latest",
+    "typescript": "latest"
   }
 }

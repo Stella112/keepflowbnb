@@ -1,0 +1,164 @@
+{
+  "name": "@bnbagent/studio-runtime",
+  "version": "0.0.14",
+  "description": "Runtime library for bnbagent-studio seller agents on BNB Chain (config, wallet, audit, ERC-8004/8183, x402 or MPP over B402, Pieverse, read-only chain tools).",
+  "keywords": [
+    "bnb-chain",
+    "bsc",
+    "agent",
+    "ai-agent",
+    "seller-agent",
+    "erc-8004",
+    "erc-8183",
+    "x402",
+    "mpp",
+    "b402",
+    "a2a",
+    "mcp",
+    "web3",
+    "payments",
+    "runtime",
+    "library"
+  ],
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bnb-chain/bnbagent-studio.git",
+    "directory": "packages/studio-runtime"
+  },
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "DISCLAIMER.md"
+  ],
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./config": {
+      "types": "./dist/config.d.ts",
+      "import": "./dist/config.js",
+      "require": "./dist/config.cjs"
+    },
+    "./policy": {
+      "types": "./dist/policy.d.ts",
+      "import": "./dist/policy.js",
+      "require": "./dist/policy.cjs"
+    },
+    "./secretWrite": {
+      "types": "./dist/secretWrite.d.ts",
+      "import": "./dist/secretWrite.js",
+      "require": "./dist/secretWrite.cjs"
+    },
+    "./networks": {
+      "types": "./dist/networks.d.ts",
+      "import": "./dist/networks.js",
+      "require": "./dist/networks.cjs"
+    },
+    "./wallet": {
+      "types": "./dist/wallet.d.ts",
+      "import": "./dist/wallet.js",
+      "require": "./dist/wallet.cjs"
+    },
+    "./llm": {
+      "types": "./dist/llm.d.ts",
+      "import": "./dist/llm.js",
+      "require": "./dist/llm.cjs"
+    },
+    "./storage": {
+      "types": "./dist/storage.d.ts",
+      "import": "./dist/storage.js",
+      "require": "./dist/storage.cjs"
+    },
+    "./audit": {
+      "types": "./dist/audit/index.d.ts",
+      "import": "./dist/audit/index.js",
+      "require": "./dist/audit/index.cjs"
+    },
+    "./erc8004": {
+      "types": "./dist/erc8004/index.d.ts",
+      "import": "./dist/erc8004/index.js",
+      "require": "./dist/erc8004/index.cjs"
+    },
+    "./erc8183": {
+      "types": "./dist/erc8183/index.d.ts",
+      "import": "./dist/erc8183/index.js",
+      "require": "./dist/erc8183/index.cjs"
+    },
+    "./x402": {
+      "types": "./dist/x402/index.d.ts",
+      "import": "./dist/x402/index.js",
+      "require": "./dist/x402/index.cjs"
+    },
+    "./b402": {
+      "types": "./dist/b402/index.d.ts",
+      "import": "./dist/b402/index.js",
+      "require": "./dist/b402/index.cjs"
+    },
+    "./mpp": {
+      "types": "./dist/mpp/index.d.ts",
+      "import": "./dist/mpp/index.js",
+      "require": "./dist/mpp/index.cjs"
+    },
+    "./pieverse": {
+      "types": "./dist/pieverse/index.d.ts",
+      "import": "./dist/pieverse/index.js",
+      "require": "./dist/pieverse/index.cjs"
+    },
+    "./tools": {
+      "types": "./dist/tools/index.d.ts",
+      "import": "./dist/tools/index.js",
+      "require": "./dist/tools/index.cjs"
+    }
+  },
+  "scripts": {
+    "build": "node --import tsx ../../scripts/build-runtime.mts",
+    "test": "vitest run",
+    "lint": "biome check src tests",
+    "typecheck": "tsc --noEmit",
+    "check": "pnpm typecheck && pnpm lint && pnpm test && pnpm build"
+  },
+  "dependencies": {
+    "@ai-sdk/amazon-bedrock": "^5.0.23",
+    "@ai-sdk/anthropic": "^4.0.15",
+    "@ai-sdk/openai": "^4.0.15",
+    "@aws-sdk/client-s3": "^3.1108.0",
+    "@azure/identity": "^4.13.1",
+    "@azure/storage-blob": "^12.33.0",
+    "@bnb-chain/b402": "0.2.1",
+    "@bnb-chain/mpp-b402": "0.2.2",
+    "@x402/core": "2.19.0",
+    "ai": "^7.0.29",
+    "mppx": "0.8.12",
+    "proper-lockfile": "^4.1.2",
+    "smol-toml": "^1.3.0",
+    "viem": "^2.56.3"
+  },
+  "peerDependencies": {
+    "@bnbagent/sdk": ">=0.6.0 <0.7.0"
+  },
+  "devDependencies": {
+    "@bnbagent/sdk": "0.6.0",
+    "@types/express": "^5.0.6",
+    "@types/node": "^22.0.0",
+    "@types/proper-lockfile": "^4.1.4",
+    "@x402/fetch": "2.19.0",
+    "express": "^5.2.1",
+    "tsup": "^8.0.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.5.0",
+    "vitest": "^2.0.0"
+  }
+}

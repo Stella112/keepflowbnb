@@ -1,0 +1,15 @@
+import {test} from 'node:test';
+import assert from 'node:assert/strict';
+import {proposalFromReview} from '../lib/agents/proposal.ts';
+import {buildBellReview} from '../lib/agents/review-report.ts';
+import {defaultPolicy,type Flow} from '../lib/paper/model.ts';
+import type {StockBrief} from '../lib/research/brief.ts';
+import {parseAssistantDraft} from '../app/create/import-draft.ts';
+const now=Date.parse('2026-10-09T12:00:00Z');
+const bell:Flow={id:'bell',title:'Captured',description:'',assets:[{ticker:'NVDA',weightBps:3000}],reserveBps:7000,version:2,contentHash:'a'.repeat(64),createdAt:new Date(now).toISOString(),example:false};
+const brief:StockBrief={status:'FACTUAL_DATA_ONLY',ticker:'NVDA',source:{name:'Binance RWA discovery',url:'https://web3.binance.com/en/dev-docs/catalog/web3-wallet/api/rest-api/rwa-data',fetchedAt:new Date(now).toISOString()},representations:[{provider:'test fixture',chainId:56,contract:'0x'+'1'.repeat(40),tokenSymbol:'NVDA',tokenName:'Fixture',underlyingName:'NVDA',decimals:18,tokenPriceUsd:'1',tokenToShareRatio:'1',derivedReferencePriceUsd:'1',status:{openState:true,marketStatus:null,reasonCode:null,reasonMsg:null,nextOpenTime:null,nextCloseTime:null}}],paidProviderConfigured:false,analystResearchAvailable:false,limitations:[]};
+const report=()=>buildBellReview(bell,defaultPolicy,3,[brief],now);
+test('missing cash instruction never silently adds parser default reserve even when exposure permits it',()=>{const permissive=buildBellReview(bell,{...defaultPolicy,maxSingleAssetBps:10000},3,[brief],now);assert.throws(()=>proposalFromReview(permissive,'NVDA 90%',now),/cash reserve explicitly/);});
+test('explicit reviewed allocation preserves evidence and imports only an unsaved definition',()=>{const value=report(),before=JSON.stringify(value),proposal=proposalFromReview(value,'NVDA 30%, keep 70% cash',now);assert.equal(proposal.importDraft.draft.definition.assets[0].weightBps,3000);assert.equal(proposal.provenance.bell.contentHash,bell.contentHash);assert.equal(proposal.provenance.policyVersion,3);assert.equal(proposal.executionEnabled,false);assert.equal(parseAssistantDraft(JSON.stringify(proposal.importDraft)).saved,false);assert.equal(JSON.stringify(value),before);});
+test('unreviewed assets, themes, implicit reserve and captured rule violations fail closed',()=>{for(const prompt of ['MSFT 30%, keep 70% cash','AI stocks equally','NVDA 90%, keep 10% cash','NVDA -30%, keep 70% cash','NVDA equally'])assert.throws(()=>proposalFromReview(report(),prompt,now));});
+test('stale, future, foreign and duplicated evidence cannot support a proposal',()=>{assert.throws(()=>proposalFromReview(report(),'NVDA 30%, keep 70% cash',now+120001));for(const change of [(r:ReturnType<typeof report>)=>{r.briefs[0].source.url='https://attacker.invalid';},(r:ReturnType<typeof report>)=>{r.briefs.push(structuredClone(r.briefs[0]));},(r:ReturnType<typeof report>)=>{r.createdAt=new Date(now+1).toISOString();},(r:ReturnType<typeof report>)=>{r.briefs[0].representations[0].chainId=1 as 56;}]){const r=report();change(r);assert.throws(()=>proposalFromReview(r,'NVDA 30%, keep 70% cash',now));}});

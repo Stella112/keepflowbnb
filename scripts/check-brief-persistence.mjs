@@ -1,0 +1,7 @@
+import {chromium} from '@playwright/test';
+import {readFileSync,writeFileSync} from 'node:fs';
+import {execFileSync} from 'node:child_process';
+import assert from 'node:assert/strict';
+const base=process.env.FIRSTBELL_TEST_URL??'http://localhost:3100',proof=JSON.parse(readFileSync('test-results/stock-brief-proof.json','utf8'));
+assert.equal(proof.result,'PASS');const browser=await chromium.launch({channel:'msedge',headless:true});
+try{const context=await browser.newContext({storageState:'test-results/stock-brief-state.json'});const read=async()=>{const response=await context.request.get(`${base}/api/research/jobs/${proof.jobId}`);assert.equal(response.status(),200);return response.json();};const before=await read();assert.deepEqual(before.job,proof.job);execFileSync('ssh',['-o','ConnectTimeout=10','-o','BatchMode=yes','-o','StrictHostKeyChecking=yes','-i','C:/bnbstocks/firstbell.pem','ubuntu@56.125.248.192','sudo systemctl restart firstbell'],{stdio:'inherit',timeout:30000});let after;for(let i=0;i<20;i++){try{after=await read();break;}catch{await new Promise(resolve=>setTimeout(resolve,500));}}assert.deepEqual(after,before);assert.equal(after.paymentSubmitted,false);writeFileSync('test-results/stock-brief-persistence.json',JSON.stringify({result:'PASS',jobId:proof.jobId,sourcedReportPreserved:true,paidCalls:0},null,2));console.log('PASS: private sourced report survived controlled restart; no paid call.');}finally{await browser.close();}

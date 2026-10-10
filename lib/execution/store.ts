@@ -1,0 +1,11 @@
+import "server-only";
+import {paperDatabase} from "../paper/store";
+import type {DryReceipt} from "./rules";
+import {DryCheckStore} from "./receipt-store-core";
+const store=()=>new DryCheckStore(paperDatabase());
+export const findDryRequest=(owner:string,requestId:string)=>store().find(owner,requestId);
+export const saveDryReceipt=(owner:string,fingerprint:string,receipt:DryReceipt)=>store().save(owner,fingerprint,receipt);
+export const readDryReceipt=(owner:string,id:string)=>store().read(owner,id);
+export const activeDryCheck=(owner:string)=>store().active(owner);
+export const admitDryCheck=(owner:string,fingerprint:string,receipt:DryReceipt)=>store().admit(owner,fingerprint,receipt);
+export const expireDryCheck=(owner:string,id:string)=>store().expire(owner,id);

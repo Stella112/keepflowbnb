@@ -1,0 +1,10 @@
+"use client";
+import {useState} from "react";
+import type {Flow} from "../../../../lib/paper/model";
+import {strategyDiff} from "../../../../lib/paper/strategy-adoption";
+import {policyNames,policyValue} from "./policy";
+export function VersionComparison({versions}:{versions:Flow[]}){
+ const [beforeVersion,setBefore]=useState(versions.at(-1)!.version),[afterVersion,setAfter]=useState(versions[0].version);
+ const before=versions.find(bell=>bell.version===beforeVersion)!,after=versions.find(bell=>bell.version===afterVersion)!,diff=strategyDiff(before,after);
+ return <section className="purchase-panel"><h2>Compare published versions.</h2><label htmlFor="history-before">From version</label><select id="history-before" value={beforeVersion} onChange={event=>setBefore(Number(event.target.value))}>{versions.map(bell=><option key={bell.version} value={bell.version}>Version {bell.version}</option>)}</select><label htmlFor="history-after">To version</label><select id="history-after" value={afterVersion} onChange={event=>setAfter(Number(event.target.value))}>{versions.map(bell=><option key={bell.version} value={bell.version}>Version {bell.version}</option>)}</select><p className="fine-print">This compares immutable definitions. Your personal rules and chosen Autopilot version are unchanged.</p><h3>Allocations</h3>{diff.assets.map(asset=><div className="allocation-row" key={asset.ticker}><span>{asset.ticker}</span><span>{asset.beforeBps/100}% → {asset.afterBps/100}%</span></div>)}<div className="allocation-row"><span>Cash target</span><span>{diff.reserve.beforeBps/100}% → {diff.reserve.afterBps/100}%</span></div><h3>Changed Flow rules</h3>{diff.policy.length?diff.policy.map(change=><p key={change.field}>{policyNames[change.field]??change.field}: {policyValue(change.field,change.before)} → {policyValue(change.field,change.after)}</p>):<p>No Flow rule changes between these versions.</p>}<details><summary>Compared content hashes</summary><p className="address">Version {before.version}: {before.contentHash}</p><p className="address">Version {after.version}: {after.contentHash}</p></details></section>;
+}

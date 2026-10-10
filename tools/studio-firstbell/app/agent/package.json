@@ -1,0 +1,14 @@
+{
+  "name": "firstbell-review-agent",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@bnbagent/studio-runtime": "0.0.14",
+    "@modelcontextprotocol/sdk": "1.32.1",
+    "zod": "^4.0.0"
+  },
+  "description": "Public factual MCP face; wallet and paid runtime activation remain separately gated.",
+  "scripts": {
+    "mcp": "node src/mcpMain.ts"
+  }
+}

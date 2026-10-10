@@ -1,0 +1,3 @@
+# Shared bounded request reader — 2026-10-09
+
+Independent reviewer auth_review accepted lib/request-body.ts and all eight legacy route integrations: account2048, QR512, execution512, quote2048, wallet portfolio256, paper4096, research draft2048 and paper autopilot2048 bytes. Limits apply before retained decoding, Content-Length does not override actual bytes, malformed UTF-8 cancels the stream, and reader locks are released. Parse precedes provider calls/account mutations. Identity, origin, schema, version and idempotency boundaries remain. Reviewer independently ran all five shared/Bell reader tests. No concrete blocker. No financial action authorized or performed.

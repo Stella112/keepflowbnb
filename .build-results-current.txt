@@ -1,0 +1,80 @@
+
+> first-bell@0.1.0 build
+> next build
+
+▲ Next.js 16.3.8 (Turbopack)
+- Environments: .env.local
+✓ Running next.config took 62ms
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 15.7s
+  Running TypeScript ...
+  Finished TypeScript in 5.8s ...
+  Collecting page data using 7 workers ...
+  Generating static pages using 7 workers (0/8) ...
+  Generating static pages using 7 workers (2/8) 
+  Generating static pages using 7 workers (4/8) 
+  Generating static pages using 7 workers (6/8) 
+✓ Generating static pages using 7 workers (8/8) in 1344ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ƒ /
+├ ○ /_not-found
+├ ○ /account
+├ ƒ /agent
+├ ƒ /api/account
+├ ƒ /api/account/delegations
+├ ƒ /api/account/qr
+├ ƒ /api/account/qr/[id]
+├ ƒ /api/account/sessions
+├ ƒ /api/agent/reviews
+├ ƒ /api/agent/reviews/[id]
+├ ƒ /api/agent/reviews/[id]/export
+├ ƒ /api/bells
+├ ƒ /api/bells/[id]/manifest
+├ ƒ /api/bells/follow
+├ ƒ /api/execution
+├ ƒ /api/execution/[id]
+├ ƒ /api/health
+├ ƒ /api/intents
+├ ƒ /api/intents/[id]
+├ ƒ /api/intents/[id]/approval
+├ ƒ /api/intents/[id]/submission
+├ ƒ /api/mcp
+├ ƒ /api/paper
+├ ƒ /api/paper/autopilot
+├ ƒ /api/paper/autopilot/tick
+├ ƒ /api/paper/receipts/[id]
+├ ƒ /api/policy/draft
+├ ƒ /api/preview/[id]
+├ ƒ /api/quote
+├ ƒ /api/research/draft
+├ ƒ /api/research/jobs
+├ ƒ /api/research/jobs/[id]
+├ ƒ /api/research/jobs/latest
+├ ƒ /api/research/offer
+├ ƒ /api/stocks
+├ ƒ /api/stocks/[ticker]/underlying
+├ ƒ /api/tools
+├ ƒ /api/wallet/plan
+├ ƒ /api/wallet/portfolio
+├ ƒ /assistant
+├ ƒ /autopilot
+├ ƒ /b/[id]
+├ ƒ /b/[id]/history
+├ ƒ /b/[id]/opengraph-image
+├ ƒ /bells
+├ ƒ /checks/[id]
+├ ƒ /create
+├ ƒ /login/qr/[id]
+├ ○ /my-bells
+├ ƒ /portfolio
+├ ƒ /preview/[id]
+├ ƒ /r/[id]
+└ ƒ /s/[ticker]
+
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+

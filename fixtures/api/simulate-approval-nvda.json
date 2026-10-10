@@ -1,0 +1,1 @@
+{"code":0,"msg":"success","data":{"status":"SUCCESS","failReason":"","balanceChanges":[],"allowanceChanges":[{"tokenAddress":"0x55d398326f99059ff775485246999027b3197955","owner":"0x1f41ebf1e60e5daa9cdda69637a78a9381b23388","spender":"0xb44446b0c8e56988c34f7ff73ae904982b5fdda5","preAmount":"0","postAmount":"5000000000000000000"}]},"timestamp":1791278048631,"success":true}

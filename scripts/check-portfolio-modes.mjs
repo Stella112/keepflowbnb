@@ -1,0 +1,12 @@
+import {chromium} from '@playwright/test';
+import assert from 'node:assert/strict';
+import {mkdirSync,writeFileSync} from 'node:fs';
+const base='https://56.125.248.192:80',browser=await chromium.launch({channel:'msedge',headless:true});
+try{
+ const page=await browser.newPage({viewport:{width:390,height:844}});await page.addInitScript(()=>{window.__modeWalletCalls=[];window.ethereum={request:async({method})=>{window.__modeWalletCalls.push(method);throw Error('No automatic wallet access');}};});
+ await page.goto(base+'/portfolio',{waitUntil:'networkidle'});await page.getByRole('heading',{name:'Your paper portfolio.',exact:true}).waitFor();assert.equal(await page.getByRole('button',{name:'Read wallet holdings',exact:true}).count(),0);
+ await page.getByRole('navigation',{name:'Portfolio mode'}).getByRole('link',{name:'Real wallet',exact:true}).click();await page.getByRole('heading',{name:'Your real wallet.',exact:true}).waitFor();await page.getByText('REAL WALLET · READ ONLY',{exact:true}).waitFor();await page.getByRole('heading',{name:'Real trading is not ready.',exact:true}).waitFor();assert.equal(await page.getByRole('button',{name:'Save paper rules',exact:true}).count(),0);assert.equal(await page.getByRole('button',{name:'Connect wallet',exact:true}).count(),1);assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);assert.deepEqual(await page.evaluate(()=>window.__modeWalletCalls),[]);
+ await page.getByRole('navigation',{name:'Portfolio mode'}).getByRole('link',{name:'Paper portfolio',exact:true}).click();await page.getByRole('heading',{name:'Your paper portfolio.',exact:true}).waitFor();
+ await page.goto(base+'/portfolio?mode=mainnet',{waitUntil:'networkidle'});await page.getByRole('heading',{name:'Your paper portfolio.',exact:true}).waitFor();const health=await (await fetch(base+'/api/health')).json();assert.equal(health.executionAvailable,false);assert.equal(health.mode,'PAPER');
+ mkdirSync('test-results',{recursive:true});writeFileSync('test-results/portfolio-modes-proof.json',JSON.stringify({result:'PASS',paperDefault:true,realWalletReadOnly:true,invalidModeCannotEnableMainnet:true,separateInterfaces:true,automaticWalletCalls:0,mobileLayout:true,executionAvailable:false},null,2));console.log('PASS: paper/real-wallet view switch, truthful read-only labels and no automatic wallet permissions or mainnet activation.');
+}finally{await browser.close();}

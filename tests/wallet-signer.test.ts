@@ -1,0 +1,6 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {connectedWalletSigner} from '../lib/execution/wallet-signer.ts';
+const tx={chainId:56 as const,from:'0x'+'1'.repeat(40),to:'0x'+'2'.repeat(40),data:'0x1234' as const,value:'0',gas:'21000',gasPrice:'1000000000'};
+test('wallet signer requires gate, matching chain and matching active account',async()=>{let sends=0;for(const mode of ['disabled','chain','account']){const signer=connectedWalletSigner({request:async({method})=>{if(method==='eth_chainId')return mode==='chain'?'0x1':'0x38';if(method==='eth_accounts')return [mode==='account'?tx.to:tx.from];sends++;return '0x'+'a'.repeat(64);}},mode!=='disabled');await assert.rejects(signer.submitExactTransaction(tx));}assert.equal(sends,0);});
+test('wallet signer passes exact pinned calldata and amounts without automatic chain switching',async()=>{const methods:string[]=[];const signer=connectedWalletSigner({request:async({method,params})=>{methods.push(method);if(method==='eth_chainId')return '0x38';if(method==='eth_accounts')return [tx.from];assert.deepEqual(params,[{from:tx.from,to:tx.to,data:tx.data,value:'0x0',gas:'0x5208',gasPrice:'0x3b9aca00',chainId:'0x38'}]);return '0x'+'a'.repeat(64);}},true);await signer.submitExactTransaction(tx);assert.deepEqual(methods,['eth_chainId','eth_accounts','eth_sendTransaction']);});

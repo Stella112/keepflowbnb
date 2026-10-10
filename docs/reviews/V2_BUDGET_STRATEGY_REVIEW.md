@@ -1,0 +1,11 @@
+# Paper budgets and strategy acceptance
+
+Release 20261009084956 adds optional exact-six-decimal daily/weekly purchase caps, limited to 10000 virtual USD, and explicit plan/version checks for paper strategy adoption. All builders and the independent reviewer were Codex workers; no Claude runtime was invoked.
+
+The account purchase ledger stores WAT calendar-day and Monday-week totals separately from receipt retention. It migrates successful current-period purchase legs once, counts actual rounded cost immediately across sequential legs, ignores unsuccessful legs and never refunds spending after a sell. New and existing purchases run within the account's SQLite transaction. Optional Bell caps intersect personal caps using the stricter amount. Zero caps block purchases. These are paper totals, not live budget reservation or wallet permissions.
+
+Independent review required expectedPlanId and creator continuity on strategy acceptance. Final code binds the active plan, Bell ID, pinned version and reviewed creator version before mutation. Already identified creators cannot change or disappear. A guest creator may link a wallet through trusted server publication without permanently blocking followers. UI exposes allocation/reserve/policy changes and requires explicit acceptance. Personal rules, balances, positions and schedule remain unchanged.
+
+All 135 Linux tests, typecheck and production build passed. Fifteen targeted tests cover policy parsing, period ledgers and strategy checks. Deployed browser evidence proves concurrent virtual purchases cannot bypass budget, selling cannot restore spent budget, zero caps block, usage renders on mobile, and ledger/policy/receipts survive restart. Scheduler verification exercised the installed background worker, retry behavior, pause/resume, stale adoption rejection, blocked unsafe update and explicit safe adoption with unchanged schedule/personal rules. An initial restart overlap interrupted the scheduler check; its final separate rerun passed. Three exact unchanged QA Bells were removed and their plans paused, retaining private receipt journals.
+
+Evidence: test-results/paper-budget-proof.json, paper-budget-persistence.json and agent-proof.json. Mainnet execution remains disabled. Public HTTPS recheck still timed out; external service and original MCP acceptance gates remain unresolved.

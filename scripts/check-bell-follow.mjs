@@ -1,0 +1,31 @@
+import {chromium} from '@playwright/test';
+import assert from 'node:assert/strict';
+import {writeFileSync} from 'node:fs';
+const base=process.env.FIRSTBELL_TEST_URL??'http://localhost:3100',browser=await chromium.launch({channel:'msedge',headless:true});
+try{
+ const creator=await browser.newContext(),follower=await browser.newContext({viewport:{width:390,height:844}}),stranger=await browser.newContext(),headers={Origin:base};
+ const post=(context,data)=>context.request.post(base+'/api/bells/follow',{headers,data});
+ assert.equal((await post(stranger,{action:'FOLLOW',bellId:'ai-compute',expectedVersion:1})).status(),401);
+ await follower.request.get(base+'/api/account');await creator.request.get(base+'/api/account');
+ const beforeInvalid=await (await creator.request.get(base+'/api/bells')).json();
+ for(const method of ['post','patch'])assert.equal((await creator.request[method](base+'/api/bells',{headers,data:'x'.repeat(4097)})).status(),400);
+ assert.deepEqual((await (await creator.request.get(base+'/api/bells')).json()).ownedIds,beforeInvalid.ownedIds);
+ const definition={title:'Follow QA '+Date.now(),description:'Temporary informational-follow verification fixture.',assets:[{ticker:'NVDA',weightBps:3000},{ticker:'MSFT',weightBps:3000},{ticker:'AAPL',weightBps:3000}],reserveBps:1000};
+ const create=await creator.request.post(base+'/api/bells',{headers,data:definition});assert.equal(create.status(),200);const bell=(await create.json()).bell;
+ const accountBefore=await (await follower.request.get(base+'/api/paper/autopilot')).json();
+ const detail=await follower.newPage();await detail.goto(base+'/b/'+bell.id,{waitUntil:'domcontentloaded'});await detail.getByRole('button',{name:'Follow this Flow',exact:true}).waitFor();await detail.getByRole('button',{name:'Follow this Flow',exact:true}).click();await detail.getByRole('button',{name:'Unfollow this Flow',exact:true}).waitFor();
+ const updated={...definition,assets:[{ticker:'NVDA',weightBps:5000},{ticker:'MSFT',weightBps:2500},{ticker:'AAPL',weightBps:1500}]};
+ const publish=await creator.request.patch(base+'/api/bells',{headers,data:{id:bell.id,version:1,definition:updated}});assert.equal(publish.status(),200);
+ await post(follower,{action:'FOLLOW',bellId:bell.id,expectedVersion:2});
+ const list=await follower.request.get(base+'/api/bells/follow');assert.equal(list.status(),200);const entry=(await list.json()).follows.find(item=>item.bellId===bell.id);assert.equal(entry.pinned.version,1);assert.equal(entry.current.version,2);assert.equal(entry.updateAvailable,true);assert.ok(entry.changes.assets.some(asset=>asset.ticker==='NVDA'&&asset.beforeBps===3000&&asset.afterBps===5000));
+ assert.equal((await post(follower,{action:'ACKNOWLEDGE',bellId:bell.id,expectedPinnedVersion:1,expectedCurrentVersion:1})).status(),409);
+ assert.equal((await post(follower,{action:'FOLLOW',bellId:bell.id,expectedVersion:2,owner:'injected'})).status(),400);
+ assert.equal((await follower.request.post(base+'/api/bells/follow',{headers:{Origin:'https://foreign.invalid'},data:{action:'UNFOLLOW',bellId:bell.id}})).status(),403);
+ const page=await follower.newPage();await page.goto(base+'/my-bells',{waitUntil:'domcontentloaded'});await page.getByText(definition.title,{exact:true}).waitFor();assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);
+ await page.getByText('These targets exceed a holding limit or fall below a reserve rule.',{exact:false}).waitFor();const acknowledge=page.waitForResponse(response=>response.url().endsWith('/api/bells/follow')&&response.request().method()==='POST');await page.getByRole('button',{name:'Acknowledge version 2 informationally',exact:true}).click();assert.equal((await acknowledge).status(),200);
+ const acknowledged=(await (await follower.request.get(base+'/api/bells/follow')).json()).follows.find(item=>item.bellId===bell.id);assert.equal(acknowledged.pinned.version,2);assert.equal(acknowledged.updateAvailable,false);
+ assert.deepEqual(await (await follower.request.get(base+'/api/paper/autopilot')).json(),accountBefore);
+ assert.equal((await post(follower,{action:'UNFOLLOW',bellId:bell.id})).status(),200);assert.equal((await post(follower,{action:'UNFOLLOW',bellId:bell.id})).status(),200);
+ assert.equal((await (await follower.request.get(base+'/api/bells/follow')).json()).follows.length,0);
+ writeFileSync('test-results/bell-follow-proof.json',JSON.stringify({result:'PASS',bellId:bell.id,informationalOnly:true,staleAcknowledgementRejected:true,personalPolicyAndAutopilotUnchanged:true,mobileLayout:true},null,2));console.log('PASS: informational follow, pinned update diff, CAS acknowledgement, ownership and mobile workspace; personal rules and Autopilot unchanged.');
+}finally{await browser.close();}

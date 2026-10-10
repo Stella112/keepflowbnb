@@ -1,0 +1,7 @@
+.studio/
+node_modules/
+app/agent/node_modules/
+app/agent/dist/
+agentcore/.env.local
+*.env
+.env.local

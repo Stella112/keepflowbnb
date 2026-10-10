@@ -1,0 +1,26 @@
+'use client';
+import {useEffect,useRef,useState} from 'react';
+import type {StockBrief} from '../lib/research/brief';
+import {paperRequestId} from '../lib/paper/request-id';
+type Job={id:string;requestId:string;ticker:string;status:'PENDING'|'COMPLETE'|'FAILED';createdAt:string;finishedAt?:string;report?:StockBrief;reason?:string};
+function pause(signal:AbortSignal){return new Promise<void>((resolve,reject)=>{const abort=()=>{clearTimeout(timer);reject(new Error('Cancelled'));};const timer=setTimeout(()=>{signal.removeEventListener('abort',abort);resolve();},2000);signal.addEventListener('abort',abort,{once:true});if(signal.aborted)abort();});}
+export function StockResearch({ticker}:{ticker:string}){
+ const generation=useRef(0),controller=useRef<AbortController|null>(null),[busy,setBusy]=useState(false),[job,setJob]=useState<Job|null>(null),[error,setError]=useState('');
+ useEffect(()=>{generation.current++;controller.current?.abort();setJob(null);setBusy(false);setError('');return ()=>{generation.current++;controller.current?.abort();};},[ticker]);
+ async function prepare(saved=false){
+  controller.current?.abort();const active=++generation.current,abort=new AbortController();controller.current=abort;setBusy(true);setJob(null);setError('');
+  const deadline=setTimeout(()=>{if(generation.current===active){abort.abort();setBusy(false);setJob(null);setError('Stock brief verification timed out. No report was invented and no new job was retried.');}},85000);
+  const current=()=>generation.current===active&&!abort.signal.aborted;
+  const read=async(response:Response)=>{const data=await response.json();if(!response.ok)throw new Error(response.status===401?'Open your paper portfolio or sign in before requesting a private brief.':data.error??'The stock brief is unavailable.');const next=data.job as Job;if(!next||next.ticker!==ticker||!['PENDING','COMPLETE','FAILED'].includes(next.status)||typeof next.id!=='string')throw new Error('The brief response could not be verified.');if(next.status==='COMPLETE'){const report=next.report;if(!report||report.status!=='FACTUAL_DATA_ONLY'||report.ticker!==ticker||!Array.isArray(report.representations)||!Array.isArray(report.limitations))throw new Error('A completed sourced brief was not returned.');const source=new URL(report.source.url);if(source.protocol!=='https:'||source.hostname!=='web3.binance.com')throw new Error('The brief source could not be verified.');}return next;};
+  try{
+   // A creation request is never retried automatically; only the returned job is polled.
+   let next=await read(await (saved?fetch(`/api/research/jobs/latest?ticker=${encodeURIComponent(ticker)}`,{cache:'no-store',signal:abort.signal}):fetch('/api/research/jobs',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({requestId:paperRequestId(),ticker}),signal:abort.signal})));if(!current())return;setJob(next);
+   for(let count=0;next.status==='PENDING'&&count<40;count++){await pause(abort.signal);if(!current())return;next=await read(await fetch(`/api/research/jobs/${encodeURIComponent(next.id)}`,{cache:'no-store',signal:abort.signal}));if(!current())return;setJob(next);}
+   if(next.status==='PENDING')throw new Error('This brief is still pending. The bounded check ended; no report was invented or new job created.');
+   if(next.status==='FAILED')throw new Error(next.reason??'The sourced stock brief could not be prepared.');
+  }catch(error){if(current()){setJob(null);setError(error instanceof Error?error.message:'The stock brief is unavailable.');}}finally{clearTimeout(deadline);if(current())setBusy(false);}
+ }
+ const report=job?.status==='COMPLETE'?job.report:undefined;
+ return <section className='purchase-panel'><h2>Stock data brief.</h2><p>Source-reported facts only. This is not analyst or AI research, a rating, a paid report, or an investment recommendation.</p><button id='stock-brief-button' className='button secondary' disabled={busy} onClick={()=>prepare()}>{busy?'Preparing data brief…':'Prepare stock data brief'}</button><button id='saved-stock-brief-button' className='button secondary' disabled={busy} onClick={()=>prepare(true)}>Open latest saved brief</button>{busy&&<p role='status'>Reading discovery data for {ticker}. No trade, payment or wallet approval is requested.</p>}{error&&<p className='error' role='alert'>{error}</p>}{report&&<div><p>Source: <a href={report.source.url} target='_blank' rel='noreferrer'>{report.source.name}</a></p><p className='fine-print'>Discovery timestamp: {report.source.fetchedAt}. Values below are indicative and may have changed.</p>{report.representations.map(item=><div key={item.contract}><h3>{item.underlyingName} · {item.provider}</h3><dl><dt>Indicative token price (USD)</dt><dd>{item.tokenPriceUsd}</dd><dt>Provider-derived share price (USD)</dt><dd>{item.derivedReferencePriceUsd}</dd><dt>Token to share ratio</dt><dd>{item.tokenToShareRatio}</dd><dt>Provider purchase status</dt><dd>{item.status.openState?'Reported open':'Reported unavailable'}</dd></dl><details><summary>Technical source details</summary><p>BSC chain {item.chainId} · {item.tokenSymbol} · {item.decimals} decimals</p><p style={{overflowWrap:'anywhere'}}>{item.contract}</p></details></div>)}{report.limitations.map(line=><p className='fine-print' key={line}>{line}</p>)}</div>}</section>;
+}
+

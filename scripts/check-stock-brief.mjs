@@ -1,0 +1,19 @@
+import {chromium} from '@playwright/test';
+import {randomUUID} from 'node:crypto';
+import {mkdirSync,writeFileSync} from 'node:fs';
+import assert from 'node:assert/strict';
+const base=process.env.FIRSTBELL_TEST_URL??'http://localhost:3100',browser=await chromium.launch({channel:'msedge',headless:true});
+try{
+ const context=await browser.newContext({viewport:{width:390,height:844}}),page=await context.newPage(),headers={Origin:base};page.on('pageerror',error=>console.log('Browser error: '+error.message));
+ await page.addInitScript(()=>{window.__walletCalls=[];window.ethereum={request:async({method})=>{window.__walletCalls.push(method);throw new Error('Data briefs must not request wallet authority.');}};});
+ const input={requestId:randomUUID(),ticker:'NVDA'},created=await context.request.post(base+'/api/research/jobs',{headers,data:input});assert.equal(created.status(),202);const initial=await created.json();assert.equal(initial.job.status,'PENDING');assert.equal(initial.paymentSubmitted,false);assert.equal(initial.executionAvailable,false);
+ const replay=await context.request.post(base+'/api/research/jobs',{headers,data:input});assert.equal((await replay.json()).job.id,initial.job.id);
+ assert.equal((await context.request.post(base+'/api/research/jobs',{headers,data:{...input,ticker:'MSFT'}})).status(),409);
+ const stranger=await browser.newContext();assert.equal((await stranger.request.get(`${base}/api/research/jobs/${initial.job.id}`)).status(),404);await stranger.close();
+ let job;for(let attempt=0;attempt<40;attempt++){const response=await context.request.get(`${base}/api/research/jobs/${initial.job.id}`);assert.equal(response.status(),200);job=(await response.json()).job;if(job.status!=='PENDING')break;await new Promise(resolve=>setTimeout(resolve,1000));}
+ assert.equal(job.status,'COMPLETE',job.reason);assert.equal(job.report.status,'FACTUAL_DATA_ONLY');assert.equal(job.report.ticker,'NVDA');assert.equal(job.report.paidProviderConfigured,false);assert.equal(job.report.analystResearchAvailable,false);assert.equal(job.report.source.name,'Binance RWA discovery');assert.ok(Number.isFinite(Date.parse(job.report.source.fetchedAt)));assert.ok(job.report.representations.length>0);assert.ok(job.report.representations.every(item=>item.chainId===56&&/^0x[0-9a-fA-F]{40}$/.test(item.contract)&&Number(item.tokenPriceUsd)>0));
+ const publicBrief=await context.request.post(base+'/api/tools',{headers,data:{name:'get_stock_research',arguments:{ticker:'NVDA'}}});assert.equal(publicBrief.status(),200);assert.equal((await publicBrief.json()).result.status,'FACTUAL_DATA_ONLY');
+ await page.goto(base+'/s/NVDA',{waitUntil:'domcontentloaded'});const button=page.getByRole('button',{name:'Prepare stock data brief',exact:true});await button.waitFor({timeout:45000}).catch(async error=>{console.log((await page.locator('main').innerText()).slice(-1600));throw error;});await page.waitForFunction(()=>Object.keys(document.querySelector('#stock-brief-button')??{}).some(key=>key.startsWith('__reactProps$')));await button.click();await page.getByText('Binance RWA discovery',{exact:false}).first().waitFor({timeout:45000});
+ assert.deepEqual(await page.evaluate(()=>window.__walletCalls),[]);assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);
+ mkdirSync('test-results',{recursive:true});await page.screenshot({path:'test-results/stock-data-brief-mobile.png',fullPage:true});await context.storageState({path:'test-results/stock-brief-state.json'});writeFileSync('test-results/stock-brief-proof.json',JSON.stringify({result:'PASS',checks:18,jobId:job.id,job,source:'Binance RWA discovery',paidCalls:0,walletCalls:[]},null,2));console.log('PASS: actual sourced brief, durable private job, replay/conflict protection, tool binding and mobile UI; no paid calls or wallet requests.');
+}finally{await browser.close();}

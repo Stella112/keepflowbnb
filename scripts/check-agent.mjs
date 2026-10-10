@@ -1,0 +1,53 @@
+import {chromium} from '@playwright/test';
+import assert from 'node:assert/strict';
+import {execFileSync} from 'node:child_process';
+import {mkdirSync,writeFileSync} from 'node:fs';
+const base=process.env.FIRSTBELL_TEST_URL??'http://56.125.248.192';
+const browser=await chromium.launch({channel:'msedge',headless:true});
+try{
+ const context=await browser.newContext({viewport:{width:380,height:820}}),page=await context.newPage();
+ const agent=async()=> (await context.request.get(base+'/api/paper/autopilot')).json();
+ const account=async()=> (await context.request.get(base+'/api/paper')).json();
+ const post=async(data)=>{const response=await context.request.post(base+'/api/paper/autopilot',{headers:{Origin:base},data});const result=await response.json();assert.equal(response.status(),200,JSON.stringify(result));return result;};
+ await account();
+ const definition={title:'QA scheduled Flow',description:'Controlled paper-agent verification.',assets:[{ticker:'NVDA',weightBps:3000},{ticker:'MSFT',weightBps:3000},{ticker:'GOOGL',weightBps:3000}],reserveBps:1000,forkedFromId:'ai-compute'};
+ const created=await context.request.post(base+'/api/bells',{headers:{Origin:base},data:definition});assert.equal(created.status(),200);const bell=(await created.json()).bell;writeFileSync('test-results/agent-created-fixture.json',JSON.stringify({bellId:bell.id,title:bell.title,createdAt:bell.createdAt}));
+ await page.goto(base+'/autopilot?bell='+bell.id,{waitUntil:'networkidle'});
+ await page.waitForFunction(()=>Object.keys(document.querySelector('#agent-bell')??{}).some(key=>key.startsWith('__reactProps$')));await page.getByLabel('Follow this Flow',{exact:true}).selectOption(bell.id);
+ const enabledResponse=page.waitForResponse(response=>response.url().endsWith('/api/paper/autopilot')&&response.request().method()==='POST');await page.getByRole('button',{name:'Enable paper autopilot',exact:true}).click();const enabledResult=await enabledResponse;assert.equal(enabledResult.status(),200,await enabledResult.text());
+ await page.getByRole('button',{name:'Pause agent',exact:true}).waitFor();
+ // Execute the actual installed worker, rather than a browser CHECK request.
+ execFileSync('ssh',['-o','BatchMode=yes','-o','StrictHostKeyChecking=yes','-i','C:/bnbstocks/firstbell.pem','ubuntu@56.125.248.192','sudo systemctl start firstbell-paper-agent.service'],{stdio:'inherit'});
+ let current=await agent();assert.ok(current.plan.lastRunAt,'background service recorded the first contribution');
+ const funded=await account(),receipt=funded.receipts.find(r=>r.id===current.plan.lastReceiptId);
+ assert.equal(receipt.contributionUsd,'20');assert.equal(receipt.action,'AUTOPILOT');assert.equal(receipt.mode,'PAPER');assert.equal(receipt.transactionHash,null);
+ assert.ok(receipt.legs.every(l=>Number(l.amountUsd)<=10));assert.ok(['PAPER_FILLED','BLOCKED','SKIPPED','PARTIAL'].includes(receipt.status));
+ assert.ok(Date.parse(current.plan.nextRunAt)>Date.parse(current.plan.lastRunAt));
+ assert.ok(Math.abs(Number(funded.cashUsd)+receipt.legs.filter(l=>l.status==="PAPER_FILLED").reduce((sum,l)=>sum+Number(l.amountUsd),0)-10020)<0.00001,'one virtual contribution was added');
+ const unchanged=()=>account();
+ await Promise.all([post({action:'CHECK'}),post({action:'CHECK'})]);
+ await post({action:'ENABLE',bellId:bell.id,contributionUsd:'20',cadence:'WEEKLY',weekday:5,maxTradeUsd:'10'});
+ const retried=await unchanged();assert.equal(retried.cashUsd,funded.cashUsd);assert.equal(retried.receipts.length,funded.receipts.length);assert.deepEqual(retried.positions.map(p=>p.quantity),funded.positions.map(p=>p.quantity));
+ const nextRunAt=current.plan.nextRunAt;
+ await post({action:'PAUSE'});assert.equal((await agent()).plan.enabled,false);await post({action:'RESUME'});assert.equal((await agent()).plan.nextRunAt,nextRunAt);
+ const outsider=await browser.newContext();
+ const publish=async(version,assets,ctx=context)=>ctx.request.patch(base+'/api/bells',{headers:{Origin:base},data:{id:bell.id,version,definition:{...definition,assets}}});
+ assert.equal((await publish(1,definition.assets,outsider)).status(),400);await outsider.close();
+ const risky=[{ticker:'NVDA',weightBps:5000},{ticker:'MSFT',weightBps:2000},{ticker:'GOOGL',weightBps:2000}];
+ assert.equal((await publish(1,risky)).status(),200);assert.equal((await agent()).plan.bell.version,1);
+ const pinned=await agent();const stale=await context.request.post(base+'/api/paper/autopilot',{headers:{Origin:base},data:{action:'ADOPT',expectedPlanId:pinned.plan.id,expectedBellId:bell.id,expectedPinnedVersion:1,expectedCurrentVersion:1}});assert.equal(stale.status(),409);assert.equal((await agent()).plan.bell.version,1);const blocked=await post({action:'ADOPT',expectedPlanId:pinned.plan.id,expectedBellId:bell.id,expectedPinnedVersion:1,expectedCurrentVersion:2});assert.equal(blocked.adopted,false);assert.equal((await agent()).plan.bell.version,1);
+ assert.equal((await publish(1,definition.assets)).status(),400,'stale publisher cannot overwrite a newer version');
+ const safe=[{ticker:'NVDA',weightBps:3500},{ticker:'MSFT',weightBps:2500},{ticker:'GOOGL',weightBps:3000}];
+ assert.equal((await publish(2,safe)).status(),200);
+ await page.reload({waitUntil:'networkidle'});await page.getByRole('heading',{name:'A new strategy is available.',exact:true}).waitFor();
+ await page.getByRole('button',{name:'Check and accept paper version 3',exact:true}).click();await page.getByText('Strategy update accepted under your rules.',{exact:true}).waitFor();
+ current=await agent();assert.equal(current.plan.bell.version,3);assert.equal(current.plan.nextRunAt,nextRunAt);assert.equal(current.policy.maxSingleAssetBps,4000);
+ const parent=(await (await context.request.get(base+'/api/bells')).json()).bells.find(b=>b.id==='ai-compute');assert.equal(parent.version,1);assert.equal(parent.assets.find(a=>a.ticker==='NVDA').weightBps,3000);
+ assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true,'mobile agent layout fits');
+ mkdirSync('test-results',{recursive:true});await page.screenshot({path:'test-results/agent-mobile.png',fullPage:true});
+ await page.goto(base+'/portfolio',{waitUntil:'networkidle'});await page.getByRole('heading',{name:/Your targets and actual weights/}).waitFor();assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);await page.screenshot({path:'test-results/agent-weights-mobile.png',fullPage:true});
+ await post({action:'PAUSE'});await context.storageState({path:'test-results/agent-browser-state.json'});
+ writeFileSync('test-results/agent-proof.json',JSON.stringify({bellId:bell.id,scheduledReceiptId:receipt.id,planId:current.plan.id,version:3,nextRunAt,checks:['background systemd worker','single virtual contribution','concurrent retry idempotency','save does not refuel','pause and resume','publisher ownership','stale version conflict','creator update requires acceptance','follower policy blocks unsafe update','safe strategy adoption','parent unchanged','mobile layout','mainnet disabled']},null,2));
+ console.log(JSON.stringify({result:'PASS',bellId:bell.id,scheduledStatus:receipt.status,checks:13}));
+}finally{await browser.close();}
+

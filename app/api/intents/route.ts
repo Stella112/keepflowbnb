@@ -1,0 +1,6 @@
+import {intentInputSchema,intentView} from "../../../lib/execution/intents/model";
+import {intentOwner,readIntentBody,prepareIntent} from "../../../lib/execution/intents/server";
+import {takePreviewSlot} from "../../../lib/binance/preview-limit";
+export const dynamic="force-dynamic";
+export const maxDuration=300;
+export async function POST(request:Request){try{const {owner,wallet}=await intentOwner(request,true),input=intentInputSchema.parse(await readIntentBody(request));if(!takePreviewSlot())return Response.json({error:"Preparation is busy. Try again in a minute."},{status:429});return Response.json({intent:intentView(await prepareIntent(owner,wallet,input)),executionAvailable:false},{headers:{"Cache-Control":"no-store"}});}catch(error){const code=error instanceof Error?error.message:"INVALID_REQUEST";return Response.json({error:code==="AUTH_REQUIRED"?"Sign in with your own wallet over HTTPS or localhost before preparing an intent.":code==="REQUEST_CONFLICT"?"Request ID already used for different instructions.":"The intent could not be prepared.",executionAvailable:false},{status:code==="AUTH_REQUIRED"?401:code==="REQUEST_CONFLICT"?409:400,headers:{"Cache-Control":"no-store"}});}}

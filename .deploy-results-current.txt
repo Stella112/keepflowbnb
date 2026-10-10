@@ -1,0 +1,642 @@
+v24.21.0
+/home/ubuntu/firstbell/releases/20261010091648.tar.gz: OK
+
+added 171 packages, and audited 172 packages in 12s
+
+found 0 vulnerabilities
+
+added 74 packages, and audited 75 packages in 1s
+
+found 0 vulnerabilities
+
+> first-bell@0.1.0 test
+> node --test tests/*.test.ts
+
+(node:161307) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///home/ubuntu/firstbell/releases/20261010091648/tests/agent-proposal.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /home/ubuntu/firstbell/releases/20261010091648/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ missing cash instruction never silently adds parser default reserve even when exposure permits it (15.492442ms)
+✔ explicit reviewed allocation preserves evidence and imports only an unsaved definition (6.953829ms)
+✔ unreviewed assets, themes, implicit reserve and captured rule violations fail closed (9.240645ms)
+✔ stale, future, foreign and duplicated evidence cannot support a proposal (10.692181ms)
+(node:161314) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///home/ubuntu/firstbell/releases/20261010091648/tests/agent-review.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /home/ubuntu/firstbell/releases/20261010091648/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ history remains owner-private, bounded and excludes report and session material (35.214955ms)
+✔ source-grounded review preserves captured rules and rejects invalid, stale, duplicated sources (7.342065ms)
+✔ private immutable admission replay and per-owner bounded queue (1.791199ms)
+✔ reopened worker recovers expired lease and old claim cannot finish or overwrite cancellation (1.5709ms)
+✔ session revocation cancels active work and fences publication (1.064566ms)
+✔ expired jobs from other owners are swept before global admission (18.879602ms)
+✔ completed captured report is durable and mismatched output never commits (3.398603ms)
+✔ file-backed restart reclaims abandoned work and preserves final report after another reopen (45.584948ms)
+(node:161321) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///home/ubuntu/firstbell/releases/20261010091648/tests/agentic-execute.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /home/ubuntu/firstbell/releases/20261010091648/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ disabled by default and malformed command IDs never invoke provider (3.194133ms)
+✔ trusted bound approval and durable start precede exactly one synthetic command (6.005225ms)
+✔ wrong owner, wallet, intent, fingerprint, expiry and session fail before durable submission (1.601654ms)
+✔ timeout, malformed result and persistence failure preserve ambiguity with no retry (1.090991ms)
+✔ pending App confirmation is persisted but never confirmed, expiry after lock prevents command (1.204482ms)
+(node:161328) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///home/ubuntu/firstbell/releases/20261010091648/tests/agentic-preview.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /home/ubuntu/firstbell/releases/20261010091648/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ official preview arguments are fixed BSC/valuezero and never include execution or gas option (4.953463ms)
+✔ disabled, crossoperator, unmatched validation and routes do not call provider (1.547578ms)
+✔ synthetic provider fixture proves devmode gate, exact preview binding and no signature return (5.293039ms)
+✔ disabled developer mode, expired and failed simulation cannot produce preview (4.323562ms)
+(node:161335) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///home/ubuntu/firstbell/releases/20261010091648/tests/agents.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /home/ubuntu/firstbell/releases/20261010091648/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ agents disabled by default and cannot share an operator session (3.476908ms)
+✔ unconnected auth stops immediately and wrong wallet does not disclose settings (5.316214ms)
+✔ operator status strips credential fields and retains only verified readonly metadata (5.302156ms)
+✔ malformed output fails closed and Studio version is not deployed-agent proof (0.60871ms)
+✔ inactive deadline is independent from session expiry and malformed deadlines fail closed (7.863647ms)
+✔ real subprocess runner uses contained test fixture, fixed args and no inherited secrets (62.581653ms)
+(node:161354) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///home/ubuntu/firstbell/releases/20261010091648/tests/approval.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /home/ubuntu/firstbell/releases/20261010091648/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ preparation requires exact pinned approval and fresh verified simulation (4.846603ms)
+✔ approval handoff is claimed once before caller receives exact calldata (2.461897ms)
+✔ durable journal prevents new hash, global hash reuse and foreign-owner access (2.77014ms)
+✔ canonical matching approval requires exact allowance then fresh swap preparation (4.110306ms)
+✔ wrong transaction, allowance, chain and reorg never establish approval (2.46445ms)
+✔ cancelled basket blocks both standalone approval admission and delayed handoff claim (3.523529ms)
+(node:161361) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///home/ubuntu/firstbell/releases/20261010091648/tests/assistant-import.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /home/ubuntu/firstbell/releases/20261010091648/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ validated unsaved import preserves definition and leaves suggestions outside it (10.039717ms)
+✔ actual MCP text wrapper accepts only explicit non-execution result (5.049493ms)
+✔ modification drafts are bound to matching editor and cannot override provenance (1.664262ms)
+✔ strict bounded import rejects authority claims, invalid weights and financial permissions (2.894238ms)
+(node:161368) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///home/ubuntu/firstbell/releases/20261010091648/tests/assistant-policy-import.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /home/ubuntu/firstbell/releases/20261010091648/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ actual MCP rule draft replays explicit instructions while preserving unspecified current caps (11.633054ms)
+✔ stale version and tampered values or clauses cannot be imported (2.332797ms)
+✔ bounded strict rule imports reject saved authority and unsupported financial clauses (4.211011ms)
+(node:161375) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///home/ubuntu/firstbell/releases/20261010091648/tests/auth.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /home/ubuntu/firstbell/releases/20261010091648/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ signs the exact encoded path, method and raw body (1.724528ms)
+✔ rejects credentials being sent to another host and missing signed prefix (0.41881ms)
+(node:161382) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///home/ubuntu/firstbell/releases/20261010091648/tests/automation-authority.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /home/ubuntu/firstbell/releases/20261010091648/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ server-validated read-only scope is durable paused and idempotent without client financial booleans (10.453417ms)
+✔ revoked session, expired authority and stale pinned rules cannot create or reactivate (1.675173ms)
+✔ explicit enable and concurrent due claims produce one read-only record; pause blocks future checks (4.059323ms)
+(node:161389) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///home/ubuntu/firstbell/releases/20261010091648/tests/automation-readonly-plan.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /home/ubuntu/firstbell/releases/20261010091648/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ read-only plans allocate existing cash without fictional contribution and preserve required reserve (9.027524ms)
+✔ Bell intersection and zero aggregate caps block actual-cash proposals without selling or cap bypass (1.875699ms)
+✔ stale future and inconsistent actual wallet totals never become spendable zero/funding (0.985586ms)
+(node:161396) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///home/ubuntu/firstbell/releases/20261010091648/tests/automation.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /home/ubuntu/firstbell/releases/20261010091648/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ disabled runner never claims; concurrent scheduler ticks submit once and skip missed periods (8.81838ms)
+✔ expired authority, exceeded run cap and pause during preparation never submit (3.065134ms)
+✔ unknown submission stops remaining legs, cannot overwrite terminal run or retry (1.642357ms)
+(node:161403) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///home/ubuntu/firstbell/releases/20261010091648/tests/basket-session.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /home/ubuntu/firstbell/releases/20261010091648/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ durable owner/policy/Bell/amount pins idempotency and sequential mutation are enforced (12.011891ms)
+✔ default disabled cannot hand off funds and next leg waits twelve verified confirmations (3.873728ms)
+✔ approval finality requires fresh intent and cannot silently submit stale preapproval quote (2.695582ms)
+✔ ambiguous handoff persists partial stop and can reconcile without repeating action (2.451175ms)
+✔ failed later leg preserves completed receipt evidence and stops partial basket without selling (2.085883ms)
+✔ safe cancellation preserves receipts, fences owner/revision and permits a replacement basket (3.987095ms)
+✔ cancellation rejects pending or ambiguous actions and preserves the creation lock (5.157823ms)
+✔ blocked plan cancellation is safe only when the trusted financial journal guard permits it (0.921745ms)
+✔ preparation request is durably pinned before provider and fences an orphan intent after failure/cancel (1.969927ms)
+(node:161410) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///home/ubuntu/firstbell/releases/20261010091648/tests/bell-follows.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /home/ubuntu/firstbell/releases/20261010091648/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ following is durable and idempotent without silently adopting creator updates (9.132616ms)
+✔ owner isolation and stale acknowledgement never alter snapshot (2.246202ms)
+✔ follow pins displayed version and bounded informational rows only (9.007017ms)
+(node:161417) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///home/ubuntu/firstbell/releases/20261010091648/tests/bell-policy.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /home/ubuntu/firstbell/releases/20261010091648/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ legacy policy remains unchanged while explicit creator caps intersect with stricter personal rules (1.556163ms)
+✔ actual policy is portable and changes canonical manifest integrity (6.532104ms)
+✔ policy schema rejects unsupported sells, fractional basis points, zero caps and unbounded freshness (1.099998ms)
+✔ route slippage and selected local freshness limits fail closed at precise boundaries (0.603709ms)
+(node:161424) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///home/ubuntu/firstbell/releases/20261010091648/tests/bell-preparation.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /home/ubuntu/firstbell/releases/20261010091648/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ trusted context is checked against actual session and wallet; tool arguments grant no authority (7.97384ms)
+✔ preparation pins version and policy, derives wallet and replays without another provider call (3.594328ms)
+✔ quote-only mode remains quoted and cannot claim simulation or a trade (1.030315ms)
+✔ active per-account check blocks a second request and rate limits new work (1.783681ms)
+✔ actual sequential helper accepts quote-only legs and preserves first-failure partial status (0.678537ms)
+(node:161431) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///home/ubuntu/firstbell/releases/20261010091648/tests/bell-request-body.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /home/ubuntu/firstbell/releases/20261010091648/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ Bell body rejects oversized streams by bytes and cancels before reading the remainder (39.665123ms)
+✔ Bell body decodes split UTF-8 exactly and rejects malformed UTF-8 (3.9403ms)
+✔ Bell body accepts the exact byte boundary and rejects missing or invalid JSON (1.793332ms)
+(node:161439) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///home/ubuntu/firstbell/releases/20261010091648/tests/client.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /home/ubuntu/firstbell/releases/20261010091648/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ simulation POST signs exact JSON body, cannot broadcast, and never retries (45.482171ms)
+✔ signs exact wire bytes and does not follow redirects (3.784476ms)
+✔ invalid host and path cannot send credentials (1.623576ms)
+✔ real compliance fixture fails closed even with HTTP 200; no retry (2.480649ms)
+✔ false success, nonnumeric codes, malformed data, HTML and redirects all fail closed (5.050336ms)
+✔ documented rate limit respects Retry-After, refreshes nonce, and retries once (6.432334ms)
+✔ long Retry-After and authentication errors never retry (2.340521ms)
+✔ repeated service failure stops after two calls (1.451968ms)
+✔ network failures and logs do not expose credentials or upstream messages (0.866433ms)
+✔ logging failure cannot turn a valid read into a retry (1.225931ms)
+✔ oversized declared body is cancelled before reading and never retried (1.490621ms)
+✔ stream overflow counts bytes, cancels immediately despite misleading length, and never retries (12.042437ms)
+✔ bounded stream decoding handles split UTF-8 and malformed JSON without retry (2.810206ms)
+✔ stream failure remains a sanitized network error without retry (1.404142ms)
+(node:161447) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///home/ubuntu/firstbell/releases/20261010091648/tests/dry-store.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /home/ubuntu/firstbell/releases/20261010091648/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ transactional admission enforces owner scope, request replay and terminal fencing (2.6696ms)
+✔ admission expires old workers and prevents a late result from resurrecting them (0.907214ms)
+(node:161454) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///home/ubuntu/firstbell/releases/20261010091648/tests/execution.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /home/ubuntu/firstbell/releases/20261010091648/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ Bell and personal reserve intersect without weakening either (1.481139ms)
+✔ dry run conserves all budget units including cash and rounding (1.570201ms)
+✔ real spending checks fail closed with stable reason codes (0.43136ms)
+✔ a failed second simulation preserves the first and never starts the third (0.592889ms)
+✔ a blocked first leg and thrown verification error stop the basket (0.463436ms)
+(node:161461) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///home/ubuntu/firstbell/releases/20261010091648/tests/identity-sessions.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /home/ubuntu/firstbell/releases/20261010091648/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ opaque sessions cannot be forged from legacy account IDs and expire at exact boundary (2.548314ms)
+✔ revocation prevents captured-cookie replay while replacement preserves account ownership (0.917523ms)
+(node:161468) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///home/ubuntu/firstbell/releases/20261010091648/tests/identity.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /home/ubuntu/firstbell/releases/20261010091648/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ wallet sign-in binds the exact domain, nonce, address and five-minute expiry (30.095018ms)
+(node:161475) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///home/ubuntu/firstbell/releases/20261010091648/tests/intents.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /home/ubuntu/firstbell/releases/20261010091648/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ intent admission is durable, owner scoped, idempotent and payload-conflict detectable (3.069236ms)
+✔ reconciliation binds a matching hash to exactly one intent and fences terminal results (1.807728ms)
+✔ synthetic confirmed receipt requires exact debit, minimum receive and actual block balance (6.958322ms)
+✔ unrelated hash sender, target, calldata, value and old block cannot reconcile (1.688361ms)
+✔ RPC absence, wrong chain, reorg and errors remain unknown; pending is never failure (3.030476ms)
+✔ API inputs reject client wallet/authority and public views omit executable calldata (5.895044ms)
+✔ interrupted preparation expires without resurrection or rewriting its immutable journal (1.518103ms)
+✔ observed hash remains bound through unknown RPC outcomes and store reopening (1.452513ms)
+✔ an initial unknown unseen hash does not bind the intent (1.258343ms)
+✔ reorganization during balance verification does not produce a confirmed claim (1.85389ms)
+(node:161482) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///home/ubuntu/firstbell/releases/20261010091648/tests/live-budget.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /home/ubuntu/firstbell/releases/20261010091648/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ wallet scoped holds are exact and immutable across accounts and request retries (11.031573ms)
+✔ submission ambiguity is durable before hash and unknown holds never expire (5.318096ms)
+✔ global hash and intent bindings survive cancellation and terminal states (4.013656ms)
+✔ settlement uses verified confirmation window and never double counts actual spend (5.943575ms)
+✔ unverified mismatched reorg future and overrun evidence preserves hold and immutable actual debit (4.730228ms)
+✔ verified revert releases holds only once and cannot reuse old request identity (3.18216ms)
+(node:161482) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///home/ubuntu/firstbell/releases/20261010091648/lib/execution/budget-store.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /home/ubuntu/firstbell/releases/20261010091648/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:161482) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///home/ubuntu/firstbell/releases/20261010091648/lib/execution/budget-store.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /home/ubuntu/firstbell/releases/20261010091648/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ simultaneous independent SQLite writers serialize caps and survive reopen (379.517327ms)
+✔ unresolved holds survive Monday rollover and settled prior-day spend counts in same week (3.721477ms)
+✔ transition journal preserves immutable revisioned snapshots and terminal retries append nothing (2.790759ms)
+✔ verified debit above reservation policy maximum is retained and quarantines wallet (2.35783ms)
+(node:161491) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///home/ubuntu/firstbell/releases/20261010091648/tests/live-receipt.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /home/ubuntu/firstbell/releases/20261010091648/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ verified receipt persistence is immutable, owner isolated and hash unique (10.468533ms)
+✔ unfinalized or missing effect evidence cannot enter receipt store (2.117798ms)
+✔ hash uniqueness is case insensitive and recovery binds original canonical settlement (0.80371ms)
+✔ receipt repair rejects changed outcome, block, time or original spend (6.541929ms)
+(node:161498) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///home/ubuntu/firstbell/releases/20261010091648/tests/manifest.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /home/ubuntu/firstbell/releases/20261010091648/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ canonical Bell export is deterministic and preserves unknown provenance honestly (8.117219ms)
+✔ exports reject corrupted published allocations and never silently repair them (1.143864ms)
+(node:161505) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///home/ubuntu/firstbell/releases/20261010091648/tests/mcp-delegation-transport.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /home/ubuntu/firstbell/releases/20261010091648/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ scoped SDK draft tools remain unsaved and cannot escalate into publication (101.125212ms)
+✔ manual bearer client discovers only granted reads; scopes never admit preparation or cookie fallback (15.849404ms)
+✔ invalid bearer cannot use wallet cookies and foreign-origin bearer requests are rejected (0.928211ms)
+(node:161513) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///home/ubuntu/firstbell/releases/20261010091648/tests/mcp-delegation.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /home/ubuntu/firstbell/releases/20261010091648/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ explicit unsaved draft permissions are grantable without publication or policy mutation authority (7.727788ms)
+✔ active grant remains visible and revocable after many later revoked grants (52.096968ms)
+✔ one-time explicit approval hashes credential and limits exact read tools and audience (4.202009ms)
+✔ owner/session isolation, revocation and expiry cannot be bypassed by replay (2.444481ms)
+✔ approving identity is freshly checked on every resolution and revoked sessions cannot approve (1.709051ms)
+✔ pending and active grants are bounded, durable and no OAuth capability is implied (8.994996ms)
+(node:161520) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///home/ubuntu/firstbell/releases/20261010091648/tests/mcp-transport.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /home/ubuntu/firstbell/releases/20261010091648/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ official MCP SDK client connects, discovers strict read-only tools and calls actual shared Bell service (120.508591ms)
+✔ fresh per-call identity rejects revoked sessions and client context injection (20.174807ms)
+✔ MCP boundary enforces origin, secure transport, body limits, rate limiting and error sanitization (4.425201ms)
+✔ batched tool calls consume individual operation slots before provider dispatch (1.928616ms)
+(node:161528) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///home/ubuntu/firstbell/releases/20261010091648/tests/origin.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /home/ubuntu/firstbell/releases/20261010091648/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ same origin survives nginx HTTPS termination and rejects cross-site requests (39.387073ms)
+✔ identity requires HTTPS outside exact loopback hosts and cookies follow verified transport (1.755444ms)
+✔ direct public requests cannot assert forwarded HTTPS and spoof the identity boundary (0.308765ms)
+(node:161536) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///home/ubuntu/firstbell/releases/20261010091648/tests/paid-transport.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /home/ubuntu/firstbell/releases/20261010091648/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ missing reviewed provider/signer fails closed and BSC USDT is not assumed EIP3009 compatible (3.861648ms)
+✔ exact cryptographically signed proof stays private and fixed-origin retry produces independently verified settlement (71.474593ms)
+✔ oversized response, unapproved source and provider settlement assertion never become verified research (27.623867ms)
+✔ wrong domain, mutated amount, chain and canonical reorg reject settlement without resending (12.725985ms)
+(node:161544) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///home/ubuntu/firstbell/releases/20261010091648/tests/paid-workflow.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /home/ubuntu/firstbell/releases/20261010091648/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ unconfigured workflow never pays; explicit exact authority and owner isolation required (11.650218ms)
+✔ claim precedes payment; concurrent replay never pays twice and verified result binds exact offer (5.273893ms)
+✔ unknown payment survives store reopening and keeps wallet-wide budget reserved across owners (2.827752ms)
+✔ invalid settlement or report never fabricates completion or releases payment claim (2.652316ms)
+✔ timeout freezes unknown before late payment result and never retries or repays (32.076087ms)
+(node:161551) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///home/ubuntu/firstbell/releases/20261010091648/tests/paper.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /home/ubuntu/firstbell/releases/20261010091648/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ manual exits reject stale, invalid and future price timestamps without changing cash or holdings (3.167007ms)
+✔ contribution allocation preserves an explicitly stricter Bell reserve with unchanged personal state (0.632094ms)
+✔ selected Bell spend and price-freshness caps block paper fills without mutating holdings (0.352636ms)
+✔ scheduled paper periods run at 09:00 WAT and never backfill or repeat a completed period (0.390263ms)
+✔ creator proposals cannot override follower exposure and reserve rules (0.310892ms)
+✔ unexpected failure on a later leg preserves the fill and records remaining legs as not started (1.305825ms)
+✔ paper buy and sell conserve virtual money and preserve exact token units (0.37782ms)
+✔ closed markets, inadequate cash and missing prices do not mutate a paper account (0.374515ms)
+✔ policy checks exact trade, reserve and concentration boundaries (0.393641ms)
+✔ invalid Bell totals and duplicate tickers are rejected; parent is provenance only (2.442079ms)
+✔ sequential paper basket preserves a filled leg and stops after failure on leg two (0.506927ms)
+✔ contribution plan targets underweights, respects reserve and never proposes selling (0.536376ms)
+✔ missing or zero prices leave holdings intact and never fabricate a portfolio value (0.909884ms)
+✔ price precision beyond 18 decimals is preserved without rejecting or rounding a fill upward (0.347081ms)
+(node:161558) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///home/ubuntu/firstbell/releases/20261010091648/tests/paymaster-workflow.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /home/ubuntu/firstbell/releases/20261010091648/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ read-only preparation stays disabled and separates normal build gas estimate from eligibility (7.328768ms)
+✔ failed policies/simulation, stale quotes, mutated candidate and unconfigured operator routes make no RPC (4.084425ms)
+✔ eligible fixture uses documented readonly method and preserves candidate instead of fabricating zero-gas signing (34.73551ms)
+✔ different official response variant and provider failure remain unverified without fallback (4.140293ms)
+(node:161566) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///home/ubuntu/firstbell/releases/20261010091648/tests/paymaster.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /home/ubuntu/firstbell/releases/20261010091648/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ paymaster is disabled by default and blocked policies never reach RPC (5.406463ms)
+✔ provider method, pinned URL and response ID are enforced; eligibility is not execution (39.877887ms)
+✔ calldata mutation, positive value, oversized response and provider error fail closed (1.902971ms)
+(node:161574) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///home/ubuntu/firstbell/releases/20261010091648/tests/policy-draft.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /home/ubuntu/firstbell/releases/20261010091648/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ period budget drafts preserve exact units and allow an explicit purchase pause (6.525982ms)
+✔ explicit clauses merge deterministically without changing the supplied policy or granting authority (0.576837ms)
+✔ unknown, ambiguous, automatic selling and money movement clauses fail closed (3.154345ms)
+✔ bounds reject zero, excessive money, fractional percentages and unsupported freshness (1.678029ms)
+(node:161581) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///home/ubuntu/firstbell/releases/20261010091648/tests/policy-mutations.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /home/ubuntu/firstbell/releases/20261010091648/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ policy replay returns its original version without overwriting newer rules (1.51453ms)
+✔ legacy account permits omitted version only for first update and request IDs span action types (0.367102ms)
+✔ SQLite reopen preserves policy ledger and transactional conflict leaves the stored rules intact (15.921874ms)
+(node:161588) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///home/ubuntu/firstbell/releases/20261010091648/tests/qr-login.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /home/ubuntu/firstbell/releases/20261010091648/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ QR approval requires matching code and active request; an approved phone cannot be replaced (1.088778ms)
+✔ QR redemption requires the originating desktop, explicit phone approval and single-use active status (0.358842ms)
+(node:161595) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///home/ubuntu/firstbell/releases/20261010091648/tests/receipt-evidence.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /home/ubuntu/firstbell/releases/20261010091648/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ event evidence preserves historical version/rules/cash after later changes (1.617828ms)
+✔ exports omit internal replay fields and never invent legacy evidence (0.451112ms)
+✔ scheduled cap is recorded as effective without rewriting personal rules (0.399918ms)
+✔ receipt retrieval rejects other/missing owners without creating accounts (1.535813ms)
+(node:161602) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///home/ubuntu/firstbell/releases/20261010091648/tests/request-body.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /home/ubuntu/firstbell/releases/20261010091648/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ all route byte ceilings reject oversized UTF-8 and accept exact boundaries regardless of Content-Length (44.282981ms)
+✔ malformed stream is cancelled before later chunks are retained and lock is released (1.545566ms)
+(node:161610) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///home/ubuntu/firstbell/releases/20261010091648/tests/research-brief.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /home/ubuntu/firstbell/releases/20261010091648/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ factual brief preserves provider contracts, ratios and closed status without analyst inventions (7.85869ms)
+✔ invalid source data, unsupported assets, absent representations and future times fail closed (2.91021ms)
+✔ service invokes public factual source callback without fabricating research (1.717596ms)
+(node:161617) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///home/ubuntu/firstbell/releases/20261010091648/tests/research-jobs.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /home/ubuntu/firstbell/releases/20261010091648/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ saved brief lookup isolates owners and tickers and returns the newest completion (5.92554ms)
+✔ research job admission is owner scoped and does not duplicate retries (2.015319ms)
+✔ interrupted job expiry prevents a late worker resurrecting a result (0.921146ms)
+✔ terminal failures cannot be overwritten and arbitrary owners cannot finish (0.779623ms)
+✔ sourced results bind to the requested ticker and persist without late overwrite (1.16789ms)
+✔ expiry returns persisted completion when its conditional write loses (1.050179ms)
+✔ bounded admission preserves retries and releases expired jobs across owners (25.925006ms)
+✔ history and serialized report limits cannot be bypassed by terminal jobs (116.870874ms)
+(node:161624) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///home/ubuntu/firstbell/releases/20261010091648/tests/research-offer-client.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /home/ubuntu/firstbell/releases/20261010091648/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ configured read-only provider offer uses exact resource and never sends payment or credentials (41.856806ms)
+✔ disabled, origin mismatch, private hosts and credential query fail before network (0.689607ms)
+✔ wrong merchant, budget, response and failure never retry or claim a report (2.860486ms)
+(node:161632) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///home/ubuntu/firstbell/releases/20261010091648/tests/research-payment.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /home/ubuntu/firstbell/releases/20261010091648/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ research offer exposes actual atomic price without granting payment authority (6.778378ms)
+✔ research offer binds exact service, network, token, merchant and separate budget (2.570807ms)
+✔ malformed or oversized payment headers fail before a payment can be attempted (0.688915ms)
+✔ atomic research amounts obey ERC20 uint256 boundaries (1.3331ms)
+(node:161639) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///home/ubuntu/firstbell/releases/20261010091648/tests/research.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /home/ubuntu/firstbell/releases/20261010091648/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ all percentage tokens reject excess precision instead of accepting trailing substrings (10.19037ms)
+✔ multiple caps never select the first rule and silently discard the second (1.26549ms)
+✔ explicit company weights produce a validated draft and no authority (1.01387ms)
+✔ equal split uses integer basis points and disclosed reserve (0.9124ms)
+✔ unsupported, ambiguous, conflicting, bad totals and cap violations reject (1.509117ms)
+✔ signed weights and unfamiliar allocated assets are not silently discarded (0.472764ms)
+✔ no-selling instruction cannot exempt transfer, short or other selling clauses (0.54173ms)
+(node:161646) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///home/ubuntu/firstbell/releases/20261010091648/tests/review-export.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /home/ubuntu/firstbell/releases/20261010091648/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ export preserves captured evidence and excludes injected private worker/session fields (2.324939ms)
+✔ incomplete or inconsistent evidence cannot become a completed export (0.441637ms)
+(node:161653) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///home/ubuntu/firstbell/releases/20261010091648/tests/rwa.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /home/ubuntu/firstbell/releases/20261010091648/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ live search and token fixtures validate; NVIDIA has two BSC providers (4.444383ms)
+✔ unknown providers, other chains, pre-IPO and duplicate assets are excluded (0.332589ms)
+✔ malformed decimals, address and ratio fail closed; unknown market status is unavailable (1.03206ms)
+(node:161660) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///home/ubuntu/firstbell/releases/20261010091648/tests/session-management.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /home/ubuntu/firstbell/releases/20261010091648/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ session count contains only active owner sessions and never leaks credentials (4.075999ms)
+✔ revoking others preserves current session and other owners, and is idempotent (1.379781ms)
+✔ revoked or expired current credential cannot revoke a different active session (1.643735ms)
+✔ mutation revalidates current identity after an earlier successful read (0.771051ms)
+(node:161667) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///home/ubuntu/firstbell/releases/20261010091648/tests/share-url.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /home/ubuntu/firstbell/releases/20261010091648/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ share links use only configured public HTTPS origin and public routing (1.685491ms)
+(node:161674) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///home/ubuntu/firstbell/releases/20261010091648/tests/spend-budget.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /home/ubuntu/firstbell/releases/20261010091648/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ WAT day and Monday week boundaries preserve exact period spend (6.179107ms)
+✔ migration counts only successful purchase legs and read usage never mutates (1.165203ms)
+✔ successful in-flight basket legs consume budget immediately, sell does not restore it (2.265257ms)
+✔ optional caps preserve legacy buys, validate precision and intersect Bell limits (7.478815ms)
+✔ malformed or backwards budget history fails closed (0.55486ms)
+✔ weekly cap persists across days and exact one micro over budget is blocked (0.337158ms)
+✔ ledger and receipt leg charge actual rounded purchase cost rather than requested budget (0.496429ms)
+(node:161681) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///home/ubuntu/firstbell/releases/20261010091648/tests/strategy-adoption.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /home/ubuntu/firstbell/releases/20261010091648/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ adoption fences old pinned versions, creator races and different strategies before any mutation (1.694071ms)
+✔ guest creator can link a verified wallet on the same trusted Bell without altering plan settings (0.480245ms)
+✔ selected version is checked under stricter Bell/personal rules without changing policy or schedule (0.291552ms)
+✔ diff includes removed companies, reserve movement and policy removal (1.196411ms)
+(node:161688) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///home/ubuntu/firstbell/releases/20261010091648/tests/studio-project.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /home/ubuntu/firstbell/releases/20261010091648/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ disabled, foreign operator and missing contained runner never invoke CLI (3.412532ms)
+✔ fixed source-backed scan contract strips paths and metadata and never claims runtime proof (12.612412ms)
+(node:161699) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///home/ubuntu/firstbell/releases/20261010091648/tests/submission-settlement.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /home/ubuntu/firstbell/releases/20261010091648/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ actual-fixture effects and twelve canonical confirmations produce exact budget evidence (6.75405ms)
+✔ three confirmations cannot release a budget hold and unrelated transaction is rejected (2.307464ms)
+✔ reorganization after initial verified effects cannot settle and reverted status uses only captured receipt (2.44323ms)
+(node:161706) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///home/ubuntu/firstbell/releases/20261010091648/tests/submission.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /home/ubuntu/firstbell/releases/20261010091648/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ default disabled and confirmation/owner guards cannot reach wallet or reserve budget (4.96044ms)
+✔ concurrent exact requests reserve once, commit start before wallet, and never repeat submission (13.346209ms)
+✔ fresh changed calldata/policy/allowance and quote expiry cancel before signing (4.983485ms)
+✔ ambiguous wallet failure remains durable unknown across reopen with held budget and no retry (49.8394ms)
+✔ invalid returned hash preserves unknown; verified receipt links actual spend and finality (10.021558ms)
+✔ lost wallet hash can only recover through exact observed-transaction verifier without another send (4.350583ms)
+✔ post-validation intent revision changes cancel the reserved hold before wallet call (3.435871ms)
+✔ browser handoff commits started before returning calldata once, persists hashed ticket and never signs server-side (3.949227ms)
+✔ handoff transport failure preserves UNKNOWN started hold and will not redeliver (2.630902ms)
+✔ first status read is empty without creating or recovering a submission and remains owner isolated (2.874901ms)
+✔ crash between budget and submission commits recovers without sending again (2.200144ms)
+✔ recovery propagates durable hash and cancellation without another signer call (3.468762ms)
+✔ trusted Bell caps narrow whole-wallet pending budgets and cannot widen personal caps (5.104613ms)
+✔ cancelled basket intent cannot reach standalone submission even when cancellation races validation (2.476816ms)
+(node:161713) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///home/ubuntu/firstbell/releases/20261010091648/tests/tools.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /home/ubuntu/firstbell/releases/20261010091648/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ public Bell reads and comparison work without private authority (6.602465ms)
+✔ wallet address cannot authenticate and mutation requires ownership plus user confirmation (5.882798ms)
+✔ receipt owner lookup and unsupported execution/research remain truthful (1.40652ms)
+✔ version comparison includes policy limits and removals (1.248577ms)
+✔ paper contribution preview requires verified private scope (0.402291ms)
+✔ preparation tools use trusted owner, distinct scope and reject injected wallets (2.786736ms)
+✔ Bell preparation passes full trusted auth and never enables execution (1.429274ms)
+✔ policy draft is private, unsaved, uses current account policy and rejects spending clauses (3.086546ms)
+✔ underlying tool is public, binds curated ticker and issuer, rejects extra authority (1.02721ms)
+(node:161720) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///home/ubuntu/firstbell/releases/20261010091648/tests/trading.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /home/ubuntu/firstbell/releases/20261010091648/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ swap success requires exact wallet debit and minimum stock receipt (2.79872ms)
+✔ real SWAP quote and build validate despite docs' RWA RFQ blanket statement (3.536149ms)
+✔ swap effects allow only the verified funding allowance decrement (0.97905ms)
+✔ unverified native gas deltas and contradictory effects fail closed (0.402937ms)
+✔ mismatched chain, recipient token, amount, decimals, fee and honeypot cannot pass (0.699465ms)
+✔ real approval builder encodes exact 5-USDT amount and quote spender (3.473162ms)
+✔ amounts preserve exact units and ratio; never round excessive precision (0.485652ms)
+✔ actual approval success does not imply actual swap success (1.660972ms)
+(node:161727) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///home/ubuntu/firstbell/releases/20261010091648/tests/underlying.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /home/ubuntu/firstbell/releases/20261010091648/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ actual sanitized underlying fixtures preserve sourced profile and exact market strings (18.949434ms)
+✔ wrong chain contract issuer ticker or asset type is unavailable independently (6.422386ms)
+✔ optional numeric data is null and failed independent endpoint never gains fallback facts (2.820045ms)
+✔ safe external links allow HTTPS public domains only and sanitize links without fetching (5.833294ms)
+✔ server resolution binding rejects unsupported discovery before provider requests (3.161874ms)
+✔ missing future retrieval times fail closed and documented English description is preserved (0.902559ms)
+(node:161734) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///home/ubuntu/firstbell/releases/20261010091648/tests/wallet-contribution.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /home/ubuntu/firstbell/releases/20261010091648/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ real holdings contribution targets underweight without selling or mutating input (10.60912ms)
+✔ stricter Bell trade reserve exposure controls and exact micro-dollar remainder apply (2.414077ms)
+✔ untracked targets, zero-value account and rounding cannot spend existing cash (11.357643ms)
+✔ invalid inconsistent stale and future snapshots fail closed (1.283978ms)
+✔ known daily and weekly ceilings bound cumulative proposals without claiming remaining budget (1.379894ms)
+(node:161741) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///home/ubuntu/firstbell/releases/20261010091648/tests/wallet-signer.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /home/ubuntu/firstbell/releases/20261010091648/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ wallet signer requires gate, matching chain and matching active account (1.70938ms)
+✔ wallet signer passes exact pinned calldata and amounts without automatic chain switching (1.192156ms)
+ℹ tests 281
+ℹ suites 0
+ℹ pass 281
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 18764.623906
+
+> first-bell@0.1.0 typecheck
+> tsc --noEmit
+
+
+> first-bell@0.1.0 build
+> next build
+
+▲ Next.js 16.3.8 (Turbopack)
+✓ Running next.config took 31ms
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 20.1s
+  Running TypeScript ...
+  Finished TypeScript in 6.1s ...
+  Collecting page data using 1 worker ...
+  Generating static pages using 1 worker (0/8) ...
+  Generating static pages using 1 worker (2/8) 
+  Generating static pages using 1 worker (4/8) 
+  Generating static pages using 1 worker (6/8) 
+✓ Generating static pages using 1 worker (8/8) in 358ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ƒ /
+├ ○ /_not-found
+├ ○ /account
+├ ƒ /agent
+├ ƒ /api/account
+├ ƒ /api/account/delegations
+├ ƒ /api/account/qr
+├ ƒ /api/account/qr/[id]
+├ ƒ /api/account/sessions
+├ ƒ /api/agent/reviews
+├ ƒ /api/agent/reviews/[id]
+├ ƒ /api/agent/reviews/[id]/export
+├ ƒ /api/automation
+├ ƒ /api/automation/runner
+├ ƒ /api/baskets
+├ ƒ /api/bells
+├ ƒ /api/bells/[id]/manifest
+├ ƒ /api/bells/follow
+├ ƒ /api/execution
+├ ƒ /api/execution/[id]
+├ ƒ /api/health
+├ ƒ /api/intents
+├ ƒ /api/intents/[id]
+├ ƒ /api/intents/[id]/approval
+├ ƒ /api/intents/[id]/submission
+├ ƒ /api/mcp
+├ ƒ /api/paper
+├ ƒ /api/paper/autopilot
+├ ƒ /api/paper/autopilot/tick
+├ ƒ /api/paper/receipts/[id]
+├ ƒ /api/policy/draft
+├ ƒ /api/preview/[id]
+├ ƒ /api/quote
+├ ƒ /api/research/draft
+├ ƒ /api/research/jobs
+├ ƒ /api/research/jobs/[id]
+├ ƒ /api/research/jobs/latest
+├ ƒ /api/research/offer
+├ ƒ /api/stocks
+├ ƒ /api/stocks/[ticker]/underlying
+├ ƒ /api/tools
+├ ƒ /api/transactions/[id]
+├ ƒ /api/wallet/plan
+├ ƒ /api/wallet/portfolio
+├ ƒ /assistant
+├ ƒ /autopilot
+├ ƒ /b/[id]
+├ ƒ /b/[id]/history
+├ ƒ /b/[id]/opengraph-image
+├ ƒ /bells
+├ ƒ /checks/[id]
+├ ƒ /create
+├ ƒ /login/qr/[id]
+├ ○ /my-bells
+├ ƒ /portfolio
+├ ƒ /preview/[id]
+├ ƒ /r/[id]
+├ ƒ /s/[ticker]
+└ ƒ /transactions/[id]
+
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+
+nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
+nginx: configuration file /etc/nginx/nginx.conf test is successful
+Synchronizing state of nginx.service with SysV service script with /usr/lib/systemd/systemd-sysv-install.
+Executing: /usr/lib/systemd/systemd-sysv-install enable nginx
+{"application":"first-bell","status":"ok","mode":"PAPER","paperTradingAvailable":true,"executionAvailable":false}
+DEPLOYMENT_READY 20261010091648
+{"release":"20261010091648","sourceFiles":290,"url":"https://56.125.248.192:80/","apiCredentialsTransferred":false}

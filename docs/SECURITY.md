@@ -1,0 +1,11 @@
+# Security evidence — 2026-10-08
+
+Reviewed scope: deployed paper/read-only release 20261008223301. Full mainnet security certification is not claimed.
+
+Protections exercised: exact API signing and pinned credential host; redirects/retry restrictions; bounded streaming response cap; malformed schemas/business error rejection; verified tokens/decimals and exact spender/amount; status plus transaction-effect simulation checks; policy version/replay and cross-action request IDs; paper sell cap; sequential basket stop; SQLite atomic dry-check admission and terminal fencing; private receipt owner checks; HTTPS identity transport; opaque hashed session expiry/revocation; origin/nonce-bound wallet signatures; QR owner/code/expiry/single-use/cancel/supersede boundaries; fixed operator CLI commands/path containment/environment filtering; no shared provider sessions or public operator route.
+
+Linux 72 tests, typecheck and production build passed. Browser draft/export 12, paper workflow 13, secure QR 14, real-wallet dry check 13 checks passed. Two configured API secrets were checked against deployed browser bundles: zero matches. Protected SQLite mode 0600. Real-wallet check used a fresh unfunded address and stopped on insufficient USDT. Actual funded successful swaps and native balance-effect semantics remain unverified.
+
+Public HTTPS accessibility, physical wallet/phone testing, actual MCP authorization, paid-provider/Paymaster sessions, wallet permission revocation, live signing/broadcast/reconciliation and mainnet scheduler safety remain open acceptance work. None were marked passed. Execution guards verified after restart: DRY_RUN, MAINNET_WRITE_ENABLED=false, LIVE_MAX_TRADE_USD=5. No funds spent.
+
+Shared request-body repair final evidence: release20261009220058 passes203Linux tests/typecheck/build/audit0. Public oversized/foreign-origin checks pass all eight routes without account cookies. HTTPS sign-in/logout and13paper workflow checks pass. Personal policy draft18checks pass on retry after one browser actionability timeout; draft suggestions remain unsaved until explicit reviewed save, stale-version save409 and zero wallet requests. No funded or mainnet behavior was exercised.

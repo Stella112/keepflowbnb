@@ -1,0 +1,14 @@
+import {test} from 'node:test';
+import assert from 'node:assert/strict';
+import {exportBellReview} from '../lib/agents/review-export.ts';
+import {buildBellReview} from '../lib/agents/review-report.ts';
+import {buildStockBrief} from '../lib/research/brief.ts';
+import {defaultPolicy,type Flow} from '../lib/paper/model.ts';
+import {readFileSync} from 'node:fs';
+import type {AgentReviewJob} from '../lib/agents/review-store.ts';
+const now=Date.now(),time=new Date(now).toISOString(),tokens=JSON.parse(readFileSync(new URL('../fixtures/api/rwa-bsc-tech.json',import.meta.url),'utf8')).data;
+const bell:Flow={id:'private-bell',title:'Review',description:'',assets:[{ticker:'NVDA',weightBps:9000}],reserveBps:1000,version:1,contentHash:'captured-hash',createdAt:time,example:false};
+const report=buildBellReview(bell,defaultPolicy,1,[buildStockBrief('NVDA',tokens,time)],now);
+const job:AgentReviewJob={id:'private-review',requestId:'private-request',status:'COMPLETE',createdAt:time,finishedAt:time,bell:{id:bell.id,version:bell.version,contentHash:bell.contentHash},policyVersion:1,report};
+test('export preserves captured evidence and excludes injected private worker/session fields',()=>{const result=exportBellReview({...job,owner:'private-owner',grant:'private-grant'} as AgentReviewJob);assert.deepEqual(result.review.report,report);assert.equal(result.financialAuthority,'NONE');assert.equal('requestId' in result.review,false);assert.equal(JSON.stringify(result).includes('private-grant'),false);result.review.report.personalPolicy.maxTradeUsd='1';assert.notEqual(report.personalPolicy.maxTradeUsd,'1');});
+test('incomplete or inconsistent evidence cannot become a completed export',()=>{for(const changed of [{status:'RUNNING'},{report:undefined},{policyVersion:2},{bell:{...job.bell,contentHash:'changed'}},{report:{...report,executionEnabled:true}},{report:{...report,paymentSubmitted:true}}])assert.throws(()=>exportBellReview({...job,...changed} as AgentReviewJob));});

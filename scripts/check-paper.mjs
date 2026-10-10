@@ -1,0 +1,47 @@
+import {chromium} from '@playwright/test';
+import assert from 'node:assert/strict';
+import {randomUUID} from 'node:crypto';
+import {mkdirSync,writeFileSync} from 'node:fs';
+const base=process.env.FIRSTBELL_TEST_URL??'http://56.125.248.192';
+const browser=await chromium.launch({channel:'msedge',headless:true});
+try{
+ const context=await browser.newContext({viewport:{width:380,height:820}});const page=await context.newPage();
+ page.on('response',async response=>{if(response.url().endsWith('/api/paper')&&response.request().method()==='POST'){const result=await response.json().catch(()=>({}));console.log(JSON.stringify({paperHttp:response.status(),error:result.error,status:result.receipt?.status}));}});
+ page.on('pageerror',error=>console.log('Browser error: '+error.message));
+ await page.addInitScript(()=>{window.__walletCalls=0;window.ethereum={request:async()=>{window.__walletCalls++;throw new Error('Paper mode must not call a wallet');}};});
+ await page.goto(base+'/portfolio',{waitUntil:'networkidle'});await page.getByText('$10,000.00',{exact:true}).first().waitFor();
+ await page.goto(base+'/s/NVDA',{waitUntil:'networkidle'});await page.getByText('Representation settings',{exact:true}).click();await page.getByLabel('Issuer',{exact:true}).selectOption('bstock');
+ await page.getByRole('button',{name:'Buy with virtual dollars',exact:true}).click();await page.getByRole('heading',{name:'Paper trade recorded.',exact:true}).waitFor({timeout:45000}).catch(async error=>{console.log((await page.locator('main').innerText()).slice(-1800));throw error;});
+ const receiptUrl=page.url();assert.match(receiptUrl,/\/r\//);assert.equal(await page.evaluate(()=>window.__walletCalls),0);
+ const request={action:'BUY',requestId:randomUUID(),ticker:'NVDA',provider:'bstock',amount:'10'};
+ const send=async body=>context.request.post(base+'/api/paper',{headers:{Origin:base},data:body});
+ const first=await send(request);assert.equal(first.status(),200);const fill=await first.json();
+ const before=await (await context.request.get(base+'/api/paper')).json();
+ const repeat=await send(request);assert.equal(repeat.status(),200);assert.equal((await repeat.json()).receipt.id,fill.receipt.id);
+ const after=await (await context.request.get(base+'/api/paper')).json();assert.equal(after.cashUsd,before.cashUsd);assert.deepEqual(after.positions,before.positions);
+ assert.equal((await send({...request,amount:'11'})).status(),400);
+ const oversized=await send({...request,requestId:randomUUID(),amount:'101'});assert.equal((await oversized.json()).receipt.status,'BLOCKED');
+ const basket=await send({action:'BASKET',requestId:randomUUID(),bellId:'ai-compute',amount:'100'});const basketReceipt=(await basket.json()).receipt;assert.equal(basketReceipt.status,'PAPER_FILLED');assert.equal(basketReceipt.legs.length,4);
+ const auto=await send({action:'AUTOPILOT',requestId:randomUUID(),bellId:'ai-compute',amount:'100'});const autoReceipt=(await auto.json()).receipt;assert.equal(autoReceipt.action,'AUTOPILOT');assert.equal(autoReceipt.status,'PAPER_FILLED');assert.ok(autoReceipt.legs.every(l=>l.status==='PAPER_FILLED'));
+ const controlled=await context.request.post(base+'/api/bells',{headers:{Origin:base},data:{title:'QA partial basket',description:'Test-only definition for sequential stop verification.',assets:[{ticker:'NVDA',weightBps:1000},{ticker:'MSFT',weightBps:8000},{ticker:'GOOGL',weightBps:1000}],reserveBps:0}});assert.equal(controlled.status(),200);const controlledId=(await controlled.json()).bell.id;
+ const policy={maxTradeUsd:'20',maxSingleAssetBps:4000,minReserveBps:1000,driftBps:500};const policyA={action:'POLICY',requestId:randomUUID(),expectedPolicyVersion:0,policy};assert.equal((await send(policyA)).status(),200);
+ const partial=await send({action:'BASKET',requestId:randomUUID(),bellId:controlledId,amount:'100'});const partialReceipt=(await partial.json()).receipt;assert.equal(partialReceipt.status,'PARTIAL');assert.deepEqual(partialReceipt.legs.map(l=>l.status),['PAPER_FILLED','BLOCKED','NOT_STARTED']);
+ assert.equal((await send({action:'POLICY',requestId:randomUUID(),expectedPolicyVersion:1,policy:{...policy,maxTradeUsd:'1000'}})).status(),200);
+ const oldReplay=await send(policyA);assert.equal(oldReplay.status(),200);assert.equal((await oldReplay.json()).policyVersion,1);
+ const currentRules=await (await context.request.get(base+'/api/paper')).json();assert.equal(currentRules.policyVersion,2);assert.equal(currentRules.policy.maxTradeUsd,'1000');
+ assert.equal((await send({...policyA,policy:{...policy,maxTradeUsd:'21'}})).status(),409);
+ assert.equal((await send({...policyA,requestId:randomUUID(),expectedPolicyVersion:1})).status(),409);
+ await page.goto(base+'/create?fork=ai-compute',{waitUntil:'networkidle'});await page.getByLabel('Flow title',{exact:true}).fill('QA paper fork '+new Date().toISOString().slice(0,16));
+ await page.getByRole('button',{name:'Save independent fork',exact:true}).click();await page.getByText('Forked from',{exact:false}).waitFor({timeout:30000});
+ const forkId=page.url().split('/').pop();const all=(await (await context.request.get(base+'/api/bells')).json()).bells;const fork=all.find(b=>b.id===forkId);assert.equal(fork.forkedFromId,'ai-compute');assert.equal(all.find(b=>b.id==='ai-compute').title,'AI Compute');
+ await page.goto(base+'/portfolio',{waitUntil:'networkidle'});await page.getByRole('heading',{name:'Your holdings.',exact:true}).waitFor();
+ assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true,'380px portfolio must not overflow');mkdirSync('test-results',{recursive:true});await page.screenshot({path:'test-results/paper-portfolio-mobile.png',fullPage:true});
+ await page.setViewportSize({width:1440,height:1000});await page.screenshot({path:'test-results/paper-portfolio-desktop.png',fullPage:true});
+ const isolated=await browser.newContext();assert.equal((await isolated.request.get(receiptUrl.replace('/r/','/api/paper/receipts/'))).status(),404);await isolated.close();
+ const sell=await send({action:'SELL',requestId:randomUUID(),address:after.positions[0].address});assert.equal((await sell.json()).receipt.status,'PAPER_FILLED');
+ const durable=await (await context.request.get(base+'/api/paper')).json();await context.storageState({path:'test-results/paper-browser-state.json'});writeFileSync('test-results/paper-proof.json',JSON.stringify({cashUsd:durable.cashUsd,positions:durable.positions.map(p=>({address:p.address,quantity:p.quantity})),receiptCount:durable.receipts.length}));
+ assert.equal((await (await context.request.get(base+'/api/health')).json()).executionAvailable,false);
+ console.log(JSON.stringify({result:'PASS',checks:['virtual funding','live-price paper buy','idempotent retry','conflicting replay rejected','policy block','four-leg paper basket','second-leg block preserves partial state','underweight paper allocation','independent Flow fork','380px layout','receipt privacy','paper sell','mainnet remains disabled'],forkId}));
+ await context.close();
+}finally{await browser.close();}
+

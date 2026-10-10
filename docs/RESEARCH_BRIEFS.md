@@ -1,0 +1,19 @@
+# Source-grounded stock data briefs
+
+The production brief builder reads actual signed Binance RWA discovery data, validates stock/ETF eligibility on BSC, and preserves each representation's provider, contract, decimals, token price, ratio, provider-derived share price and reported status. The report includes the discovery retrieval timestamp and official source documentation link. It does not invent an analyst report, stock-exchange price, rating, forecast, recommendation or fundamental data.
+
+Stock pages can request a saved job. Creation is same-origin and strictly validated; identity/guest account comes from the existing server-side session boundary. Jobs are owner scoped, request-ID idempotent, conflict rejecting and durable in the protected SQLite database. New jobs are rate limited before account/job insertion. Two-minute interrupted-job expiry is terminal; late workers cannot resurrect results, and expiry polls reread the persisted winner of a conditional update.
+
+The browser creates once and only polls that returned ID, with abort/generation fencing on ticker changes, replacement requests and unmount. Polling ends after forty intervals or an 85-second deadline; failures are displayed without fabricated content or automatic new jobs. Data is rendered as escaped text.
+
+get_stock_research now exposes this actual factual source in production. Its FACTUAL_DATA_ONLY state and analystResearchAvailable:false / paidProviderConfigured:false flags distinguish sourced facts from the mandatory unconfigured paid analyst/Agent Studio integration. No x402 authorization, payment signature, retry or settlement is performed. The existing x402 offer inspector remains separate tested plumbing.
+
+Independent reviews repaired rate-limited row creation and conditional-expiry state reporting. Five SQLite job tests and three brief tests passed. Production browser and restart evidence is recorded in STATUS.md. Test fixtures and paper balances do not prove paid research or mainnet execution.
+
+Saved reports can be reopened through GET /api/research/jobs/latest?ticker=NVDA. The query uses only the existing account session, owner and ticker; it returns the latest completed report without creating an account, job, or provider request. The UI shares the same response validation and stale-result fencing. Six job-store tests pass. Deployed mobile retrieval passed with zero creation requests.
+
+## 2026-10-09 release 20261009201428
+
+Underlying company and market integration shipped on stock pages and the read-only get_stock_underlying shared tool/MCP interface. Live signed NVDA underlying-profile and underlying-market fixtures returned HTTP200/businesscode0. Responses bind exact curated ticker/issuer/BSCcontract/assettype, sanitize external links without fetching them, retain exact metric strings/nullmissing values and independent partial availability, and require valid retrieval times. Six underlying tests and the public strict-tool test passed; full Linux suite194tests, typecheck/build and audit0 passed. Public HTTPS stock-page/API/tool and mobile acceptance passed. DRY_RUN, MAINNET_WRITE_ENABLED=false and browser credential scan0 verified. Independent review accepted the initial5-test binding/URL/partial/UI scope; final retrieval-time/English-description repairs were completed and tested by the primary engineer after review agents reached their usage limit. No paid research or mainnet operation occurred.
+
+Admission resource controls (release 20261009204338): two pending jobs per owner, forty globally and five hundred stored jobs per owner, transactionally enforced after idempotent replay and cross-owner expiry sweep. Oversized reports above 131072 UTF-8 bytes or ticker mismatches cannot complete. HTTP429 signals admission limits. History is retained; no automatic pruning is performed. Eight job tests and deployed stock/saved brief acceptance passed.

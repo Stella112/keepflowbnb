@@ -1,0 +1,10 @@
+"use client";
+import {useRef,useState} from "react";
+import {useRouter} from "next/navigation";
+import {paperRequestId} from "../lib/paper/request-id";
+export function PaperBuy({ticker,provider,bellId,autopilot=false}:{ticker?:string;provider?:string;bellId?:string;autopilot?:boolean}){
+ const [amount,setAmount]=useState("100"),[error,setError]=useState(""),[busy,setBusy]=useState(false);const router=useRouter();
+ const retry=useRef<{signature:string;id:string}|null>(null);
+ async function buy(){setBusy(true);setError("");try{const intent={action:autopilot?"AUTOPILOT":bellId?"BASKET":"BUY",...(bellId?{bellId}:{ticker,provider}),amount};const signature=JSON.stringify(intent);if(retry.current?.signature!==signature)retry.current={signature,id:paperRequestId()};const response=await fetch("/api/paper",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({requestId:retry.current.id,...intent})});const result=await response.json();if(!response.ok){retry.current=null;throw new Error(result.error??"Paper trade could not be completed.");}retry.current=null;router.push(`/r/${result.receipt.id}`);}catch(error){setError(error instanceof Error?error.message:"Please try again.");}finally{setBusy(false);}}
+ return <div className="quote-panel"><p className="notice">Use virtual dollars. Your paper account starts with $10,000. No real USDT, wallet connection or gas is needed.</p><label htmlFor={autopilot?"contribution":"paper-amount"}>{autopilot?"Virtual cash to allocate":"Paper investment amount (USD)"}</label><input id={autopilot?"contribution":"paper-amount"} inputMode="decimal" value={amount} onChange={event=>setAmount(event.target.value)}/><button className="button" onClick={buy} disabled={busy}>{busy?"Checking paper trade…":autopilot?"Run paper rules":bellId?"Paper invest in this Flow":"Buy with virtual dollars"}</button>{error&&<p className="error" role="alert">{error}</p>}<p className="fine-print">Paper fills use live indicative token prices, exclude fees and slippage, and do not establish mainnet execution success. Your paper rules apply; the default maximum is $100 per trade.</p></div>;
+}
