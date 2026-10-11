@@ -215,3 +215,6 @@ code{word-break:break-word}
 .ai-ideas button{flex:none;margin:0}
 .ai-next{margin-top:32px}
 @media(max-width:900px){.assistant-grid{grid-template-columns:1fr}.capability-table>div{grid-template-columns:1fr;gap:4px}.ai-ideas li{flex-direction:column;align-items:stretch}}
+
+/* Review links: on phones the purchase panel comes first, the explanation follows. */
+@media(max-width:900px){.review-layout{grid-template-areas:"aside" "overview"}}

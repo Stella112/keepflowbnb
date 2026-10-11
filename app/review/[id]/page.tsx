@@ -22,11 +22,11 @@ export default async function ReviewPage({params}:{params:Promise<{id:string}>})
  if(review.kind==="FLOW"&&!flow)return <main><Navigation/><section className="empty"><h1>This Flow is no longer available.</h1><Link className="button" href="/bells">Browse Flows</Link></section></main>;
  return <main><Navigation/>
   <div className="hero compact"><p className="eyebrow">Prepared by your AI assistant · expires {time(review.expiresAt)}</p><h1>Review: {review.amount} USDT of {name}.</h1><p className="intro">Nothing has been bought. This link only fills in the purchase screen. You stay in control: KeepFlow checks everything again with live data, and your wallet asks you to approve each transaction.</p></div>
-  <div className="stock-layout">
+  <div className="stock-layout review-layout">
    <section className="stock-overview"><h2>What happens next</h2><ol className="review-steps">
     <li><strong>Sign in with your wallet.</strong> Binance Wallet first; KeepFlow never sees your keys.</li>
     <li><strong>Fresh quote.</strong> The price is fetched again from Binance; nothing from the assistant is reused.</li>
-    <li><strong>Your checks.</strong> USDT balance, your <Link href="/rules">personal limits</Link>{flow?" and the Flow's own rules":""} are checked.</li>
+    <li><strong>Your checks.</strong> Your USDT balance, your <Link href="/rules">personal limits</Link>{flow?" and the Flow's own rules":""} are checked.</li>
     <li><strong>Simulation.</strong> The exact transaction is simulated before your wallet is asked.</li>
     <li><strong>You sign.</strong> Approve in your wallet, or walk away and nothing happens.</li>
    </ol>
