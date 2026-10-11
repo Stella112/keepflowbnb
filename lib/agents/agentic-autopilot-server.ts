@@ -14,7 +14,7 @@ const address=/^0x[0-9a-fA-F]{40}$/;
 export function agenticConfig(){
  const operator=process.env.AUTOPILOT_OPERATOR_ADDRESS??'',owner=process.env.AGENTIC_OPERATOR_OWNER_WALLET??'';
  const live=process.env.AGENTIC_WALLET_ENABLED==='true'&&process.env.AUTOPILOT_LIVE_ENABLED==='true'&&submissionEnabled()&&address.test(operator)&&address.test(owner);
- return {live,operator:operator.toLowerCase(),ownerWallet:owner.toLowerCase(),capUsd:process.env.LIVE_MAX_TRADE_USD??'5'};
+ return {live,operator:operator.toLowerCase(),ownerWallet:owner.toLowerCase(),capUsd:process.env.LIVE_MAX_TRADE_USD??'5',dailyCapUsd:/^d+(.d{1,6})?$/.test(process.env.AGENTIC_DAILY_MAX_USD??'')?process.env.AGENTIC_DAILY_MAX_USD:undefined};
 }
 const store=()=>new AgenticStore(paperDatabase());
 
@@ -73,7 +73,7 @@ async function execute(owner:string,plan:AgenticPlan,period:string,trigger:'SCHE
  const config=agenticConfig();if(!config.live)throw Error('LIVE_DISABLED');
  const bell=bellHistory(plan.bellId).find(b=>b.version===plan.bellVersion&&b.contentHash===plan.bellHash);if(!bell)throw Error('BELL_VERSION_UNAVAILABLE');
  const account=readAccount(owner);
- return runAgenticContribution({owner,plan,bell,policy:account.policy,policyVersion:account.policyVersion??0,period,trigger,wallet:config.operator,operatorCapUsd:config.capUsd},deps());
+ return runAgenticContribution({owner,plan,bell,policy:account.policy,policyVersion:account.policyVersion??0,period,trigger,wallet:config.operator,operatorCapUsd:config.capUsd,dailyCapUsd:config.dailyCapUsd},deps());
 }
 export async function runAgenticNow(owner:string,requestId:string){const plan=store().readPlan(owner);if(!plan)throw Error('NO_PLAN');return execute(owner,plan,'M'+requestId,'MANUAL');}
 export async function reconcileAgentic(owner:string,key:string){if(!agenticConfig().live)throw Error('LIVE_DISABLED');return reconcileAgenticRun(owner,key,deps());}

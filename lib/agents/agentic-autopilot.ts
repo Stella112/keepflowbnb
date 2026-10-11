@@ -7,7 +7,7 @@ import type {Flow,Policy} from '../paper/model.ts';
 import {parseBscAddress,parseLeftQuota,parseOrder,parseQuote,parseStatus,parseSwap,type AgenticRunner} from './agentic-cli.ts';
 
 export const USDT='0x55d398326f99059fF775485246999027B3197955';
-const MIN_LEG_MICROS=1_000_000n;
+const MIN_LEG_MICROS=250_000n;
 
 export const agenticPlanSchema=z.object({
  id:z.string().uuid(),owner:z.string().min(1).max(128),bellId:z.string().min(1).max(80),bellVersion:z.number().int().positive(),bellHash:z.string().min(1).max(128),
@@ -57,7 +57,7 @@ export type AgenticDeps={
  store:AgenticStore;cli:AgenticRunner;snapshot:(wallet:string)=>Promise<WalletSnapshot>;resolveToken:(ticker:string)=>Promise<ResolvedToken|undefined>;
  verify:(hash:string,wallet:string,token:string)=>Promise<ChainVerification>;sleep:(ms:number)=>Promise<void>;now:()=>number;pollAttempts?:number;
 };
-export type AgenticRunInput={owner:string;plan:AgenticPlan;bell:Flow;policy:Policy;policyVersion:number;period:string;trigger:'SCHEDULED'|'MANUAL';wallet:string;operatorCapUsd:string};
+export type AgenticRunInput={owner:string;plan:AgenticPlan;bell:Flow;policy:Policy;policyVersion:number;period:string;trigger:'SCHEDULED'|'MANUAL';wallet:string;operatorCapUsd:string;dailyCapUsd?:string};
 
 const minBig=(...v:bigint[])=>v.reduce((a,b)=>a<b?a:b);
 function finish(run:AgenticRun){
@@ -83,6 +83,8 @@ export async function runAgenticContribution(input:AgenticRunInput,deps:AgenticD
   if(parseBscAddress(await deps.cli({kind:'ADDRESS'}))!==wallet)return skip('The connected Agentic Wallet does not match the configured operator wallet.');
   const effective=effectiveBellPolicy(input.bell,input.policy),periods=watPeriods(now);
   let contribution=toUnits(input.plan.contributionUsd,6);
+  // Optional operator ceiling on Autopilot's total per WAT day, whatever the plan amount or number of manual runs.
+  if(input.dailyCapUsd!==undefined){const left=toUnits(input.dailyCapUsd,6)-deps.store.committedSince(input.owner,periods.dayStart);contribution=minBig(contribution,left>0n?left:0n);}
   if(effective.maxDailySpendUsd!==undefined){const left=toUnits(effective.maxDailySpendUsd,6)-deps.store.committedSince(input.owner,periods.dayStart);contribution=minBig(contribution,left>0n?left:0n);}
   if(effective.maxWeeklySpendUsd!==undefined){const left=toUnits(effective.maxWeeklySpendUsd,6)-deps.store.committedSince(input.owner,periods.weekStart);contribution=minBig(contribution,left>0n?left:0n);}
   if(contribution<MIN_LEG_MICROS)return skip('Your daily or weekly spending limit has been reached.');
@@ -97,7 +99,7 @@ export async function runAgenticContribution(input:AgenticRunInput,deps:AgenticD
   const cap=toUnits(input.operatorCapUsd,6),planningPolicy:Policy={...input.policy,maxTradeUsd:fromUnits(minBig(toUnits(input.policy.maxTradeUsd,6),cap),6)};
   const plan=walletContributionPlan(adjusted,input.bell,planningPolicy,run.contributionUsd,deps.now());
   for(const asset of plan.assets){const proposed=toUnits(asset.proposedPurchaseUsd,6);if(proposed<=0n)continue;const amount=minBig(proposed,cap);
-   run.legs.push({ticker:asset.ticker,provider:null,token:null,amountUsd:fromUnits(amount,6),state:amount<MIN_LEG_MICROS?'SKIPPED':'PLANNED',reason:amount<MIN_LEG_MICROS?'Below the 1 USDT minimum purchase.':asset.reason});}
+   run.legs.push({ticker:asset.ticker,provider:null,token:null,amountUsd:fromUnits(amount,6),state:amount<MIN_LEG_MICROS?'SKIPPED':'PLANNED',reason:amount<MIN_LEG_MICROS?'Below the 0.25 USDT minimum purchase.':asset.reason});}
   deps.store.update(run);
   for(const leg of run.legs){
    if(leg.state!=='PLANNED')continue;

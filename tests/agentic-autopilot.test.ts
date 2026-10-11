@@ -85,10 +85,18 @@ test('ambiguous submission is never resent and pending orders reconcile later',a
 
 test('limits skip safely: session, wallet mismatch, app quota, daily cap and cash',async()=>{
  const skipped=async(over:Parameters<typeof fakeCli>[0],extra:Partial<Parameters<typeof runAgenticContribution>[0]>={},cash?:string)=>{const f=fakeCli(over);const {run}=await runAgenticContribution(input(extra),deps(new AgenticStore(new DatabaseSync(':memory:')),f.cli,undefined,cash));assert.equal(run.state,'SKIPPED');assert.equal(f.calls.filter(c=>c.kind==='SWAP').length,0);return run;};
- await skipped({status:'UNCONNECTED'});await skipped({address:'0x'+'9'.repeat(40)});await skipped({quota:0.5});
- await skipped({},{policy:{...policy,maxDailySpendUsd:'0'}});await skipped({},{},'500000');
+ await skipped({status:'UNCONNECTED'});await skipped({address:'0x'+'9'.repeat(40)});await skipped({quota:0.2});
+ await skipped({},{policy:{...policy,maxDailySpendUsd:'0'}});await skipped({},{},'200000');
  const store=new AgenticStore(new DatabaseSync(':memory:'));const f=fakeCli({quota:6});const {run}=await runAgenticContribution(input(),deps(store,f.cli));
  assert.equal(run.contributionUsd,'6');
+});
+
+test('optional daily ceiling bounds Autopilot across runs on the same day',async()=>{
+ const store=new AgenticStore(new DatabaseSync(':memory:'));
+ const first=await runAgenticContribution(input({dailyCapUsd:'0.5'}),deps(store,fakeCli({quota:6}).cli));
+ assert.equal(first.run.contributionUsd,'0.5');
+ const f=fakeCli({quota:6});const second=await runAgenticContribution(input({dailyCapUsd:'0.5',period:'M2026-10-10-2',trigger:'MANUAL'}),deps(store,f.cli));
+ assert.equal(second.run.state,'SKIPPED');assert.equal(f.calls.filter(c=>c.kind==='SWAP').length,0);
 });
 
 test('schedule is due once per WAT day or Monday after 09:00',()=>{
