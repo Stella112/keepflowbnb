@@ -1,3 +1,19 @@
+## More Binance Web3 API modules — 2026-10-11 00:10 UTC
+
+Release 20261010235843 is live; the referencePrice fix below is committed but not yet deployed. Features: stock pages compare Ondo vs bStocks per underlying share with 72h hourly charts and the on-chain 24h move (RWA Data `rwa/price` + Market API `candles`); receipts get an independent Binance check (Transaction API `transaction-detail-by-txhash`: hash, status, block, USDT out, tokens in, fee); the portfolio wallet section shows Address Portfolio `overview` + `recent-pnl` filtered to listed stocks. Read-only, existing signed client and rate limit. Real responses in fixtures/api; 7 new tests.
+
+Observed API facts (DevEx evidence): Wallet API `all-token-balances-by-address` returns `tokenAssets: []` with code 0 for a wallet holding 24,493 NVDAon (Address Portfolio shows it); candles reject `bar=1H` (40001, lowercase only); `rwa/price` needs `tokenContractAddresses` (plural); transaction detail returns an array keyed `txhash`/`height`/`chainIndex`; RWA `referencePrice` equals tokenPrice / tokenToShareRatio for Ondo and bStocks, so it is not an independent exchange quote (first release showed a meaningless 0% premium; replaced); VPN egress gives 40304. Latency ~0.5–1 s, `rwa/tokens` 1.5–2.5 s.
+
+Agentic Wallet funded by the owner (amounts per owner: ~2 USDT, 0.002 BNB, 0.5 USD1); not yet verified on-chain by Claude. Live Autopilot and paid research still switched off pending operator wallet address and approval.
+
+## KeepFlow mainnet-first checkpoint — 2026-10-10 22:00 UTC
+
+Owner renamed the product to KeepFlow (keepflow.site) and directed mainnet as the default with paper trading as an option. Production app.env: EXECUTION_MODE=MAINNET, MAINNET_WRITE_ENABLED=true, FIRSTBELL_APPROVAL_ENABLED=true, LIVE_MAX_TRADE_USD=5; Autopilot live execution stays disabled. https://keepflow.site serves a Let's Encrypt certificate (valid to 2027-01-08); www and http redirect to it; Lightsail 443 opened by the owner.
+
+Release 20261010215838: wallet purchase is the primary stock/Flow panel with inline wallet sign-in; paper is a secondary option; new /rules (shared personal-rules editor enforced on live and paper paths), /activity (owner-scoped verified live receipts, new LiveReceiptStore.list with test), receipt navigation, request-time mode badge. 318/318 VPS tests, typecheck and production build passed.
+
+Not yet verified: any confirmed mainnet purchase through the app, phone/Binance Wallet flow on the domain, Paymaster sponsorship, Agentic Wallet execution, Agent Studio identity, paid x402 call. No Codex review of these changes.
+
 Dedicated Studio wallet and read-only runtime VERIFIED on VPS: 0xcEf06DA67ACcBcdd6614A9875eFCe2c85A960329. Official bag dev launcher, SDK initialize/listTools and actual pinned nvidia version1 public sourced NVDA review passed. Protected password and encrypted keystore0600; no wallet signing, payment, funding, identity registration or cloud deployment. Runtime test stopped afterward. Independent source review accepted loopback, owner-private wallet isolation, deadline and corrected concurrency. Reviewer Windows HTTP readiness test failed separately; no Windows test pass is inferred from Linux proof. Evidence: test-results/studio-wallet-runtime-proof.json.
 
 Dedicated Studio wallet created with explicit owner authorization on VPS: 0xcEf06DA67ACcBcdd6614A9875eFCe2c85A960329. Official CLI0.0.14 private password generation, encrypted keystore/password0600, wallet/config binding and BSC connectivity verified. Runtime doctor found missing entrypoint/seller policy; no funds, identity registration, cloud deployment or financial operation. Evidence: test-results/studio-wallet-proof.json.

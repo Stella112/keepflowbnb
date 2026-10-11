@@ -1,0 +1,24 @@
+{
+ "code": 0,
+ "msg": "success",
+ "data": [
+  {
+   "binanceChainId": "56",
+   "tokenContractAddress": "0xa9ee28c80f960b889dfbd1902055218cba016f75",
+   "platformId": "ondo",
+   "tokenPrice": "231.180853693382505993",
+   "referencePrice": "230.785",
+   "tokenPriceUpdatedAt": 1791676110536
+  },
+  {
+   "binanceChainId": "56",
+   "tokenContractAddress": "0x02fca66c1d1afb4e2a7884261eb00f63598a7436",
+   "platformId": "bstock",
+   "tokenPrice": "230.60000000",
+   "referencePrice": "230.420681",
+   "tokenPriceUpdatedAt": 1791676114630
+  }
+ ],
+ "timestamp": 1791676115194,
+ "success": true
+}

@@ -1,0 +1,17 @@
+"use client";
+import {useCallback,useEffect,useRef,useState} from "react";
+import type {ResearchAttempt} from "../lib/research/agentic-research";
+type State={enabled:boolean;isOperator:boolean;dailyLimit?:number;fee?:string;attempts:ResearchAttempt[]};
+export function AgenticResearch({ticker}:{ticker:string}){
+ const [state,setState]=useState<State>(),[busy,setBusy]=useState(false),[error,setError]=useState(""),[job,setJob]=useState<Record<string,string>>({}),[report,setReport]=useState<{markdown:string;sourceUrls:string[]}>();const lock=useRef(false);
+ const load=useCallback(async()=>{try{const r=await fetch(`/api/research/agentic?ticker=${ticker}`,{cache:"no-store"});setState(await r.json());}catch{setState({enabled:false,isOperator:false,attempts:[]});}},[ticker]);
+ useEffect(()=>{void load();},[load]);
+ async function buy(){if(lock.current||!window.confirm(`Pay ${state?.fee??"0.1"} U or USD1 from the Agentic Wallet for a StockAnalyst report on ${ticker}? The fee buys one analysis attempt and is not refunded if the report fails.`))return;lock.current=true;setBusy(true);setError("");try{const r=await fetch("/api/research/agentic",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({ticker,requestId:crypto.randomUUID(),userConfirmed:true})}),d=await r.json();if(!r.ok)throw Error(d.error);if(d.attempt?.state==="FAILED")setError(d.attempt.reason);await load();}catch(e){setError(e instanceof Error?e.message:"Research could not start.");}finally{lock.current=false;setBusy(false);}}
+ async function check(jobId:string){setBusy(true);try{const r=await fetch(`/api/research/stockanalyst/jobs/${jobId}?view=status`,{cache:"no-store"}),d=await r.json();if(!r.ok)throw Error(d.error);setJob(j=>({...j,[jobId]:d.result.status}));if(d.result.reportAvailable){const rr=await fetch(`/api/research/stockanalyst/jobs/${jobId}?view=report`,{cache:"no-store"}),rd=await rr.json();if(rr.ok)setReport(rd.result);}}catch(e){setError(e instanceof Error?e.message:"Status unavailable.");}finally{setBusy(false);}}
+ if(!state||!state.enabled||!state.isOperator)return null;
+ return <section className="agentic-research"><p className="eyebrow">Paid research · x402 · Binance Agentic Wallet</p><h3>BNB Chain StockAnalyst report</h3><p>Pays {state.fee} U or USD1 from the operator&apos;s Agentic Wallet, signed once with EIP-3009. Research is advisory and never places a trade. Daily limit: {state.dailyLimit} reports.</p>
+  <button className="button secondary" disabled={busy} onClick={buy}>{busy?"Working…":`Buy ${ticker} report · ${state.fee}`}</button>{error&&<p role="alert" className="error">{error}</p>}
+  {state.attempts.length>0&&<ul className="research-attempts">{state.attempts.map(a=><li key={a.id}><strong>{a.state}</strong> · {a.token??"—"} · {new Date(a.createdAt).toLocaleString("en-GB",{timeZone:"UTC"})} UTC<br/><span className="fine-print">{a.reason}</span>{a.settlementTx&&<> · <a href={`https://bscscan.com/tx/${a.settlementTx}`} target="_blank" rel="noreferrer">Payment ↗</a></>}{a.jobId&&<><br/><button className="quiet" disabled={busy} onClick={()=>check(a.jobId!)}>{job[a.jobId]?`Job ${job[a.jobId]} · refresh`:"Check report"}</button></>}</li>)}</ul>}
+  {report&&<article className="research-report"><h4>Provider report</h4><pre>{report.markdown}</pre><p className="fine-print">Provider-reported analysis. Linked sources are not independently verified.</p></article>}
+ </section>;
+}
