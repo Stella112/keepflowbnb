@@ -5,7 +5,7 @@ export const dynamic='force-dynamic';
 export const maxDuration=300;
 const headers={'Cache-Control':'no-store','X-Content-Type-Options':'nosniff'};
 const schema=z.discriminatedUnion('action',[
- z.object({action:z.literal('SAVE_PLAN'),bellId:z.string().min(1).max(80),bellVersion:z.number().int().positive(),bellHash:z.string().min(1).max(128),contributionUsd:z.string().regex(/^\d+(\.\d{1,6})?$/).max(16).refine(v=>Number(v)>=1&&Number(v)<=1000),cadence:z.enum(['DAILY','WEEKLY'])}).strict(),
+ z.object({action:z.literal('SAVE_PLAN'),bellId:z.string().min(1).max(80),bellVersion:z.number().int().positive(),bellHash:z.string().min(1).max(128),contributionUsd:z.string().regex(/^\d+(\.\d{1,6})?$/).max(16).refine(v=>Number(v)>=0.25&&Number(v)<=1000),cadence:z.enum(['DAILY','WEEKLY'])}).strict(),
  z.object({action:z.enum(['ENABLE','PAUSE'])}).strict(),
  z.object({action:z.literal('RUN_NOW'),requestId:z.string().uuid()}).strict(),
  z.object({action:z.literal('RECONCILE'),key:z.string().min(1).max(400)}).strict(),
