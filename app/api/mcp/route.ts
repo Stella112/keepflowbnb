@@ -6,7 +6,7 @@ import {mcpDelegations} from "../../../lib/auth/mcp-delegation-server";
 import {requestOrigin} from "../../../lib/request-origin";
 export const dynamic="force-dynamic";
 export const maxDuration=300;
-const handler=createMcpHandler({call:(name,args,authorization)=>applicationTools.call(name,args,authorization),takeSlot:takePreviewSlot,takeAnonymousSlot:takeAnonymousMcpSlot,resolveBearer:async(token,request)=>{const origin=requestOrigin(request);return origin?mcpDelegations().resolve(token,origin+'/api/mcp'):undefined;},authorize:async(_request,name)=>{if(mcpPublicReads.has(name))return undefined;const owner=await existingAccountId();if(!owner||!linkedWallet(owner))return undefined;return {verifiedSession:true,accountId:owner,scopes:mcpPreparations.has(name)?["EXECUTION_PREPARATION"]:["PRIVATE_READ"],userConfirmedMutation:false};}});
+const handler=createMcpHandler({call:(name,args,authorization)=>applicationTools.call(name,args,authorization),takeSlot:takePreviewSlot,takeAnonymousSlot:takeAnonymousMcpSlot,resolveBearer:async(token,request)=>{const origin=requestOrigin(request);return origin?mcpDelegations().resolve(token,origin+'/api/mcp'):undefined;},authorize:async(_request,name)=>{if(mcpPublicReads.has(name)&&!mcpPreparations.has(name))return undefined;const owner=await existingAccountId();if(!owner||!linkedWallet(owner))return undefined;return {verifiedSession:true,accountId:owner,scopes:mcpPreparations.has(name)?["EXECUTION_PREPARATION"]:["PRIVATE_READ"],userConfirmedMutation:false};}});
 export const POST=handler;
 export const GET=handler;
 export const DELETE=handler;

@@ -198,3 +198,20 @@ code{word-break:break-word}
 .allocation-list{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:6px 20px;box-shadow:var(--shadow)}
 .allocation-row:last-child{border-bottom:0}
 .allocation-row a{font-weight:600}
+
+/* ===== Build with AI, review links, post-purchase prompts ===== */
+.assistant-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;align-items:start;margin-bottom:24px}
+.assistant-grid>.purchase-panel{margin:0}
+.capability-table{display:grid;gap:0;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.capability-table>div{display:grid;grid-template-columns:200px minmax(0,1fr);gap:16px;padding:14px 18px;border-top:1px solid var(--line)}
+.capability-table>div:first-child{border-top:0}
+.capability-table>div:last-child{background:var(--surface-2,rgba(127,127,127,.06))}
+.capability-table p{margin:0}
+.review-steps{display:grid;gap:10px;padding-left:22px}
+.review-steps li{padding-left:4px;line-height:1.5}
+.ai-ideas{list-style:none;padding:0;margin:16px 0;display:grid;gap:12px}
+.ai-ideas li{display:flex;gap:16px;align-items:center;justify-content:space-between;padding:12px 14px;border:1px solid var(--line);border-radius:var(--radius)}
+.ai-ideas li p{margin:4px 0 0}
+.ai-ideas button{flex:none;margin:0}
+.ai-next{margin-top:32px}
+@media(max-width:900px){.assistant-grid{grid-template-columns:1fr}.capability-table>div{grid-template-columns:1fr;gap:4px}.ai-ideas li{flex-direction:column;align-items:stretch}}

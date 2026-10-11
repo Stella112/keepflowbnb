@@ -12,13 +12,13 @@ test('scoped SDK draft tools remain unsaved and cannot escalate into publication
 });
 test('manual bearer client discovers only granted reads; scopes never admit preparation or cookie fallback',async()=>{
  let active=true,cookieReads=0,calls=0;
- const handler=createMcpHandler({takeSlot:()=>true,resolveBearer:async(value)=>active&&value===token?{accountId:'owner',allowedTools:['get_portfolio','get_bell','quote_stock']}:undefined,authorize:async()=>{cookieReads++;return {verifiedSession:true,accountId:'cookie-owner',scopes:['PRIVATE_READ','EXECUTION_PREPARATION'],userConfirmedMutation:false};},call:async(name,_args,auth)=>{calls++;assert.equal(auth?.accountId,'owner');assert.deepEqual(auth?.scopes,['PRIVATE_READ']);return {mode:'PAPER',name};}});
+ const handler=createMcpHandler({takeSlot:()=>true,resolveBearer:async(value)=>active&&value===token?{accountId:'owner',allowedTools:['get_portfolio','get_bell','prepare_bell_execution']}:undefined,authorize:async()=>{cookieReads++;return {verifiedSession:true,accountId:'cookie-owner',scopes:['PRIVATE_READ','EXECUTION_PREPARATION'],userConfirmedMutation:false};},call:async(name,_args,auth)=>{calls++;assert.equal(auth?.accountId,'owner');assert.deepEqual(auth?.scopes,['PRIVATE_READ']);return {mode:'PAPER',name};}});
  const client=new Client({name:'manual-pat-fixture',version:'1'}),transport=new StreamableHTTPClientTransport(new URL(url),{requestInit:{headers:{Authorization:'Bearer '+token,Cookie:'fixture-cookie=unused'}},fetch:async(input,init)=>handler(new Request(input,init))});
  try{
   await client.connect(transport);const list=await client.listTools();assert.deepEqual(list.tools.map(item=>item.name).sort(),['get_bell','get_portfolio']);
   assert.notEqual((await client.callTool({name:'get_portfolio',arguments:{}})).isError,true);
   assert.equal((await client.callTool({name:'get_receipt',arguments:{id:'private'}})).isError,true);
-  assert.equal((await client.callTool({name:'quote_stock',arguments:{ticker:'NVDA',provider:'bstock',amount:'1'}})).isError,true);
+  assert.equal((await client.callTool({name:'prepare_bell_execution',arguments:{requestId:'123e4567-e89b-42d3-a456-426614174000',bellId:'fixture',amount:'1'}})).isError,true);
   assert.equal(calls,1);assert.equal(cookieReads,0);
   active=false;await assert.rejects(()=>client.callTool({name:'get_portfolio',arguments:{}}));assert.equal(calls,1);assert.equal(cookieReads,0);
  }finally{await client.close();}

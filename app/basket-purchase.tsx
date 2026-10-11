@@ -7,8 +7,8 @@ import type {PinnedTransaction} from '../lib/execution/intents/model';
 import {connectedWalletSigner} from '../lib/execution/wallet-signer';
 import {WalletConnect,type Provider} from './wallet-connect';
 type View=Omit<BasketSession,'account'>&{executionAvailable:boolean;approvalAvailable:boolean};
-export function BasketPurchase({bell}:{bell:Flow}){
- const [session,setSession]=useState<View>(),[amount,setAmount]=useState('5'),[busy,setBusy]=useState(false),[message,setMessage]=useState(''),[hash,setHash]=useState(''),[recovery,setRecovery]=useState(''),[address,setAddress]=useState(''),[provider,setProvider]=useState<Provider>();
+export function BasketPurchase({bell,initialAmount='5'}:{bell:Flow;initialAmount?:string}){
+ const [session,setSession]=useState<View>(),[amount,setAmount]=useState(initialAmount),[busy,setBusy]=useState(false),[message,setMessage]=useState(''),[hash,setHash]=useState(''),[recovery,setRecovery]=useState(''),[address,setAddress]=useState(''),[provider,setProvider]=useState<Provider>();
  const locked=useRef(new Set<string>()),ticket=useRef<string|undefined>(undefined),mounted=useRef(true),operation=useRef(false);
  useEffect(()=>{mounted.current=true;return()=>{mounted.current=false;};},[]);
  const connect=useCallback((wallet:string,value?:Provider)=>{setAddress(wallet);setProvider(value);},[]);

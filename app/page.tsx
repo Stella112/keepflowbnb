@@ -60,7 +60,7 @@ export default async function Home() {
 
     <section className="feature-band">
       <div><p className="eyebrow">Autopilot</p><h2>The agent proposes. Your rules decide. Your wallet executes.</h2><p>Pick a Flow, an amount and a schedule. KeepFlow buys what is underweight, skips anything that breaks your limits and records why, with a receipt checked against the chain.</p><Link className="button secondary" href="/autopilot">Set up Autopilot</Link></div>
-      <div><p className="eyebrow">AI assistant</p><h2>Ask Claude to build your portfolio.</h2><p>Connect KeepFlow’s MCP server and say “Draft a $50 Flow of chip makers, max 30% each.” You review the draft; nothing moves without you.</p><Link className="button secondary" href="/assistant">Connect an assistant</Link></div>
+      <div><p className="eyebrow">Build with AI</p><h2>Ask Claude to research and plan.</h2><p>Add KeepFlow to Claude or any MCP app, then ask: “Compare NVIDIA on Ondo and bStocks, then draft a $50 Flow: NVIDIA 40%, Microsoft 30%, Alphabet 20%, keep 10% in USDT.” When you want to buy, it gives you a review link and you sign in your own wallet.</p><Link className="button secondary" href="/assistant">Set up in 30 seconds</Link></div>
     </section>
 
     <section className="explore phone-band"><div><h2>Open KeepFlow on your phone.</h2><p className="muted">Scan with your camera, then open the link in your wallet’s browser.</p></div><ShareLink url={publicShareUrl(process.env.FIRSTBELL_PUBLIC_URL,"/")} label="KeepFlow"/></section>

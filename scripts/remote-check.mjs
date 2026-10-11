@@ -10,7 +10,7 @@ const ssh = ['-o', 'BatchMode=yes', '-o', 'StrictHostKeyChecking=yes', '-o', 'Id
 const source = execFileSync('git', ['-c', 'safe.directory=C:/bnbstocks', 'ls-files', '--cached', '--others', '--exclude-standard', '-z'], { encoding: 'utf8' });
 const files = source.split('\0').filter((file) => file && (
   /^(app|lib|public|tests|fixtures\/api)\//.test(file) ||
-  /^(package(-lock)?\.json|tsconfig\.json|global\.d\.ts|next-env\.d\.ts|next\.config\.(js|mjs|ts))$/.test(file)
+  /^(package(-lock)?\.json|tsconfig\.json|global\.d\.ts|instrumentation\.ts|next-env\.d\.ts|next\.config\.(js|mjs|ts))$/.test(file)
 ));
 if (files.some((file) => /(^|\/)\.env|\.pem$|(^|\/)\.git\//.test(file))) throw new Error('Unsafe check file');
 const temporary = mkdtempSync(join(tmpdir(), 'keepflow-check-'));

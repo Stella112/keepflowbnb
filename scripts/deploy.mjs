@@ -12,7 +12,7 @@ const source = execFileSync('git', ['-c', 'safe.directory=C:/bnbstocks', 'ls-fil
 const files = source.split('\0').filter((file) => file && (
   /^(app|lib|public|tests|fixtures\/api)\//.test(file) ||
   /^tools\/agents\/package(-lock)?\.json$/.test(file) ||
-  /^(package(-lock)?\.json|tsconfig\.json|global\.d\.ts|next-env\.d\.ts|next\.config\.(js|mjs|ts))$/.test(file)
+  /^(package(-lock)?\.json|tsconfig\.json|global\.d\.ts|instrumentation\.ts|next-env\.d\.ts|next\.config\.(js|mjs|ts))$/.test(file)
 ));
 if (!files.includes('package-lock.json')) throw new Error('Deployment requires the lockfile');
 if (files.some((file) => /(^|\/)\.env|\.pem$|(^|\/)\.git\/|(^|\/)\.\.(\/|$)/.test(file))) throw new Error('Unsafe deployment file');

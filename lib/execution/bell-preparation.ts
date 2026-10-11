@@ -6,7 +6,7 @@ import type {ToolAuthorization} from "../tools/service.ts";
 
 export const bellPreparationInput=z.object({requestId:z.string().uuid(),bellId:z.string().min(1).max(80),amount:z.string().regex(/^\d+(\.\d{1,6})?$/).max(16)}).strict();
 export type BellPreparationKind="QUOTE_ONLY"|"SIMULATE";
-const authorizationSchema=z.object({verifiedSession:z.literal(true),accountId:z.string().min(1).max(80),scopes:z.array(z.enum(["PRIVATE_READ","OWNED_BELL_MUTATION","EXECUTION_PREPARATION"])),userConfirmedMutation:z.boolean()}).strict();
+const authorizationSchema=z.object({verifiedSession:z.literal(true),accountId:z.string().min(1).max(80),scopes:z.array(z.enum(["PRIVATE_READ","OWNED_BELL_MUTATION","EXECUTION_PREPARATION"])),userConfirmedMutation:z.boolean(),channel:z.enum(["WEBSITE_SESSION","ASSISTANT_GRANT"]).optional()}).strict();
 type Existing={fingerprint:string;receipt:DryReceipt};
 type Admission=({kind:"EXISTING"}&Existing)|{kind:"BUSY"}|{kind:"ADMITTED"};
 export type BellPreparationDependencies={
