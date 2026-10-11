@@ -4,6 +4,8 @@ import {curatedTickers,type RwaToken} from "../binance/rwa-schemas.ts";
 import {draftFromPrompt} from "../research/draft.ts";
 import {randomUUID} from "node:crypto";
 import {purchaseReviewInput,type PurchaseReviewInput} from "./purchase-review.ts";
+import {fitFlowToRules} from "../policy/flow-fit.ts";
+import {defaultPolicy} from "../paper/model.ts";
 
 const amount=z.string().regex(/^\d+(\.\d{1,6})?$/).max(20).refine(value=>Number(value)>0&&Number(value)<=25);
 const stockPreparation=z.object({ticker:z.enum(curatedTickers),provider:z.string().min(1).max(50),amount}).strict();
@@ -14,7 +16,8 @@ const compareVersions=z.object({id,fromVersion:z.number().int().positive(),toVer
 export const toolSchemas={get_stock_underlying:z.object({ticker:z.enum(curatedTickers),provider:z.enum(["ondo","bstock"])}).strict(),search_stock:z.object({query:z.string().trim().min(1).max(80)}).strict(),get_stock:z.object({ticker:z.enum(curatedTickers)}).strict(),get_stock_research:z.object({ticker:z.enum(curatedTickers)}).strict(),get_bell:z.object({id}).strict(),get_bell_versions:z.object({id}).strict(),compare_bell_versions:compareVersions,create_policy_from_prompt:z.object({prompt:z.string().trim().min(1).max(1000)}).strict(),quote_bell:bellPreparationInput,simulate_bell_buy:bellPreparationInput,prepare_bell_execution:bellPreparationInput,get_portfolio_drift:z.object({id}).strict(),preview_rebalance:z.object({id,amount}).strict(),quote_stock:stockPreparation,simulate_stock_buy:stockPreparation,get_execution_status:z.object({id}).strict(),request_bell_execution:z.object({id}).strict(),get_portfolio:empty,get_wallet_portfolio:empty,preview_next_contribution:empty,get_receipt:z.object({id}).strict(),explain_decision:z.object({id}).strict(),create_bell:z.object({definition:bellInputSchema}).strict(),fork_bell:z.object({id,definition:bellInputSchema}).strict(),modify_bell:z.object({id,expectedVersion:z.number().int().positive(),definition:bellInputSchema}).strict(),create_bell_from_prompt:z.object({prompt:z.string().trim().min(5).max(1000)}).strict(),modify_bell_from_prompt:z.object({id,prompt:z.string().trim().min(5).max(1000)}).strict(),
  // KeepFlow names for the original First Bell tools; the *_bell names stay for existing clients.
  get_flow:z.object({id}).strict(),get_flow_versions:z.object({id}).strict(),compare_flow_versions:compareVersions,create_flow_from_prompt:z.object({prompt:z.string().trim().min(5).max(1000)}).strict(),modify_flow_from_prompt:z.object({id,prompt:z.string().trim().min(5).max(1000)}).strict(),
- quote_flow:flowPreparation,simulate_flow_buy:flowPreparation,prepare_purchase_review:purchaseReviewInput};
+ quote_flow:flowPreparation,simulate_flow_buy:flowPreparation,prepare_purchase_review:purchaseReviewInput,
+ check_flow_against_rules:z.object({flowId:id,maxSingleAssetBps:z.number().int().min(100).max(10000).optional(),minReserveBps:z.number().int().min(0).max(9000).optional()}).strict()};
 export const flowAliases={get_flow:"get_bell",get_flow_versions:"get_bell_versions",compare_flow_versions:"compare_bell_versions",create_flow_from_prompt:"create_bell_from_prompt",modify_flow_from_prompt:"modify_bell_from_prompt",quote_flow:"quote_bell",simulate_flow_buy:"simulate_bell_buy"} as const;
 /** Without a wallet-scoped grant these return a labelled estimate from live prices instead of an executable quote. */
 export const estimateTools=new Set(["quote_stock","quote_bell","quote_flow"]);
@@ -33,6 +36,13 @@ export function firstBellToolService(deps:ToolDependencies){
   let tool=name as Name;const parsed=toolSchemas[tool].safeParse(input);if(!parsed.success)throw new ToolError("INVALID_INPUT","Tool input does not match its schema.");
   const checked=authorizationSchema.safeParse(authorization);const auth=checked.success?checked.data:undefined;
   if(estimateTools.has(tool)&&!auth?.scopes.includes("EXECUTION_PREPARATION"))return estimate(deps,tool,parsed.data as Record<string,unknown>);
+  if(tool==="check_flow_against_rules"){
+   // The same deterministic engine as the Flow page. A grant with get_portfolio-level access uses the saved rules; otherwise the stated limits over KeepFlow defaults.
+   const args=parsed.data as {flowId:string;maxSingleAssetBps?:number;minReserveBps?:number},flow=deps.getBell(args.flowId);if(!flow)throw new ToolError("NOT_FOUND","Flow not found.");
+   const saved=auth?.scopes.includes("PRIVATE_READ")?deps.account(auth.accountId).policy:undefined,policy={...(saved??defaultPolicy),...(saved?{}:{...(args.maxSingleAssetBps!==undefined?{maxSingleAssetBps:args.maxSingleAssetBps}:{}),...(args.minReserveBps!==undefined?{minReserveBps:args.minReserveBps}:{})})};
+   const market=await deps.discovery(),unavailable=flow.assets.map(a=>a.ticker).filter(t=>!market.tokens.some(token=>token.underlyingTicker===t&&token.binanceChainId==="56"&&token.statusInfo.openState));
+   return {rulesSource:saved?"SAVED_RULES":"STATED_LIMITS",flow:{id:flow.id,title:flow.title,version:flow.version},fetchedAt:market.fetchedAt,fit:fitFlowToRules(flow,policy,unavailable),saved:false,executionEnabled:false,next:"The investor can accept the adjusted version on the Flow page or a prepare_purchase_review link; it is saved as their own fork only when they click Adjust to my rules."};
+  }
   if(tool==="prepare_purchase_review"){if(!deps.createReview)throw new ToolError("NOT_CONFIGURED","Purchase review links are unavailable.");return deps.createReview(parsed.data as PurchaseReviewInput,auth?.scopes.includes("EXECUTION_PREPARATION")?auth.accountId:undefined);}
   let aliased=parsed.data as Record<string,unknown>;
   if(Object.hasOwn(flowAliases,tool)){const target=flowAliases[tool as keyof typeof flowAliases] as Name;if(tool==="quote_flow"||tool==="simulate_flow_buy")aliased={requestId:aliased.requestId??randomUUID(),bellId:aliased.flowId,amount:aliased.amount};tool=target;}

@@ -7,7 +7,7 @@ import {identityTransportAllowed,sameOrigin} from "../request-origin.ts";
 
 // quote_stock, quote_flow and prepare_purchase_review are public: without a wallet-scoped grant they return a
 // labelled price estimate and an unbound review link. With a grant or website session they use the verified wallet.
-export const mcpPublicReads=new Set(["search_stock","get_stock","get_stock_research","get_stock_underlying","get_bell","get_bell_versions","compare_bell_versions","create_bell_from_prompt","modify_bell_from_prompt","get_flow","get_flow_versions","compare_flow_versions","create_flow_from_prompt","modify_flow_from_prompt","quote_stock","quote_flow","prepare_purchase_review"]);
+export const mcpPublicReads=new Set(["search_stock","get_stock","get_stock_research","get_stock_underlying","get_bell","get_bell_versions","compare_bell_versions","create_bell_from_prompt","modify_bell_from_prompt","get_flow","get_flow_versions","compare_flow_versions","create_flow_from_prompt","modify_flow_from_prompt","quote_stock","quote_flow","prepare_purchase_review","check_flow_against_rules"]);
 export const mcpPrivateReads=new Set(["get_portfolio","get_wallet_portfolio","get_portfolio_drift","get_receipt","explain_decision","create_policy_from_prompt","preview_next_contribution","preview_rebalance","get_execution_status"]);
 export const mcpPreparations=new Set(["quote_stock","quote_bell","quote_flow","simulate_stock_buy","simulate_bell_buy","simulate_flow_buy","prepare_bell_execution","prepare_purchase_review"]);
 /** Preparations an approved assistant grant may use. prepare_bell_execution stays website-only. */
@@ -49,6 +49,7 @@ export const mcpDescriptions:Record<string,string>={
  "compare_flow_versions": "Show exactly what changed between two versions of a Flow (added, removed and reweighted stocks, rule changes).",
  "create_flow_from_prompt": "Turn a plain-English idea with named companies (\"$100: NVDA 40%, MSFT 30%, GOOGL 20%, keep 10% cash, max 40% each\") into an unsaved draft Flow. If it fails, the error explains how to rephrase and lists the available tickers. Saves nothing.",
  "modify_flow_from_prompt": "Draft a new version or fork of an existing Flow from an instruction with explicit weights. Unsaved; the user decides whether to keep it on KeepFlow.",
+ "check_flow_against_rules": "Check a Flow against an investor's rules with KeepFlow's deterministic policy engine (not an AI judgement): returns ALLOW, ADJUSTMENT_REQUIRED, BLOCK or UNAVAILABLE, a reason per holding, and a proposed compliant allocation where removed weight stays in USDT. Pass maxSingleAssetBps/minReserveBps, or use a token with saved rules. Saves nothing.",
  "prepare_bell_execution": "Prepare a checked Flow purchase for the user to sign in their own wallet. KeepFlow website session only."
 };
 export type McpReadDelegation={accountId:string;allowedTools:string[]};

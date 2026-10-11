@@ -245,3 +245,14 @@ code{word-break:break-word}
 .other-wallets{margin-top:12px}
 .other-wallet-list{display:grid;gap:8px;margin-top:10px}
 .other-wallet-list .wallet-button{justify-content:flex-start;margin:0}
+
+/* Apply my rules */
+.rules-fit{border:1px solid var(--line);border-radius:var(--radius);padding:14px 16px;margin:16px 0}
+.rules-fit.ok{border-color:#9bd8bd;background:rgba(61,220,151,.07)}
+.rules-fit.warn{border-color:#f0d27a;background:rgba(255,210,90,.08)}
+.rules-fit p{margin:6px 0}
+.fit-reasons{margin:8px 0;padding-left:20px}
+.fit-table{width:100%;border-collapse:collapse;margin:10px 0 14px;font-size:14px}
+.fit-table th,.fit-table td{text-align:left;padding:6px 4px;border-bottom:1px solid var(--line)}
+.fit-table th:not(:first-child),.fit-table td:not(:first-child){text-align:right}
+.fit-table tr.changed td{font-weight:650}

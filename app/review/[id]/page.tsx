@@ -7,6 +7,7 @@ import {getDiscovery} from "../../../lib/binance/rwa";
 import {IntentPreview} from "../../intent-preview";
 import {BasketPurchase} from "../../basket-purchase";
 import {SignInGate} from "../../sign-in-gate";
+import {RulesFit} from "../../b/[id]/rules-fit";
 export const dynamic="force-dynamic";
 export const metadata:Metadata={title:"Review your purchase · KeepFlow",robots:{index:false,follow:false}};
 const issuer=(id:string|null)=>id==="ondo"?"Ondo":id==="bstock"?"bStocks":id??"";
@@ -34,7 +35,7 @@ export default async function ReviewPage({params}:{params:Promise<{id:string}>})
    <p><Link className="quiet" href={flow?`/b/${flow.id}`:`/s/${review.ticker}`}>See the full {flow?"Flow":"stock"} page and research ↗</Link></p>
    </section>
    <aside className="purchase-panel"><p className="eyebrow"><span className="mode-tag real">Real trading</span> BNB Smart Chain · real USDT</p>
-    {flow?<><h2>Invest in {flow.title}.</h2><SignInGate/><BasketPurchase key={`${flow.id}:${flow.version}`} bell={flow} initialAmount={review.amount}/></>
+    {flow?<><h2>Invest in {flow.title}.</h2><RulesFit flowId={flow.id} title={flow.title} description={flow.description}/><SignInGate/><BasketPurchase key={`${flow.id}:${flow.version}`} bell={flow} initialAmount={review.amount}/></>
      :<><h2>Buy {review.ticker}.</h2><p className="fine-print">Issuer: {issuer(review.provider)}. You can switch issuer on the <Link href={`/s/${review.ticker}`}>stock page</Link>.</p><IntentPreview ticker={review.ticker!} provider={review.provider!} initialAmount={review.amount}/></>}
    </aside>
   </div>
