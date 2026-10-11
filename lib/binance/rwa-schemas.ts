@@ -46,5 +46,7 @@ export function curateTokens(tokens: RwaToken[], providers: z.infer<typeof platf
 
 export function marketLabel(token: RwaToken): string {
   const labels: Record<string, string> = { regular: "Regular session", premarket: "Pre-market session", postmarket: "Post-market session", overnight: "Overnight session", closed: "Market closed", pause: "Trading paused", paused: "Trading paused" };
-  return token.statusInfo.marketStatus ? labels[token.statusInfo.marketStatus] ?? "Market status unavailable" : "Market status unavailable";
+  // bStocks report no session (null); say what we do know: whether the token trades on-chain right now.
+  if (!token.statusInfo.marketStatus) return token.statusInfo.openState ? "Trading on-chain now" : "On-chain trading paused";
+  return labels[token.statusInfo.marketStatus] ?? "Market status unavailable";
 }

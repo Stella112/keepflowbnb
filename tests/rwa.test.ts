@@ -12,7 +12,8 @@ test("live search and token fixtures validate; NVIDIA has two BSC providers", ()
   assert.equal(search[0].ticker, "NVDA");
   const nvda = curateTokens(tokens, providers).filter((token) => token.underlyingTicker === "NVDA");
   assert.deepEqual(nvda.map((token) => token.platformId).sort(), ["bstock", "ondo"]);
-  assert.equal(marketLabel(nvda.find((token) => token.platformId === "bstock")!), "Market status unavailable");
+  const bstock = nvda.find((token) => token.platformId === "bstock")!;
+  assert.equal(marketLabel(bstock), bstock.statusInfo.openState ? "Trading on-chain now" : "On-chain trading paused");
 });
 test("unknown providers, other chains, pre-IPO and duplicate assets are excluded", () => {
   const token = tokens.find((entry) => entry.underlyingTicker === "NVDA")!;

@@ -17,7 +17,7 @@ runner=current('AGENTIC_RUNNER_TOKEN'); runner=runner if len(runner)>=32 else se
 jobkey=current('FIRSTBELL_RESEARCH_JOB_KEY'); jobkey=jobkey if len(jobkey)==64 else secrets.token_hex(32)
 settings={'AGENTIC_WALLET_ENABLED':'true','AUTOPILOT_LIVE_ENABLED':'true','AUTOPILOT_OPERATOR_ADDRESS':'${operator}',
  'AGENTIC_OPERATOR_OWNER_WALLET':'${owner}','AGENTIC_RUNNER_TOKEN':runner,'FIRSTBELL_RESEARCH_PAYMENTS_ENABLED':'true',
- 'AGENTIC_RESEARCH_DAILY_LIMIT':'1','LIVE_MAX_TRADE_USD':'0.5','AGENTIC_DAILY_MAX_USD':'0.5','FIRSTBELL_RESEARCH_JOB_KEY':jobkey}
+ 'AGENTIC_RESEARCH_DAILY_LIMIT':'1','LIVE_MAX_TRADE_USD':'5','AGENTIC_MAX_TRADE_USD':'0.5','AGENTIC_DAILY_MAX_USD':'0.5','FIRSTBELL_RESEARCH_JOB_KEY':jobkey}
 if current('EXECUTION_MODE')!='MAINNET' or current('MAINNET_WRITE_ENABLED')!='true': raise RuntimeError('Mainnet mode is not configured in app.env')
 lines=[l for l in lines if l.partition('=')[0] not in settings]+[k+'='+v for k,v in settings.items()]
 app.write_text('\n'.join(lines)+'\n');os.chmod(app,0o600)

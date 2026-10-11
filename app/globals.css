@@ -154,3 +154,47 @@ footer strong{color:var(--ink)}
 .stock-grid>*,.flow-grid>*,.steps>*{min-width:0}
 .purchase-panel+.purchase-panel,.purchase-panel+details.purchase-panel{margin-top:16px}
 .connect-box{margin:20px 0;padding:20px;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface-2)}.connect-box h3{margin-top:0}.connect-steps{padding-left:20px;line-height:1.7;color:var(--ink-2)}.connect-challenge{text-align:center}.connect-challenge .agentic-actions{justify-content:center}.quiet.danger{color:var(--down);margin-top:12px}
+/* ===== Layout and spacing fixes (audit 2026-10-11) ===== */
+/* Stock and Flow pages: summary + research on the left, purchase panel pinned on the right; on phones the purchase panel follows the summary. */
+.stock-layout{grid-template-columns:minmax(0,1.45fr) minmax(320px,1fr);grid-template-areas:"overview aside" "research aside";column-gap:48px;row-gap:0;align-items:start}
+.stock-layout>.stock-overview{grid-area:overview}
+.stock-layout>.stock-research{grid-area:research;display:grid;gap:20px;align-content:start;margin-top:8px}
+.stock-layout>aside{grid-area:aside;position:sticky;top:88px;max-height:calc(100vh - 104px);overflow:auto;overscroll-behavior:contain}
+.stock-research>*{margin:0}
+@media(max-width:900px){.stock-layout{grid-template-columns:1fr;grid-template-areas:"overview" "aside" "research";row-gap:24px}.stock-layout>aside{position:static;max-height:none;overflow:visible}}
+
+/* Vertical rhythm: nothing touches. */
+main>section+section,main>section+div,main>div+section{margin-top:40px}
+.purchase-panel,.empty{margin-bottom:0}
+.purchase-panel+.purchase-panel,.purchase-panel+.notice,.notice+.purchase-panel,.purchase-panel+section,section+.purchase-panel,.purchase-panel+h2,.purchase-panel+div,.empty+*{margin-top:20px}
+.purchase-panel>:first-child{margin-top:0}
+.purchase-panel>:last-child{margin-bottom:0}
+.purchase-panel :is(button,.button,.secondary,input,select,textarea,a.button)+:is(h2,h3){margin-top:32px}
+.purchase-panel h3{margin-top:24px}
+.purchase-panel>:is(button,.button,.secondary,.quiet){margin-top:14px}
+.purchase-panel label+:is(input,select,textarea){margin-bottom:4px}
+section>h2:not(:first-child){margin-top:32px}
+
+/* Buttons side by side get a gap and wrap cleanly. */
+:is(.button,.secondary,button)+:is(.button,.secondary,button){margin-left:10px}
+.button.full+.button.full,.wallet-buy>.button,.button.full{margin-left:0}
+.quiet+.button,.quiet+.secondary,.button+.quiet,.secondary+.quiet{margin-left:14px}
+.stock-research>.quiet,.stock-overview>.quiet{display:inline-block;margin-right:16px}
+
+/* Definition lists that wrap pairs in <div>s line up as a grid. */
+dl>div{display:contents}
+dl{column-gap:20px;row-gap:10px;align-items:baseline}
+dd{font-weight:550;color:var(--ink)}
+
+/* Collapsibles and small boxes. */
+.paper-option{padding:12px 16px;border-top:0}
+.paper-option[open]{padding-bottom:16px}
+details>summary{padding:4px 0}
+.notice{line-height:1.55}
+pre.code-block{white-space:pre-wrap;word-break:break-all}
+code{word-break:break-word}
+
+/* Allocation rows on Flow pages. */
+.allocation-list{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:6px 20px;box-shadow:var(--shadow)}
+.allocation-row:last-child{border-bottom:0}
+.allocation-row a{font-weight:600}

@@ -19,7 +19,8 @@ export function agenticConfig(){
  const operator=process.env.AUTOPILOT_OPERATOR_ADDRESS??'',owner=process.env.AGENTIC_OPERATOR_OWNER_WALLET??'';
  // Live for every signed-in account that connects its own Agentic Wallet; the operator pair is an optional pre-connected account.
  const live=process.env.AGENTIC_WALLET_ENABLED==='true'&&process.env.AUTOPILOT_LIVE_ENABLED==='true'&&submissionEnabled();
- return {live,operator:operator.toLowerCase(),ownerWallet:owner.toLowerCase(),capUsd:process.env.LIVE_MAX_TRADE_USD??'5',dailyCapUsd:/^\d+(\.\d{1,6})?$/.test(process.env.AGENTIC_DAILY_MAX_USD??'')?process.env.AGENTIC_DAILY_MAX_USD:undefined};
+ return {live,operator:operator.toLowerCase(),ownerWallet:owner.toLowerCase(),// Autopilot has its own per-purchase cap so a small agent budget never limits users' own manual purchases.
+  capUsd:/^\d+(\.\d{1,6})?$/.test(process.env.AGENTIC_MAX_TRADE_USD??'')?process.env.AGENTIC_MAX_TRADE_USD!:process.env.LIVE_MAX_TRADE_USD??'5',dailyCapUsd:/^\d+(\.\d{1,6})?$/.test(process.env.AGENTIC_DAILY_MAX_USD??'')?process.env.AGENTIC_DAILY_MAX_USD:undefined};
 }
 const store=()=>new AgenticStore(paperDatabase());
 const wallets=()=>new AgenticWalletStore(paperDatabase());
