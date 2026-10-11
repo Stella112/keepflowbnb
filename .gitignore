@@ -13,3 +13,4 @@ test-results/
 *.sqlite*
 tools/agents/vendor-review/
 logs/agentic-auth*.json
+docs/DEVEX_NOTES.md
