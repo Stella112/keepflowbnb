@@ -27,6 +27,7 @@ export PATH=/home/ubuntu/.local/node-v24.21.0/bin:$PATH
 cd ${dir} && tar -xzf source.tar.gz && rm source.tar.gz
 ${process.env.KEEPFLOW_CHECK_FRESH_DEPS==='1'?'npm ci --no-fund --no-audit >/dev/null':'ln -s /home/ubuntu/firstbell/current/node_modules node_modules'}
 npm run typecheck
+${process.env.KEEPFLOW_CHECK_BUILD==='1'?'NEXT_TELEMETRY_DISABLED=1 node node_modules/next/dist/bin/next build 2>&1 | tail -25':''}
 ${focus?`node --test ${focus} 2>&1 | tail -60 || true`:"npm test 2>&1 | grep -E '^(ℹ (tests|pass|fail)|✖)' || true"}
 `;
 execFileSync('ssh', [...ssh, target, 'bash -s'], { input: script, stdio: ['pipe', 'inherit', 'inherit'], timeout: 900_000 });

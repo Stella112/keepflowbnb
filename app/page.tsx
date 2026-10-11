@@ -8,10 +8,9 @@ import {publicShareUrl} from "../lib/share-url";
 export const dynamic = "force-dynamic";
 const usd=(value:number)=>value.toLocaleString("en-US",{style:"currency",currency:"USD",maximumFractionDigits:2});
 const steps:[string,string,string][]=[
- ["Scan it","Open a stock or a Flow from a link or QR code. No app to install, no seed phrase to learn.","01"],
- ["Own it","Pay with USDT from Binance Wallet or any BNB Chain wallet. The stock tokens land in your wallet, not ours.","02"],
- ["Fork it","Copy any Flow, change the weights and share your own version. The creator never controls your money.","03"],
- ["Automate it","Set rules once. Autopilot adds to underweight stocks on schedule and never sells without your say-so.","04"],
+ ["Choose","Pick a company, or a Flow: a shareable portfolio someone has already built. Fork any Flow to make it yours.","1"],
+ ["Review","See the live quote, what you'll receive, the fees and how it fits your own rules, before your wallet asks for anything.","2"],
+ ["Own","Approve in your wallet. The stock tokens land in your wallet, not ours, and every purchase gets a verified receipt.","3"],
 ];
 export default async function Home() {
   const discovery = await getDiscovery().catch(() => null);
@@ -28,10 +27,10 @@ export default async function Home() {
     <section className="home-hero">
       <div>
         <p className="eyebrow">Tokenized stocks on BNB Chain</p>
-        <h1>Own real stocks on&#8209;chain, in a few taps.</h1>
-        <p className="intro">Buy NVIDIA, Apple, Microsoft and more with USDT from your own wallet. Bundle them into a Flow you can share, fork and keep on track automatically, under rules you set.</p>
-        <div className="hero-actions"><Link className="button large" href="/buy">Buy your first stock</Link><Link className="button secondary" href="/#stocks">Explore stocks</Link></div>
-        <p className="fine-print hero-note">You need a BNB Chain wallet with USDT. No USDT yet? <Link href="/portfolio?mode=paper">Practice with paper money</Link>.</p>
+        <h1>Invest in stocks. Make every strategy your own.</h1>
+        <p className="intro">Buy supported tokenized stocks on BNB Chain or explore shareable portfolios. Your investments stay in your wallet, under rules you control.</p>
+        <div className="hero-actions"><Link className="button large" href="/buy">Buy your first stock</Link><Link className="button secondary" href="/bells">Explore Flows</Link></div>
+        <p className="fine-print hero-note">You need a BNB Chain wallet with USDT. No USDT yet? <Link href="/portfolio?mode=paper">Practice with paper money</Link>. Prefer to ask? <Link href="/assistant">Build with AI ↗</Link></p>
         <ul className="trust-row"><li>Your wallet, your keys</li><li>Live Binance market data</li><li>Practice free with paper money</li></ul>
       </div>
       {featured&&<Link href={`/b/${featured.id}`} className="flow-preview" aria-label={`Open the ${featured.title} Flow`}>
