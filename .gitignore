@@ -14,3 +14,4 @@ test-results/
 tools/agents/vendor-review/
 logs/agentic-auth*.json
 docs/DEVEX_NOTES.md
+scripts/.*.tmp.mjs
