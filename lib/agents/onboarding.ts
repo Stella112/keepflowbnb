@@ -6,12 +6,12 @@ export const onboardingSource='https://github.com/binance/binance-skills-hub/blo
 export type OnboardingCommand='SIGNIN'|'VERIFY'|'STATUS'|'ADDRESS';
 export function onboardingArgs(command:OnboardingCommand,qrCodeId?:string):string[]{switch(command){case 'SIGNIN':return ['auth','signin','--json'];case 'VERIFY':return ['auth','verify','--qrCodeId',z.string().uuid().parse(qrCodeId),'--json'];case 'STATUS':return ['wallet','status','--json'];case 'ADDRESS':return ['wallet','address','--json'];default:throw Error('UNSUPPORTED_SETUP_COMMAND');}}
 export type OnboardingRunner=(command:OnboardingCommand,qrCodeId?:string)=>Promise<string>;
-export function onboardingLocalRunner(projectRoot:string):OnboardingRunner{return async(command,id)=>{
+export function onboardingLocalRunner(projectRoot:string,bawDir?:string,verifyTimeoutMs=305000):OnboardingRunner{return async(command,id)=>{
  const expected=resolve(projectRoot,'tools/agents/node_modules/@binance/agentic-wallet'),root=await realpath(expected);if(root!==expected)throw Error('PACKAGE_UNVERIFIED');
  const manifest=JSON.parse(await readFile(resolve(root,'package.json'),'utf8'));if(manifest.name!=='@binance/agentic-wallet'||manifest.version!=='1.10.0'||manifest.bin?.baw!=='dist/index.js')throw Error('PACKAGE_UNVERIFIED');
  const entry=await realpath(resolve(root,'dist/index.js')),rel=relative(root,entry);if(!rel||rel.startsWith('..')||isAbsolute(rel))throw Error('ENTRY_UNVERIFIED');
- const env:NodeJS.ProcessEnv={NODE_ENV:'production'};for(const key of ['PATH','SystemRoot','TEMP','TMP','HOME','USERPROFILE','APPDATA','LOCALAPPDATA'])if(process.env[key])env[key]=process.env[key];
- return new Promise((accept,reject)=>execFile(process.execPath,[entry,...onboardingArgs(command,id)],{cwd:root,env,timeout:command==='VERIFY'?305000:20000,maxBuffer:32768,windowsHide:true,shell:false},(error,stdout)=>error?reject(Error('SETUP_CLI_FAILED')):accept(stdout)));
+ const env:NodeJS.ProcessEnv={NODE_ENV:'production'};for(const key of ['PATH','SystemRoot','TEMP','TMP','HOME','USERPROFILE','APPDATA','LOCALAPPDATA'])if(process.env[key])env[key]=process.env[key];if(bawDir){env.BINANCE_BAW_DIR=bawDir;env.HOME=bawDir;env.USERPROFILE=bawDir;}
+ return new Promise((accept,reject)=>execFile(process.execPath,[entry,...onboardingArgs(command,id)],{cwd:root,env,timeout:command==='VERIFY'?verifyTimeoutMs:20000,maxBuffer:32768,windowsHide:true,shell:false},(error,stdout)=>error?reject(Error('SETUP_CLI_FAILED')):accept(stdout)));
 };}
 const binding=z.object({operatorId:z.string().min(1).max(80),requesterId:z.string().min(1).max(80),wallet:z.string().regex(/^0x[0-9a-fA-F]{40}$/),authorization:z.literal('OPERATOR_WALLET_LOGIN_SETUP'),humanApprovedSetup:z.literal(true)}).strict();
 export type OnboardingBinding=z.infer<typeof binding>;

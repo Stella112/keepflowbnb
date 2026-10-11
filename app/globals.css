@@ -153,3 +153,4 @@ footer strong{color:var(--ink)}
 .nav-more:not([open]) .nav-menu{display:none}
 .stock-grid>*,.flow-grid>*,.steps>*{min-width:0}
 .purchase-panel+.purchase-panel,.purchase-panel+details.purchase-panel{margin-top:16px}
+.connect-box{margin:20px 0;padding:20px;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface-2)}.connect-box h3{margin-top:0}.connect-steps{padding-left:20px;line-height:1.7;color:var(--ink-2)}.connect-challenge{text-align:center}.connect-challenge .agentic-actions{justify-content:center}.quiet.danger{color:var(--down);margin-top:12px}

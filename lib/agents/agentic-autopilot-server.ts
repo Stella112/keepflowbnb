@@ -1,5 +1,7 @@
 import 'server-only';
-import {randomUUID} from 'node:crypto';
+import {randomUUID,createHash} from 'node:crypto';
+import {mkdir,rm,chmod} from 'node:fs/promises';
+import {dirname,join,resolve} from 'node:path';
 import {erc20Abi,parseEventLogs,type Address,type Hex} from 'viem';
 import {existingAccountId,linkedWallet,paperDatabase,readAccount,bellHistory} from '../paper/store';
 import {identityTransportAllowed,sameOrigin} from '../request-origin';
@@ -8,17 +10,37 @@ import {submissionEnabled} from '../execution/submission-server';
 import {getDiscovery} from '../binance/rwa';
 import {publicClient} from '../binance/onchain';
 import {isolatedAgenticRunner,parseBscAddress,parseLeftQuota,parseStatus} from './agentic-cli';
+import {onboardingLocalRunner} from './onboarding';
+import {AgenticWalletStore,startAgenticConnect,verifyAgenticConnect,disconnectAgentic,type ConnectDeps} from './agentic-wallets';
 import {AgenticStore,duePeriod,reconcileAgenticRun,runAgenticContribution,USDT,agenticPlanSchema,type AgenticDeps,type AgenticPlan,type ChainVerification} from './agentic-autopilot';
 
 const address=/^0x[0-9a-fA-F]{40}$/;
 export function agenticConfig(){
  const operator=process.env.AUTOPILOT_OPERATOR_ADDRESS??'',owner=process.env.AGENTIC_OPERATOR_OWNER_WALLET??'';
- const live=process.env.AGENTIC_WALLET_ENABLED==='true'&&process.env.AUTOPILOT_LIVE_ENABLED==='true'&&submissionEnabled()&&address.test(operator)&&address.test(owner);
- return {live,operator:operator.toLowerCase(),ownerWallet:owner.toLowerCase(),capUsd:process.env.LIVE_MAX_TRADE_USD??'5',dailyCapUsd:/^d+(.d{1,6})?$/.test(process.env.AGENTIC_DAILY_MAX_USD??'')?process.env.AGENTIC_DAILY_MAX_USD:undefined};
+ // Live for every signed-in account that connects its own Agentic Wallet; the operator pair is an optional pre-connected account.
+ const live=process.env.AGENTIC_WALLET_ENABLED==='true'&&process.env.AUTOPILOT_LIVE_ENABLED==='true'&&submissionEnabled();
+ return {live,operator:operator.toLowerCase(),ownerWallet:owner.toLowerCase(),capUsd:process.env.LIVE_MAX_TRADE_USD??'5',dailyCapUsd:/^\d+(\.\d{1,6})?$/.test(process.env.AGENTIC_DAILY_MAX_USD??'')?process.env.AGENTIC_DAILY_MAX_USD:undefined};
 }
 const store=()=>new AgenticStore(paperDatabase());
+const wallets=()=>new AgenticWalletStore(paperDatabase());
+const userRoot=()=>process.env.AGENTIC_USER_ROOT??join(dirname(resolve(process.env.PAPER_DATABASE_PATH??'data/paper.sqlite')),'agentic-users');
+const dirFor=(owner:string)=>join(userRoot(),createHash('sha256').update('keepflow-agentic:'+owner).digest('hex').slice(0,32));
+function connectDeps():ConnectDeps{return {store:wallets(),runner:dir=>onboardingLocalRunner(process.cwd(),dir,50_000),dirFor,
+ prepareDir:async dir=>{await mkdir(dir,{recursive:true,mode:0o700});await chmod(dir,0o700);},
+ removeDir:async dir=>{if(dir.startsWith(userRoot()))await rm(dir,{recursive:true,force:true});},now:()=>Date.now(),maxWallets:Number(process.env.AGENTIC_MAX_USERS??'50')};}
 
-/** Single-operator scope: only the KeepFlow account signed in with the configured owner wallet may operate the Agentic Wallet. */
+/** The wallet an account's Autopilot spends from: its own connected Agentic Wallet, or the configured operator session. */
+export function agenticBinding(owner:string):{wallet:string;dir?:string}|undefined{
+ const own=wallets().read(owner);if(own)return {wallet:own.wallet,dir:own.dir};
+ const config=agenticConfig(),linked=linkedWallet(owner)?.toLowerCase();
+ if(config.ownerWallet&&address.test(config.operator)&&linked===config.ownerWallet)return {wallet:config.operator};
+ return undefined;
+}
+export const connectAgentic=(owner:string)=>startAgenticConnect(owner,connectDeps());
+export const verifyAgentic=(owner:string)=>verifyAgenticConnect(owner,connectDeps());
+export const disconnectAgenticWallet=(owner:string)=>disconnectAgentic(owner,connectDeps());
+
+/** Any signed-in account; isOperator marks the configured operator, which alone may use paid research. */
 export async function agenticOperator(request:Request,mutation=false){
  if(!identityTransportAllowed(request)||(mutation&&!sameOrigin(request)))throw Error('AUTH_REQUIRED');
  const owner=await existingAccountId(),wallet=owner?linkedWallet(owner)?.toLowerCase():undefined,config=agenticConfig();
@@ -47,18 +69,18 @@ async function verify(hash:string,wallet:string,token:string):Promise<ChainVerif
  return {status:'CONFIRMED',receivedUnits:received,spentUnits:spent,blockNumber:receipt.blockNumber};
 }
 
-function deps():AgenticDeps{return {store:store(),cli:isolatedAgenticRunner(process.cwd()),snapshot:walletPortfolio,resolveToken,verify,sleep:ms=>new Promise(r=>setTimeout(r,ms)),now:()=>Date.now()};}
+function deps(dir?:string):AgenticDeps{return {store:store(),cli:isolatedAgenticRunner(process.cwd(),dir),snapshot:walletPortfolio,resolveToken,verify,sleep:ms=>new Promise(r=>setTimeout(r,ms)),now:()=>Date.now()};}
 
 export async function agenticOverview(owner:string,isOperator:boolean){
- const config=agenticConfig(),s=store(),plan=isOperator?s.readPlan(owner)??null:null;
+ const config=agenticConfig(),s=store(),binding=agenticBinding(owner),plan=binding?s.readPlan(owner)??null:null,pending=wallets().pending(owner);
  let wallet:{status:string;address:string|null;quota:{left:number;dailyLimit:number;used:number}|null}|null=null;
- if(isOperator&&config.live){
-  const cli=isolatedAgenticRunner(process.cwd());
+ if(binding&&config.live){
+  const cli=isolatedAgenticRunner(process.cwd(),binding.dir);
   try{const status=parseStatus(await cli({kind:'STATUS'}));let addr:string|null=null,quota=null;
    if(status==='CONNECTED'){addr=parseBscAddress(await cli({kind:'ADDRESS'}));try{quota=parseLeftQuota(await cli({kind:'LEFT_QUOTA'}));}catch{}}
    wallet={status,address:addr,quota};}catch{wallet={status:'UNAVAILABLE',address:null,quota:null};}
  }
- return {live:config.live,isOperator,operatorWallet:config.operator||null,capUsd:config.capUsd,wallet,plan,runs:isOperator?s.list(owner):[]};
+ return {live:config.live,isOperator,connected:Boolean(binding),connectedWallet:binding?.wallet??null,ownSession:Boolean(binding?.dir),signinPending:Boolean(pending&&pending.expiresAt>Date.now()),capUsd:config.capUsd,dailyCapUsd:config.dailyCapUsd??null,wallet,plan,runs:binding?s.list(owner):[]};
 }
 
 export function saveAgenticPlan(owner:string,input:{bellId:string;bellVersion:number;bellHash:string;contributionUsd:string;cadence:'DAILY'|'WEEKLY'}){
@@ -72,15 +94,16 @@ export function setAgenticEnabled(owner:string,enabled:boolean){const s=store(),
 async function execute(owner:string,plan:AgenticPlan,period:string,trigger:'SCHEDULED'|'MANUAL'){
  const config=agenticConfig();if(!config.live)throw Error('LIVE_DISABLED');
  const bell=bellHistory(plan.bellId).find(b=>b.version===plan.bellVersion&&b.contentHash===plan.bellHash);if(!bell)throw Error('BELL_VERSION_UNAVAILABLE');
+ const binding=agenticBinding(owner);if(!binding)throw Error('NOT_CONNECTED');
  const account=readAccount(owner);
- return runAgenticContribution({owner,plan,bell,policy:account.policy,policyVersion:account.policyVersion??0,period,trigger,wallet:config.operator,operatorCapUsd:config.capUsd,dailyCapUsd:config.dailyCapUsd},deps());
+ return runAgenticContribution({owner,plan,bell,policy:account.policy,policyVersion:account.policyVersion??0,period,trigger,wallet:binding.wallet,operatorCapUsd:config.capUsd,dailyCapUsd:config.dailyCapUsd},deps(binding.dir));
 }
 export async function runAgenticNow(owner:string,requestId:string){const plan=store().readPlan(owner);if(!plan)throw Error('NO_PLAN');return execute(owner,plan,'M'+requestId,'MANUAL');}
-export async function reconcileAgentic(owner:string,key:string){if(!agenticConfig().live)throw Error('LIVE_DISABLED');return reconcileAgenticRun(owner,key,deps());}
+export async function reconcileAgentic(owner:string,key:string){if(!agenticConfig().live)throw Error('LIVE_DISABLED');const binding=agenticBinding(owner);if(!binding)throw Error('NOT_CONNECTED');return reconcileAgenticRun(owner,key,deps(binding.dir));}
 export async function runDueAgentic(){
  const config=agenticConfig();if(!config.live)return [];const results=[];
  for(const plan of store().plans()){
-  if(!plan.enabled||linkedWallet(plan.owner)?.toLowerCase()!==config.ownerWallet)continue;
+  if(!plan.enabled||!agenticBinding(plan.owner))continue;
   const period=duePeriod(plan,Date.now());if(!period)continue;
   try{const {created,run}=await execute(plan.owner,plan,period,'SCHEDULED');results.push({period,created,state:run.state});}catch{results.push({period,created:false,state:'ERROR'});}
  }

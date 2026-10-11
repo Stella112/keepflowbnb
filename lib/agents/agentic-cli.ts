@@ -32,7 +32,8 @@ export function agenticArgs(command:AgenticCommand):readonly string[]{
  }
 }
 
-export function isolatedAgenticRunner(projectRoot:string):AgenticRunner{
+/** bawDir isolates one user's Agentic Wallet session (BINANCE_BAW_DIR and HOME); omitted means the operator's default session. */
+export function isolatedAgenticRunner(projectRoot:string,bawDir?:string):AgenticRunner{
  return async command=>{
   const args=agenticArgs(command);
   const expected=resolve(projectRoot,'tools/agents/node_modules/@binance/agentic-wallet'),root=await realpath(expected);
@@ -42,6 +43,7 @@ export function isolatedAgenticRunner(projectRoot:string):AgenticRunner{
   if(!rel||rel.startsWith('..')||isAbsolute(rel)||!/[.]m?js$/.test(entry))throw Error('CONTAINED_ENTRY_REQUIRED');
   const env:NodeJS.ProcessEnv={NODE_ENV:'production'};
   for(const key of ['PATH','HOME','USERPROFILE','APPDATA','LOCALAPPDATA','SystemRoot','TEMP','TMP'])if(process.env[key])env[key]=process.env[key];
+  if(bawDir){env.BINANCE_BAW_DIR=bawDir;env.HOME=bawDir;env.USERPROFILE=bawDir;}
   const timeout=command.kind==='SWAP'||command.kind==='X402_SIGN'?60_000:20_000;
   return new Promise<string>((accept,reject)=>execFile(process.execPath,[entry,...args],{cwd:root,env,shell:false,windowsHide:true,timeout,maxBuffer:65536},(error,out)=>error?reject(Error(command.kind==='SWAP'||command.kind==='X402_SIGN'?'OUTCOME_UNKNOWN':'CLI_UNAVAILABLE')):accept(out)));
  };
