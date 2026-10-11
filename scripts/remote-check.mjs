@@ -25,7 +25,7 @@ execFileSync('scp', [...ssh, archive, `${target}:${dir}/source.tar.gz`], { stdio
 const script = `set -eu
 export PATH=/home/ubuntu/.local/node-v24.21.0/bin:$PATH
 cd ${dir} && tar -xzf source.tar.gz && rm source.tar.gz
-ln -s /home/ubuntu/firstbell/current/node_modules node_modules
+${process.env.KEEPFLOW_CHECK_FRESH_DEPS==='1'?'npm ci --no-fund --no-audit >/dev/null':'ln -s /home/ubuntu/firstbell/current/node_modules node_modules'}
 npm run typecheck
 ${focus?`node --test ${focus} 2>&1 | tail -60 || true`:"npm test 2>&1 | grep -E '^(ℹ (tests|pass|fail)|✖)' || true"}
 `;

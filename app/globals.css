@@ -240,3 +240,8 @@ code{word-break:break-word}
 @media(max-width:900px){.ready-grid,.keep-going-grid{grid-template-columns:1fr}}
 @media(prefers-color-scheme:dark){:root:not([data-theme="light"]) .mode-tag.real{background:#3ddc97;color:#06281c}}
 :root[data-theme="dark"] .mode-tag.real{background:#3ddc97;color:#06281c}
+.binance-first{width:100%;justify-content:flex-start;gap:12px}
+.binance-first .pill{margin-left:auto;font-size:11px}
+.other-wallets{margin-top:12px}
+.other-wallet-list{display:grid;gap:8px;margin-top:10px}
+.other-wallet-list .wallet-button{justify-content:flex-start;margin:0}
