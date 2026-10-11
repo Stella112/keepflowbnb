@@ -17,12 +17,12 @@ export function AgenticLive(){
  async function startConnect(){if(lock.current)return;lock.current=true;setBusy(true);setError("");setMessage("");try{const d=await post({action:"CONNECT_START"});if(d.status==="CONNECTED"){setChallenge(undefined);setMessage("Agentic Wallet connected.");await load();return;}const qr=await (await import("qrcode")).toDataURL(d.urlForWeb,{width:220,margin:2});setChallenge({...d,qr});}catch(e){setError(e instanceof Error?e.message:"Could not start the connection.");}finally{lock.current=false;setBusy(false);}}
  async function confirmConnect(){if(lock.current)return;lock.current=true;setBusy(true);setError("");setMessage("");try{await post({action:"CONNECT_VERIFY"});setChallenge(undefined);setMessage("Agentic Wallet connected. Now choose a Flow and an amount.");await load();}catch(e){setError(e instanceof Error?e.message:"Not confirmed yet.");}finally{lock.current=false;setBusy(false);}}
  const flow=flows.find(f=>f.id===flowId);
- const head=<><p className="eyebrow">Live Autopilot · Binance Agentic Wallet</p><h2>Let an agent invest for you, from your own wallet.</h2></>;
+ const head=<><p className="eyebrow">Autopilot · Binance Agentic Wallet</p><h2>Let an agent invest for you, from your own wallet.</h2></>;
  if(signedOut)return <section className="purchase-panel agentic-live">{head}<p>Sign in to KeepFlow first. Your Autopilot, rules and receipts are tied to your wallet.</p><Link className="button" href="/account">Sign in</Link></section>;
  if(!data)return <section className="purchase-panel agentic-live">{head}<p>{error||"Loading…"}</p></section>;
  return <section className="purchase-panel agentic-live">{head}
   <p>Connect your own Binance Agentic Wallet. KeepFlow picks what to buy from your Flow and your rules; your Agentic Wallet executes it, within the daily limit you set in the Binance app. It never sells, never resends an unconfirmed order, and only records a purchase after it is confirmed on-chain.</p>
-  {!data.live&&<p className="notice">Live Autopilot is switched off on the server right now. Use paper Autopilot below.</p>}
+  {!data.live&&<p className="notice">Agent purchases are switched off on the server right now. Use paper Autopilot below.</p>}
   {data.live&&!data.connected&&<div className="connect-box">
    <h3>Connect your Agentic Wallet</h3>
    {!challenge?<><ol className="connect-steps"><li>Have the <strong>Binance app</strong> with an Agentic Wallet, holding a little USDT and BNB on BNB Chain.</li><li>In the Binance app, set the Agentic Wallet’s <strong>daily limit</strong> to what you are comfortable with.</li><li>Press connect, scan the code with the Binance app and approve.</li></ol>

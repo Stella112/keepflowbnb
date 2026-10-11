@@ -218,3 +218,6 @@ code{word-break:break-word}
 
 /* Review links: on phones the purchase panel comes first, the explanation follows. */
 @media(max-width:900px){.review-layout{grid-template-areas:"aside" "overview"}}
+
+.wallet-button{display:inline-flex;align-items:center;justify-content:center;gap:10px}
+.wallet-button img{border-radius:5px;flex:none}

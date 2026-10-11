@@ -2,7 +2,10 @@
 import { useEffect, useState } from "react";
 import { addressSchema } from "../lib/binance/rwa-schemas";
 export type Provider = { request(args:{method:string;params?:unknown[]}):Promise<unknown>; on?(event:string,listener:(value:unknown)=>void):void;removeListener?(event:string,listener:(value:unknown)=>void):void };
-type Wallet = { info:{uuid:string;name:string};provider:Provider };
+type Wallet = { info:{uuid:string;name:string;icon?:string;rdns?:string};provider:Provider };
+// Binance Wallet is offered first. Its logo is the icon the wallet itself announces (EIP-6963), never a copy.
+const isBinance=(wallet:Wallet)=>/binance/i.test(wallet.info.name)||/binance/i.test(wallet.info.rdns??"");
+const safeIcon=(icon?:string)=>icon&&/^data:image\/(svg\+xml|png|webp);/.test(icon)?icon:undefined;
 export function WalletConnect({onAddress}:{onAddress:(address:string,provider?:Provider)=>void}) {
   const [wallets,setWallets]=useState<Wallet[]>([]);const [chosen,setChosen]=useState("");
   const [provider,setProvider]=useState<Provider>();const [address,setAddress]=useState("");
@@ -10,7 +13,7 @@ export function WalletConnect({onAddress}:{onAddress:(address:string,provider?:P
   useEffect(()=>{
     const announce=(event:Event)=>{
       const detail=(event as CustomEvent<Wallet>).detail;
-      if(detail?.info?.uuid&&typeof detail.info.name==="string"&&typeof detail.provider?.request==="function")setWallets((current)=>current.some((wallet)=>wallet.info.uuid===detail.info.uuid)?current:[...current,detail]);
+      if(detail?.info?.uuid&&typeof detail.info.name==="string"&&typeof detail.provider?.request==="function")setWallets((current)=>current.some((wallet)=>wallet.info.uuid===detail.info.uuid)?current:[...current,detail].sort((a,b)=>Number(isBinance(b))-Number(isBinance(a))));
     };
     window.addEventListener("eip6963:announceProvider",announce);window.dispatchEvent(new Event("eip6963:requestProvider"));
     return ()=>window.removeEventListener("eip6963:announceProvider",announce);
@@ -39,5 +42,7 @@ export function WalletConnect({onAddress}:{onAddress:(address:string,provider?:P
     }catch(error){setError(error instanceof Error?error.message:"Wallet connection was declined.");}
     finally{setBusy(false);}
   }
-  return <div className="wallet-control">{wallets.length>1&&<><label htmlFor="wallet">Wallet</label><select id="wallet" value={chosen||wallets[0].info.uuid} onChange={(event)=>{setChosen(event.target.value);setAddress("");onAddress("");}}>{wallets.map((wallet)=><option key={wallet.info.uuid} value={wallet.info.uuid}>{wallet.info.name}</option>)}</select></>}<button className="button" disabled={busy} onClick={connect}>{busy?"Connecting…":address?`${address.slice(0,6)}…${address.slice(-4)} · BSC`:"Connect wallet"}</button>{error&&<p role="alert" className="error">{error}</p>}</div>;
+  const current=wallets.find((wallet)=>wallet.info.uuid===chosen)??wallets[0],icon=safeIcon(current?.info.icon);
+  const label=busy?"Connecting…":address?`${address.slice(0,6)}…${address.slice(-4)} · BSC`:current?`Connect ${current.info.name}`:"Connect wallet";
+  return <div className="wallet-control">{wallets.length>1&&<><label htmlFor="wallet">Wallet</label><select id="wallet" value={current?.info.uuid} onChange={(event)=>{setChosen(event.target.value);setAddress("");onAddress("");}}>{wallets.map((wallet)=><option key={wallet.info.uuid} value={wallet.info.uuid}>{wallet.info.name}{isBinance(wallet)?" (recommended)":""}</option>)}</select></>}<button className="button wallet-button" disabled={busy} onClick={connect}>{icon&&<img src={icon} alt="" width={20} height={20}/>}{label}</button>{!wallets.some(isBinance)&&!address&&<p className="fine-print">Binance Wallet is recommended. <a href="https://www.binance.com/en/web3wallet" target="_blank" rel="noreferrer">Get Binance Wallet ↗</a> or open this page in the Binance app&apos;s browser.</p>}{error&&<p role="alert" className="error">{error}</p>}</div>;
 }
