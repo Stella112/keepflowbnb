@@ -16,7 +16,7 @@ export function draftFromPrompt(input:unknown,supportedTickers:readonly string[]
  const actionText=text.replace(/(?:DON'T|DO NOT|NO|NEVER)\s+(?:AUTOMATICALLY\s+)?SELL\b/g,"");
  if(/\b(?:SELL|SHORT|LEVERAGE|BORROW|TRANSFER)\b/.test(actionText))throw new Error("This draft parser only supports stock allocation instructions; it cannot execute trades.");
  const knownAssets=new Set<string>([...curatedTickers,"USDT","CASH","RESERVE"]);
- const reservedWords=new Set(["AT","KEEP","RESERVE","CASH","CAP","MAX","MAXIMUM","STOCK","HOLDING","IN","TO","AS"]);
+ const reservedWords=new Set(["EACH","PER","ANY","ONE","AT","KEEP","RESERVE","CASH","CAP","MAX","MAXIMUM","STOCK","HOLDING","IN","TO","AS"]);
  for(const match of text.matchAll(/\b([A-Z][A-Z0-9.]*)\s*(?:AT|:|=)?\s*\d+(?:\.\d+)?\s*%/g))if(!knownAssets.has(match[1])&&!reservedWords.has(match[1]))throw new Error(`Unknown allocated asset ${match[1]}. Use supported company names or tickers.`);
  for(const match of text.matchAll(/\d+(?:\.\d+)?\s*%\s*(?:(?:IN|TO|AS)\s+)?([A-Z][A-Z0-9.]*)\b/g))if(!knownAssets.has(match[1])&&!reservedWords.has(match[1]))throw new Error(`Unknown allocated asset ${match[1]}. Use supported company names or tickers.`);
  const tickers=curatedTickers.filter(ticker=>new RegExp(`\\b${ticker}\\b`).test(text));
