@@ -39,7 +39,8 @@ export function swapEffectsMatch(result:z.infer<typeof simulationSchema>,intent:
   for(const change of result.balanceChanges){
     // Only ERC20 semantics are verified. Native/gas markers and other owners'
     // effects are not silently ignored or assigned invented provider meanings.
-    if(change.owner.toLowerCase()!==intent.wallet.toLowerCase()||change.tokenType!=="ERC20")return false;
+    // Binance's live simulate response spells the type "Erc20" (observed 2026-10-11); compare without case.
+    if(change.owner.toLowerCase()!==intent.wallet.toLowerCase()||String(change.tokenType).toUpperCase()!=="ERC20")return false;
     const token=change.contractAddress.toLowerCase(),delta=BigInt(change.change);
     if(token===intent.funding.toLowerCase()){if(delta>0n)return false;spent-=delta;}
     else if(token===intent.stock.toLowerCase()){if(delta<0n)return false;received+=delta;}
