@@ -14,7 +14,6 @@
     "preview:lightsail": "node scripts/local-preview.mjs"
   },
   "dependencies": {
-    "@binance/w3w-utils": "1.1.8",
     "@modelcontextprotocol/sdk": "1.32.1",
     "next": "latest",
     "qrcode": "^1.5.4",

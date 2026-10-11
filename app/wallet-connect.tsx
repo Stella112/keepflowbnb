@@ -36,17 +36,12 @@ export function WalletConnect({onAddress}:{onAddress:(address:string,provider?:P
   useEffect(()=>{const timer=setTimeout(()=>{const injected=(window as unknown as InjectedWindow).ethereum;if(injected&&!injected.isBinance)setLegacy({info:{uuid:"injected",name:"Browser wallet"},provider:injected});},400);return()=>clearTimeout(timer);},[]);
   const others=[...wallets.filter((wallet)=>!isBinance(wallet)),...(legacy&&!wallets.length?[legacy]:[])];
   const binanceIcon=safeIcon(wallets.find(isBinance)?.info.icon);
-  async function openInBinanceApp(){
-    // The link format comes from Binance's own @binance/w3w-utils; it is browser-only, so it loads on demand.
-    try{const {getDeepLink}=await import("@binance/w3w-utils");window.location.href=getDeepLink(window.location.href,56).http;}
-    catch{setHelp(true);}
-  }
   async function connect(id:string){
     setChosen(id);setBusy(true);setError("");setAddress("");onAddress("");setHelp(false);
     try {
       const selected=id===BINANCE?binanceProvider(wallets):others.find((wallet)=>wallet.info.uuid===id)?.provider;
       if(!selected){
-        if(id===BINANCE){setHelp(true);if(/Android|iPhone|iPad/i.test(navigator.userAgent))await openInBinanceApp();return;}
+        if(id===BINANCE){setHelp(true);return;}
         throw new Error("That wallet is no longer available. Refresh the page and try again.");
       }
       setProvider(selected);
@@ -65,7 +60,7 @@ export function WalletConnect({onAddress}:{onAddress:(address:string,provider?:P
   if(address)return <div className="wallet-control"><p className="signed-in">Connected · <span className="address">{address.slice(0,6)}…{address.slice(-4)}</span> · BNB Smart Chain</p></div>;
   return <div className="wallet-control">
     <button className="button wallet-button binance-first" disabled={busy} onClick={()=>connect(BINANCE)}>{binanceIcon&&<img src={binanceIcon} alt="" width={22} height={22}/>}{busy&&chosen===BINANCE?"Connecting…":"Binance Web3 Wallet"}<span className="pill">Recommended</span></button>
-    {help&&<div className="notice"><p><strong>Binance Web3 Wallet isn&apos;t available in this browser.</strong></p><p>On a phone: open this page in the Binance app (Wallet → Web3 → browser). On a computer: install the Binance Wallet extension, then refresh.</p><p><a href="https://www.binance.com/en/web3wallet" target="_blank" rel="noreferrer">Get Binance Web3 Wallet ↗</a> · <button className="quiet" onClick={openInBinanceApp}>Open in Binance app</button></p></div>}
+    {help&&<div className="notice"><p><strong>Binance Web3 Wallet isn&apos;t available in this browser.</strong></p><p><strong>On a phone:</strong> in the Binance app, open the Wallet, tap Services → DApps, type <strong>keepflow.site</strong> in the address bar, then tap Binance Web3 Wallet again.</p><p><strong>On a computer:</strong> install the Binance Wallet extension, then refresh this page.</p><p><a href="https://www.binance.com/en/web3wallet" target="_blank" rel="noreferrer">Get Binance Web3 Wallet ↗</a></p></div>}
     {others.length>0&&<details className="other-wallets"><summary>Other wallets</summary><div className="other-wallet-list">{others.map((wallet)=><button key={wallet.info.uuid} className="secondary wallet-button" disabled={busy} onClick={()=>connect(wallet.info.uuid)}>{safeIcon(wallet.info.icon)&&<img src={safeIcon(wallet.info.icon)} alt="" width={20} height={20}/>}{busy&&chosen===wallet.info.uuid?"Connecting…":wallet.info.name}</button>)}</div></details>}
     {error&&<p role="alert" className="error">{error}</p>}
   </div>;
