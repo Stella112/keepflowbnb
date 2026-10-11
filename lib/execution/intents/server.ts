@@ -36,7 +36,7 @@ export async function prepareIntent(owner:string,wallet:string,input:IntentInput
    else{
     const candidate=await buildCandidate(prepared),{built,approval}=candidate;
     if(!prepared.route.approveTarget)throw new Error("NO_VERIFIED_SPENDER");
-    next.quote={id:prepared.route.quoteId,provider:prepared.asset.platformId,funding:prepared.funding.address,stock:prepared.stock.address,fundingDecimals:prepared.funding.decimals,stockDecimals:prepared.stock.decimals,amountUnits:prepared.amount.toString(),minimumReceiveUnits:built.tx.minReceiveAmount,spender:prepared.route.approveTarget,fetchedAt:prepared.fetchedAt,localFreshUntil:new Date(Date.parse(prepared.fetchedAt)+15_000).toISOString(),expirySource:"LOCAL_15_SECOND_PREFLIGHT_LIMIT_NOT_PROVIDER_EXPIRY"};
+    next.quote={id:prepared.route.quoteId,provider:prepared.asset.platformId,funding:prepared.funding.address,stock:prepared.stock.address,fundingDecimals:prepared.funding.decimals,stockDecimals:prepared.stock.decimals,amountUnits:prepared.amount.toString(),minimumReceiveUnits:built.tx.minReceiveAmount,spender:prepared.route.approveTarget,fetchedAt:prepared.fetchedAt,localFreshUntil:new Date(Date.parse(prepared.fetchedAt)+25_000).toISOString(),expirySource:"LOCAL_15_SECOND_PREFLIGHT_LIMIT_NOT_PROVIDER_EXPIRY"};
     next.transaction={chainId:56,from:built.tx.from,to:built.tx.to,data:built.tx.data as Hex,value:built.tx.value,gas:built.tx.gas,gasPrice:built.tx.gasPrice};
     if(approval)next.approval={token:prepared.funding.address,spender:prepared.route.approveTarget,amountUnits:prepared.amount.toString(),data:approval.data as Hex};
     const finalPolicy=quotePolicy(policy,prepared.fetchedAt,snapshot.marketFetchedAt,50);if(!finalPolicy.allowed)throw new Error("QUOTE_POLICY_STALE");

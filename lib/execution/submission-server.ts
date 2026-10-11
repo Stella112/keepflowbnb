@@ -9,7 +9,7 @@ import type {Intent,PinnedTransaction} from './intents/model';
 import {getDiscovery} from '../binance/rwa';
 import {getBinanceClient} from '../binance/client';
 import {publicClient,USDT_ADDRESS,verifyToken} from '../binance/onchain';
-import {swapSchema,simulationSchema,swapEffectsMatch} from '../binance/trading-schemas';
+import {simulationSchema,swapEffectsMatch} from '../binance/trading-schemas';
 import {walletPortfolio} from './portfolio';
 import {walletPolicy,quotePolicy} from './rules';
 import {toUnits} from '../binance/amounts';
@@ -33,10 +33,11 @@ async function freshValidation(context:Readonly<SubmissionContext>,intent:Readon
  if(!decision.allowed||!quotePolicy(policy,q.fetchedAt,snapshot.marketFetchedAt,50).allowed)throw Error('POLICY_BLOCKED');
  const rpc=publicClient(),[allowance,gasBalance]=await Promise.all([rpc.readContract({address:funding.address,abi:erc20Abi,functionName:'allowance',args:[context.wallet as Address,q.spender as Address]}),rpc.getBalance({address:context.wallet as Address})]);
  if(await rpc.getChainId()!==56||allowance<BigInt(q.amountUnits)||gasBalance<BigInt(tx.gas)*BigInt(tx.gasPrice))throw Error('CHAIN_ALLOWANCE_OR_GAS_UNAVAILABLE');
- const client=getBinanceClient(),built=await client.get('/api/v1/dex/aggregator/swap',{binanceChainId:'56',amount:q.amountUnits,fromTokenAddress:q.funding,toTokenAddress:q.stock,userWalletAddress:context.wallet,quoteId:q.id,slippagePercent:'0.5'},swapSchema);
- const actual={chainId:56,from:built.tx.from,to:built.tx.to,data:built.tx.data,value:built.tx.value,gas:built.tx.gas,gasPrice:built.tx.gasPrice};
- if(JSON.stringify(actual)!==JSON.stringify(tx)||built.executionMode!=='SWAP'||built.tx.slippagePercent!=='0.5'||built.tx.minReceiveAmount!==q.minimumReceiveUnits||built.tx.to.toLowerCase()!==q.spender.toLowerCase())throw Error('PINNED_BUILD_CHANGED');
- const simulation=await client.simulate(built.tx,simulationSchema);
+ // Binance returns a different gasPrice and calldata on every build of the same quote (observed live
+ // 2026-10-11), so a rebuild can never match byte for byte. Instead re-simulate the exact pinned bytes the
+ // wallet will sign and require the same effects: exact USDT out, at least the pinned minimum stock in.
+ if(tx.chainId!==56||tx.from.toLowerCase()!==context.wallet||tx.to.toLowerCase()!==q.spender.toLowerCase()||BigInt(tx.value)!==0n)throw Error('PINNED_TRANSACTION_INVALID');
+ const client=getBinanceClient(),simulation=await client.simulate({from:tx.from,to:tx.to,data:tx.data,value:tx.value},simulationSchema);
  if(!swapEffectsMatch(simulation,{wallet:context.wallet,funding:q.funding,stock:q.stock,amount:BigInt(q.amountUnits),minimumReceive:BigInt(q.minimumReceiveUnits),spender:q.spender,allowance}))throw Error('PINNED_SIMULATION_FAILED');
  if(await existingAccountId()!==context.account||linkedWallet(context.account)?.toLowerCase()!==context.wallet||JSON.stringify(readAccount(context.account).policy)!==JSON.stringify(policy)||!quotePolicy(policy,q.fetchedAt,snapshot.marketFetchedAt,50).allowed)throw Error('AUTH_POLICY_OR_FRESHNESS_CHANGED');
  return {intent:{...structuredClone(intent),simulation:{approvalStatus:'NOT_NEEDED',swapStatus:'SUCCESS',checkedAt:new Date().toISOString(),message:'Exact pinned swap revalidated; no signature requested.',executionEnabled:false}},policy,wallet:context.wallet,allowanceSufficient:true};

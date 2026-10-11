@@ -25,7 +25,7 @@ function ready(intent:Intent,wallet:string,now:number){
  if(intent.status!=='READY_READ_ONLY'||!intent.quote||!intent.transaction||!intent.policySnapshot||intent.approval||intent.policy?.allowed!==true||intent.simulation?.swapStatus!=='SUCCESS'||intent.simulation.approvalStatus==='FAILED')throw Error('INTENT_NOT_SUBMITTABLE');
  const tx=transactionSchema.parse(intent.transaction);if(verifiedWallet(intent.wallet)!==wallet||verifiedWallet(tx.from)!==wallet||BigInt(tx.value)!==0n||BigInt(tx.gas)<=0n||BigInt(tx.gasPrice)<=0n)throw Error('TRANSACTION_BINDING_MISMATCH');
  const expiry=Date.parse(intent.quote.localFreshUntil),fetched=Date.parse(intent.quote.fetchedAt),simulated=Date.parse(intent.simulation.checkedAt);
- if(!Number.isFinite(now)||!Number.isFinite(expiry)||!Number.isFinite(fetched)||!Number.isFinite(simulated)||fetched>now||simulated>now||expiry<=now||now-fetched>15000||now-simulated>15000)throw Error('INTENT_EXPIRED');
+ if(!Number.isFinite(now)||!Number.isFinite(expiry)||!Number.isFinite(fetched)||!Number.isFinite(simulated)||fetched>now||simulated>now||expiry<=now||now-fetched>25000||now-simulated>25000)throw Error('INTENT_EXPIRED');
  if(toUnits(intent.input.amount,intent.quote.fundingDecimals).toString()!==intent.quote.amountUnits||intent.quote.fundingDecimals!==18||intent.quote.funding.toLowerCase()!=='0x55d398326f99059ff775485246999027b3197955')throw Error('FUNDING_AMOUNT_MISMATCH');
  return tx as PinnedTransaction;
 }
