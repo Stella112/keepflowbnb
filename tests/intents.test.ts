@@ -34,6 +34,16 @@ test("synthetic confirmed receipt requires exact debit, minimum receive and actu
  assert.equal((await reconcileIntent(prepared(),hash,{...rpc(),stockBalance:async()=>9n})).status,"UNVERIFIED");
  const reader=rpc(),receipt=await reader.receipt(hash);assert.equal((await reconcileIntent(prepared(),hash,{...reader,receipt:async()=>({...receipt!,logs:[]})})).status,"UNVERIFIED");
 });
+test("pruned receipt-block state falls back to the current balance, which must still cover the receipt",async()=>{
+ const pruned=(latest:bigint)=>({...rpc(),stockBalance:async(_t:string,_w:string,block:bigint)=>{if(block===10n)throw Error("missing trie node");return latest;}});
+ const result=await reconcileIntent(prepared(),hash,pruned(10n));assert.equal(result.status,"CONFIRMED");assert.equal(result.stockBalanceAtBlock,undefined);
+ assert.equal((await reconcileIntent(prepared(),hash,pruned(9n))).status,"UNVERIFIED");
+});
+test("approval logs from transferFrom are ignored instead of breaking settlement (live 2026-10-11)",async()=>{
+ const approval={address:funding,topics:encodeEventTopics({abi:erc20Abi,eventName:"Approval",args:{owner:wallet,spender:router}}) as readonly Hex[],data:encodeAbiParameters([{type:"uint256"}],[0n])};
+ const reader=rpc(),receipt=await reader.receipt(hash);
+ assert.equal((await reconcileIntent(prepared(),hash,{...reader,receipt:async()=>({...receipt!,logs:[approval,...receipt!.logs,approval]})})).status,"CONFIRMED");
+});
 test("unrelated hash sender, target, calldata, value and old block cannot reconcile",async()=>{
  const reader=rpc(),tx=await reader.transaction(hash);
  for(const mutation of [{from:router},{to:stock},{input:"0xffff"},{value:1n},{hash:"0x"+"c".repeat(64)}])await assert.rejects(reconcileIntent(prepared(),hash,{...reader,transaction:async()=>({...tx!,...mutation})}),/UNRELATED_HASH/);

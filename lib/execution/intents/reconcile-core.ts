@@ -21,14 +21,19 @@ export async function reconcileIntent(intent:Intent,hash:Hex,rpc:ReconcileRpc):P
   if(confirmations<3n)return result("PENDING","Waiting for at least three matching BSC block confirmations.",extra);
   if(receipt.status==="reverted")return result("REVERTED","The matching transaction was mined and reverted. It was not retried.",extra);
   let spent=0n,received=0n;const q=intent.quote;
-  for(const log of receipt.logs){if(![q.funding.toLowerCase(),q.stock.toLowerCase()].includes(log.address.toLowerCase()))continue;let decoded;try{decoded=decodeEventLog({abi:erc20Abi,eventName:"Transfer",data:log.data,topics:log.topics as [Hex,...Hex[]]});}catch{continue;}const {from,to,value}=decoded.args;
+  for(const log of receipt.logs){if(![q.funding.toLowerCase(),q.stock.toLowerCase()].includes(log.address.toLowerCase()))continue;let decoded;try{decoded=decodeEventLog({abi:erc20Abi,eventName:"Transfer",data:log.data,topics:log.topics as [Hex,...Hex[]]});}catch{continue;}
+   // viem also decodes Approval logs here (seen live: transferFrom emits Approval); only Transfer moves tokens.
+   if(decoded.eventName!=="Transfer")continue;const {from,to,value}=decoded.args;
    const delta=(to.toLowerCase()===intent.wallet.toLowerCase()?value:0n)-(from.toLowerCase()===intent.wallet.toLowerCase()?value:0n);
    if(log.address.toLowerCase()===q.funding.toLowerCase())spent-=delta;else received+=delta;
   }
   if(spent!==BigInt(q.amountUnits)||received<BigInt(q.minimumReceiveUnits))return result("UNVERIFIED","Mined success does not prove the requested token effects. Funding debit or stock receipt did not match.",extra);
-  const balance=await rpc.stockBalance(q.stock,intent.wallet,receipt.blockNumber);
-  if(balance<received)return result("UNVERIFIED","The stock balance at the receipt block does not substantiate the received tokens.",extra);
+  // Public BSC nodes prune historical state within minutes (observed 2026-10-11), long before 12 confirmations.
+  // If the receipt-block read is gone, the current balance must still cover the received tokens.
+  let historical=true,balance:bigint;
+  try{balance=await rpc.stockBalance(q.stock,intent.wallet,receipt.blockNumber);}catch{historical=false;balance=await rpc.stockBalance(q.stock,intent.wallet,head);}
+  if(balance<received)return result("UNVERIFIED","The stock balance does not substantiate the received tokens.",extra);
   if((await rpc.block(receipt.blockNumber)).hash?.toLowerCase()!==receipt.blockHash.toLowerCase())return result("UNKNOWN","The receipt block changed during balance verification. Reconcile again without retrying spending.");
-  return result("CONFIRMED","An externally submitted transaction matched the pinned intent, confirmed, and produced verified token receipts and stock balance. KeepFlow submitted nothing.",{...extra,spentUnits:spent.toString(),receivedUnits:received.toString(),stockBalanceAtBlock:balance.toString()});
+  return result("CONFIRMED","An externally submitted transaction matched the pinned intent, confirmed, and produced verified token receipts and stock balance. KeepFlow submitted nothing.",{...extra,spentUnits:spent.toString(),receivedUnits:received.toString(),...(historical?{stockBalanceAtBlock:balance.toString()}:{})});
  }catch(error){if(error instanceof Error&&error.message==="UNRELATED_HASH")throw error;return result("UNKNOWN","The RPC result could not be verified. Outcome remains unknown; no spending was retried.");}
 }
