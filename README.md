@@ -1,3 +1,5 @@
+<img src="public/keepflow-logo.svg" alt="KeepFlow" width="300">
+
 # KeepFlow
 
 **Scan it. Own it. Fork it. Automate it.**

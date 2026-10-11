@@ -33,7 +33,7 @@ export default async function ReviewPage({params}:{params:Promise<{id:string}>})
    {flow&&<><h2>{flow.title} · version {flow.version}</h2>{review.flowVersion!==flow.version&&<p className="notice">This Flow was updated after your assistant prepared the link. You&apos;re seeing the current version.</p>}<ul className="allocation-list">{flow.assets.map(a=><li className="allocation-row" key={a.ticker}><Link href={`/s/${a.ticker}`}>{a.ticker}</Link><span>{(a.weightBps/100).toFixed(a.weightBps%100?2:0)}%</span></li>)}{flow.reserveBps>0&&<li className="allocation-row"><span>USDT kept in reserve</span><span>{(flow.reserveBps/100).toFixed(0)}%</span></li>}</ul></>}
    <p><Link className="quiet" href={flow?`/b/${flow.id}`:`/s/${review.ticker}`}>See the full {flow?"Flow":"stock"} page and research ↗</Link></p>
    </section>
-   <aside className="purchase-panel"><p className="eyebrow">BNB Smart Chain · Mainnet</p>
+   <aside className="purchase-panel"><p className="eyebrow"><span className="mode-tag real">Real trading</span> BNB Smart Chain · real USDT</p>
     {flow?<><h2>Invest in {flow.title}.</h2><SignInGate/><BasketPurchase key={`${flow.id}:${flow.version}`} bell={flow} initialAmount={review.amount}/></>
      :<><h2>Buy {review.ticker}.</h2><p className="fine-print">Issuer: {issuer(review.provider)}. You can switch issuer on the <Link href={`/s/${review.ticker}`}>stock page</Link>.</p><IntentPreview ticker={review.ticker!} provider={review.provider!} initialAmount={review.amount}/></>}
    </aside>

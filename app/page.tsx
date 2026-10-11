@@ -30,7 +30,8 @@ export default async function Home() {
         <p className="eyebrow">Tokenized stocks on BNB Chain</p>
         <h1>Own real stocks on&#8209;chain, in a few taps.</h1>
         <p className="intro">Buy NVIDIA, Apple, Microsoft and more with USDT from your own wallet. Bundle them into a Flow you can share, fork and keep on track automatically, under rules you set.</p>
-        <div className="hero-actions"><Link className="button" href="/#stocks">Explore stocks</Link><Link className="button secondary" href="/bells">Browse Flows</Link></div>
+        <div className="hero-actions"><Link className="button large" href="/buy">Buy your first stock</Link><Link className="button secondary" href="/#stocks">Explore stocks</Link></div>
+        <p className="fine-print hero-note">You need a BNB Chain wallet with USDT. No USDT yet? <Link href="/portfolio?mode=paper">Practice with paper money</Link>.</p>
         <ul className="trust-row"><li>Your wallet, your keys</li><li>Live Binance market data</li><li>Practice free with paper money</li></ul>
       </div>
       {featured&&<Link href={`/b/${featured.id}`} className="flow-preview" aria-label={`Open the ${featured.title} Flow`}>

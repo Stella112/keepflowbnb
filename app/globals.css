@@ -221,3 +221,22 @@ code{word-break:break-word}
 
 .wallet-button{display:inline-flex;align-items:center;justify-content:center;gap:10px}
 .wallet-button img{border-radius:5px;flex:none}
+
+/* ===== First-stock journey and Real vs Paper labels ===== */
+.mode-tag{display:inline-block;padding:2px 8px;margin-right:6px;border-radius:999px;font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;vertical-align:1px}
+.mode-tag.real{background:#0f3d2e;color:#fff}
+.mode-tag.paper{background:#fff2cc;color:#6b4e00;border:1px solid #f0d27a}
+.button.large{padding:15px 26px;font-size:17px}
+.hero-note{margin-top:12px}
+.ready-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;margin-bottom:12px}
+.ready-grid>.purchase-panel{margin:0}
+.ready-grid h3{margin:10px 0 8px}
+.journey{max-width:760px}
+.keep-going{margin-top:32px}
+.keep-going-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.keep-going-grid a{display:grid;gap:6px;padding:16px;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);color:inherit;text-decoration:none}
+.keep-going-grid a:hover{border-color:var(--brand)}
+.keep-going-grid span{font-size:14px;color:var(--muted,inherit)}
+@media(max-width:900px){.ready-grid,.keep-going-grid{grid-template-columns:1fr}}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]) .mode-tag.real{background:#3ddc97;color:#06281c}}
+:root[data-theme="dark"] .mode-tag.real{background:#3ddc97;color:#06281c}

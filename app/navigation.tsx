@@ -2,7 +2,7 @@ import Link from "next/link";
 import {PRODUCT_NAME} from "../lib/brand";
 import {connection} from "next/server";
 import {liveTradingEnabled} from "../lib/mode";
-const primary:[string,string][]=[["/#stocks","Stocks"],["/bells","Flows"],["/portfolio","Portfolio"],["/autopilot","Autopilot"],["/assistant","Build with AI"]];
+const primary:[string,string][]=[["/buy","Buy"],["/#stocks","Stocks"],["/bells","Flows"],["/portfolio","Portfolio"],["/autopilot","Autopilot"],["/assistant","Build with AI"]];
 const more:[string,string,string][]=[["/create","Create a Flow","Build and share your own portfolio"],["/my-bells","My Flows","Flows you created or forked"],["/rules","My rules","Limits that protect every purchase"],["/agent","Research","Company facts and paid analyst reports"],["/portfolio?mode=paper","Paper trading","Practice with virtual dollars"],["/activity","Activity","Every purchase, check and receipt"]];
 export async function Navigation({mode="mainnet"}:{mode?:"mainnet"|"paper"}={}){
  await connection();
